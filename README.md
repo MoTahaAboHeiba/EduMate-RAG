@@ -688,7 +688,7 @@ curl -X POST http://localhost:8000/api/index
 
 | Metric | Value | Notes |
 |--------|-------|-------|
-| **Indexing Speed** | 100+ chunks/sec | With telemetry disabled |
+| **Indexing Speed** | 10+ chunks/sec | With telemetry disabled |
 | **Query Response Time** | 1-3 seconds | Includes retrieval + LLM generation |
 | **Vector Search Speed** | <100ms | Sub-second for 13,000+ documents |
 | **Memory Usage** | ~1-2GB | Running with full vector DB |
