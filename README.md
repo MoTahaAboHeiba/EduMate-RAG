@@ -77,38 +77,38 @@ Answers are **grounded exclusively in your course materials**—no hallucination
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                   Flutter Mobile App                     │
-│              (Student Interface Layer)                   │
+│                   Flutter Mobile App                    │
+│              (Student Interface Layer)                  │
 └────────────────────┬────────────────────────────────────┘
                      │ HTTP/REST
                      ├─────────────────────────────────────┐
                      ▼                                     │
-        ┌─────────────────────────────┐                   │
-        │   FastAPI Server (Port 8000) │                   │
-        │  ├─ POST /api/query         │                   │
-        │  ├─ GET /api/conversation/* │                   │
-        │  └─ POST /api/index         │                   │
-        └────────┬────────────────────┘                   │
+        ┌─────────────────────────────┐                    │
+        │   FastAPI Server (Port 8000)│                    │
+        │  ├─ POST /api/query         │                    │
+        │  ├─ GET /api/conversation/* │                    │
+        │  └─ POST /api/index         │                    │
+        └────────┬────────────────────┘                    │
                  │                                         │
-        ┌────────▼──────────────────────────────────┐    │
-        │   RAG Pipeline (LangChain)                │    │
-        │  ┌─ Conversation Memory ─────────────────┤    │
-        │  ├─ PDF Retrieval (ChromaDB)             │    │
-        │  └─ LLM Generation (Groq)                │    │
-        └────────┬──────────────────────────────────┘    │
+        ┌────────▼──────────────────────────────────┐      │
+        │   RAG Pipeline (LangChain)                │      │
+        │  ┌─ Conversation Memory  ─────────────────┤      │
+        │  ├─ PDF Retrieval (ChromaDB)              │      │
+        │  └─ LLM Generation (Groq)                 │      │
+        └────────┬──────────────────────────────────┘      │
                  │                                         │
-        ┌────────▼──────────────────────────────────┐    │
-        │   Data Layer                              │    │
-        │  ├─ ChromaDB (Vector DB)                 │    │
-        │  ├─ PDF Embeddings                       │    │
-        │  └─ Conversation History                 │    │
-        └───────────────────────────────────────────┘    │
-                                                          │
-        ┌──────────────────────────────────────────────┐  │
-        │   External Services                          │  │
-        │  ├─ Groq API (LLM Inference)               │  │
-        │  └─ (No storage of personal data)          │  │
-        └──────────────────────────────────────────────┘  │
+        ┌────────▼──────────────────────────────────┐      │
+        │   Data Layer                              │      │
+        │  ├─ ChromaDB (Vector DB)                  │      │
+        │  ├─ PDF Embeddings                        │      │
+        │  └─ Conversation History                  │      │
+        └───────────────────────────────────────────┘      │
+                                                           │
+        ┌──────────────────────────────────────────────┐   │
+        │   External Services                          │   │
+        │  ├─ Groq API (LLM Inference)                 │   │
+        │  └─ (No storage of personal data)            │   │
+        └──────────────────────────────────────────────┘   │
 ```
 
 ---
