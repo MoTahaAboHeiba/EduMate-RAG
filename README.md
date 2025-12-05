@@ -64,12 +64,12 @@ Answers are **grounded exclusively in your course materials**—no hallucination
 | **Web Framework** | FastAPI | 0.109+ | REST API server |
 | **ASGI Server** | Uvicorn | 0.27+ | HTTP server |
 | **LLM Framework** | LangChain | 0.1.20+ | RAG orchestration |
-| **LLM Provider** | Groq | - | Free cloud LLM API |
+| **LLM Provider** | Groq | -- | Free cloud LLM API |
 | **LLM Model** | Llama 3.3 70B | Latest | Answer generation |
 | **Vector DB** | ChromaDB | 0.4.22+ | Semantic search |
 | **PDF Processing** | PyPDF | 4.0.1+ | Text extraction |
 | **Config Management** | python-dotenv | 1.0+ | Environment variables |
-| **Version Control** | Git | - | Code versioning |
+| **Version Control** | Git | -- | Code versioning |
 
 ---
 
