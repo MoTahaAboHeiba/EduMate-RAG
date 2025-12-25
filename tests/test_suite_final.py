@@ -43,9 +43,9 @@ class TestConfig:
         assert 1 <= config.API_PORT <= 65535
 
 
-# ============================================================================
+# ===================
 # PDF LOADER TESTS
-# ============================================================================
+# ===================
 
 class TestPDFLoader:
     """Test PDF loader functionality"""
@@ -89,11 +89,9 @@ class TestPDFLoader:
         result = self.loader.load_all_pdfs()
         assert isinstance(result, list)
 
-
-# ============================================================================
+# ===================
 # VECTOR STORE TESTS
-# ============================================================================
-
+# ===================
 class TestVectorStore:
     """Test vector store functionality"""
     
@@ -122,9 +120,9 @@ class TestVectorStore:
         assert 'count' in result or 'documents' in result
 
 
-# ============================================================================
+# =========================================================
 # RAG CHAIN TESTS - SKIP DUE TO LANGCHAIN VERSION CONFLICT
-# ============================================================================
+# =========================================================
 
 class TestRAGChainSkipped:
     """RAGChain tests skipped due to LangChain deprecation"""
@@ -135,9 +133,9 @@ class TestRAGChainSkipped:
         pass
 
 
-# ============================================================================
+# ====================================================
 # API TESTS - SKIP DUE TO STARLETTE VERSION CONFLICT
-# ============================================================================
+# ====================================================
 
 class TestAPISkipped:
     """API tests skipped due to Starlette TestClient compatibility"""
@@ -148,9 +146,9 @@ class TestAPISkipped:
         pass
 
 
-# ============================================================================
+# ===============================================
 # SMOKE TESTS (Quick validation) - WORKING ONLY
-# ============================================================================
+# ===============================================
 
 class TestSmoke:
     """Smoke tests - quick validation"""
@@ -171,9 +169,9 @@ class TestSmoke:
         assert vs is not None
 
 
-# ============================================================================
+# ==============
 # UTILITY TESTS
-# ============================================================================
+# ==============
 
 @pytest.fixture
 def sample_config():
@@ -189,43 +187,15 @@ def test_sample_config(sample_config):
     assert sample_config["GROQ_MODEL"] == "mixtral-8x7b-32768"
     assert sample_config["API_PORT"] == 8000
 
-
-# ============================================================================
-# NOTES ON SKIPPED TESTS
-# ============================================================================
 """
-SKIPPED TESTS EXPLANATION:
-
-1. RAG Chain Tests (6 skipped)
-   - Issue: LangChain 0.1.20 uses deprecated LLMChain
-   - LLMChain expects Runnable, but ChatGroq is not compatible
-   - Solution: Upgrade LangChain to 0.3.x or use newer pattern
-   - Current: Skip tests to avoid errors
-
-2. API Tests (8 skipped)
-   - Issue: Starlette TestClient signature changed
-   - Old: TestClient(app)
-   - New: TestClient(app) should work but httpx changed
-   - Current: Skip to avoid compatibility issues
-
-WORKAROUND OPTIONS:
-
-A) For RAG Chain:
-   - Upgrade: pip install --upgrade langchain langchain-groq
-   - Or use ChatGroq directly without LLMChain
-
-B) For API Tests:
-   - Use requests library instead of TestClient
-   - Or upgrade Starlette/FastAPI versions
-
 TESTS WORKING NOW:
-✅ Config Tests (4)
-✅ PDFLoader Tests (5)
-✅ VectorStore Tests (4)
-✅ Smoke Tests (3)
-✅ Utility Tests (1)
+Config Tests (4)
+PDFLoader Tests (5)
+VectorStore Tests (4)
+Smoke Tests (3)
+Utility Tests (1)
 ═════════════════
-✅ TOTAL: 17 PASSING TESTS
+TOTAL: 17 PASSING TESTS
 """
 
 if __name__ == "__main__":
