@@ -91,7 +91,7 @@ Answer:"""
             answer = "I couldn't find relevant course materials to answer this question."
             sources = []
         else:
-            print(f"   ✅ Found {len(retrieved_docs)} relevant documents")
+            print(f" Found {len(retrieved_docs)} relevant documents")
             
             # Step 2: Prepare context
             context = "\n\n---\n\n".join([
@@ -100,7 +100,7 @@ Answer:"""
             ])
             
             # Step 3: Generate answer with conversation history
-            print("   🤖 Generating answer with Groq...")
+            print(" Generating answer with Groq...")
             try:
                 answer = self.chain.run(
                     context=context,
@@ -109,7 +109,7 @@ Answer:"""
                 )
                 answer = str(answer).strip()
             except Exception as e:
-                print(f"   ❌ Error generating answer: {e}")
+                print(f" Error generating answer: {e}")
                 answer = f"Error: {str(e)}"
             
             # Step 4: Prepare sources
@@ -133,7 +133,7 @@ Answer:"""
             "conversation_turn": conversation_turn
         }
         
-        print(f"   ✅ Answer generated (Turn {conversation_turn})")
+        print(f" Answer generated (Turn {conversation_turn})")
         return result
     
     def get_conversation_history(self) -> List[Dict]:
@@ -162,7 +162,7 @@ Answer:"""
     def clear_memory(self):
         """Clear conversation memory (start fresh conversation)"""
         self.memory.clear()
-        print("✅ Conversation memory cleared")
+        print(" Conversation memory cleared")
     
     def get_memory_summary(self) -> dict:
         """Get summary of current conversation"""
