@@ -112,7 +112,7 @@ async def query(request: QueryRequest) -> QueryResponse:
         )
     
     except Exception as e:
-        print(f"❌ API Error: {e}")
+        print(f" API Error: {e}")
         raise HTTPException(status_code=500, detail=f"Error processing query: {str(e)}")
 
 @app.post("/api/index")
@@ -137,7 +137,7 @@ async def index():
             raise HTTPException(status_code=400, detail="Indexing failed")
     
     except Exception as e:
-        print(f"❌ Indexing Error: {e}")
+        print(f" indexing Error: {e}")
         raise HTTPException(status_code=500, detail=f"Error indexing PDFs: {str(e)}")
 
 @app.get("/api/conversation/history")
