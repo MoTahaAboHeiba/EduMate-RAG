@@ -20,6 +20,8 @@ A **production-ready Retrieval-Augmented Generation (RAG)** backend for the EduM
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
+- [Flutter Integration](#flutter-integration)
+- [Users & Conversation Handling](#users--conversation-handling)
 - [Conversation Examples](#conversation-examples)
 - [Project Structure](#project-structure)
 - [How RAG Works](#how-rag-works)
@@ -481,6 +483,34 @@ curl http://localhost:8000/api/conversation/info
   "status": "active"
 }
 ```
+
+---
+
+## Flutter Integration
+
+This project exposes a FastAPI REST backend that a Flutter app can consume.
+
+For full integration guidance, see:
+- `EDUMATE_INTEGRATION.md`
+- `EDUMATE_USERS_AND_CONVERSATIONS.md`
+
+### Key integration points for Flutter
+- Use `POST /api/query` for question answering and conversation continuation.
+- Use `GET /api/conversation/history` to retrieve the active chat history.
+- Use `POST /api/conversation/new`, `GET /api/conversation/list`, `POST /api/conversation/load/{conversation_id}`, and `DELETE /api/conversation/{conversation_id}` to manage saved conversations.
+- Include a stable `X-Session-Token` header on every request to isolate users and conversations.
+
+## Users & Conversation Handling
+
+EduMate isolates conversation data by session token. Each user should send a unique `X-Session-Token` with every request.
+
+### How it works
+- User data is stored under `assets/conversations/<session-token>/`
+- Conversation memory is tracked per session in backend memory maps
+- Multiple users can use the same backend concurrently when tokens are unique
+
+### Note
+If two users share the same token, they will share the same conversation history. Use one token per user or one token per device to maintain isolation.
 
 ---
 

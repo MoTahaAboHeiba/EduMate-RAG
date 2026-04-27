@@ -34,14 +34,14 @@ class TestRunner:
         """
         if description:
             print(f"\n{'='*70}")
-            print(f"▶️  {description}")
+            print(f"[Running] {description}")
             print(f"{'='*70}\n")
         
         try:
             result = subprocess.run(cmd, cwd=self.project_root)
             return result.returncode == 0
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"Error: {e}")
             return False
     
     def run_all_tests(self) -> bool:

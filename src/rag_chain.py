@@ -2,12 +2,82 @@
 RAG Chain with Conversation Memory - Multi-turn conversations
 """
 from langchain_groq import ChatGroq
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-from langchain.memory import ConversationBufferMemory
+from langchain_core.prompts import PromptTemplate
+from googletrans import Translator
+    
 from src.config import config
 from src.vector_store import vector_store
+from src.conversation_manager import conversation_manager
 from typing import List, Dict
+
+
+class SimpleMemory:
+    """Simple conversation memory buffer"""
+    def __init__(self):
+        self.buffer = ""
+    
+    def save_context(self, inputs, outputs):
+        """Add Q&A pair to memory"""
+        question = inputs.get("input", "")
+        answer = outputs.get("output", "")
+        self.buffer += f"Student: {question}\nAssistant: {answer}\n\n"
+    
+    def clear(self):
+        """Clear memory"""
+        self.buffer = ""
+
+
+class LanguageHelper:
+    """Helper class for detecting and translating languages"""
+    
+    def __init__(self):
+        self.translator = Translator()
+        self.supported_languages = ['ar', 'en', 'fr', 'es', 'de']  # Add more as needed
+    
+    def detect_language(self, text: str) -> str:
+        """
+        Detect the language of the text
+        
+        Args:
+            text: Text to detect language for
+        
+        Returns:
+            Language code (e.g., 'en', 'ar')
+        """
+        try:
+            result = self.translator.detect(text)
+            return result.lang
+        except Exception as e:
+            print(f"Error detecting language: {e}")
+            return 'en'  # Default to English
+    
+    def translate_text(self, text: str, source_lang: str, target_lang: str) -> str:
+        """
+        Translate text from source to target language
+        
+        Args:
+            text: Text to translate
+            source_lang: Source language code
+            target_lang: Target language code
+        
+        Returns:
+            Translated text
+        """
+        if source_lang == target_lang:
+            return text
+        
+        try:
+            result = self.translator.translate(text, src=source_lang, dest=target_lang)
+            return result.text
+        except Exception as e:
+            print(f"Error translating text: {e}")
+            return text  # Return original text on error
+    
+    def is_non_english(self, text: str) -> bool:
+        """Check if text is in a non-English language"""
+        detected_lang = self.detect_language(text)
+        return detected_lang != 'en'
+
 
 class RAGChain:
     """RAG pipeline with conversation memory: Retrieve + Generate + Remember"""
@@ -27,20 +97,19 @@ class RAGChain:
             max_tokens=1000
         )
         
-        # Initialize conversation memory
-        self.memory = ConversationBufferMemory(
-            memory_key="chat_history",
-            return_messages=False,
-            human_prefix="Student",
-            ai_prefix="Assistant"
-        )
+        # Initialize conversation memory storage per session
+        self.session_memory: Dict[str, SimpleMemory] = {}
+        self.session_conversation_ids: Dict[str, str] = {}
+        
+        # Initialize language helper for translation
+        self.language_helper = LanguageHelper()
         
         # Create prompt template with conversation history
         self.prompt_template = PromptTemplate(
             input_variables=["context", "question", "chat_history"],
-            template="""You are a helpful academic assistant for EduMate.
+            template="""Your name is EduMate. You are a helpful academic assistant for Student.
 
-You are having a conversation with a student about their course materials.
+You are having a conversation with a student about their course materials, be friendly and helpful. You have access to the following course materials to answer the student's questions. Use them to provide accurate and concise answers.
 Below is the conversation history so far, followed by relevant course materials and the new question.
 
 === CONVERSATION HISTORY ===
@@ -63,87 +132,171 @@ IMPORTANT INSTRUCTIONS:
 Answer:"""
         )
         
-        # Create chain
-        self.chain = LLMChain(llm=self.llm, prompt=self.prompt_template)
+        # Store max memory setting
         self.max_memory = max_memory_messages
     
-    def query(self, question: str, num_context_docs: int = 3) -> dict:
+    def _normalize_session_token(self, session_token: str) -> str:
+        return session_token or 'anonymous'
+
+    def _get_memory(self, session_token: str) -> SimpleMemory:
+        token = self._normalize_session_token(session_token)
+        if token not in self.session_memory:
+            self.session_memory[token] = SimpleMemory()
+        return self.session_memory[token]
+
+    def _get_conversation_id(self, session_token: str) -> str:
+        token = self._normalize_session_token(session_token)
+        return self.session_conversation_ids.get(token)
+
+    def _set_conversation_id(self, conversation_id: str, session_token: str):
+        token = self._normalize_session_token(session_token)
+        self.session_conversation_ids[token] = conversation_id
+
+    def query(self, question: str, session_token: str = None, num_context_docs: int = 3) -> dict:
         """
-        Query the RAG system with conversation memory
+        Query the RAG system with conversation memory for a specific session
         
         Args:
             question: Student's question
+            session_token: Session token for user isolation
             num_context_docs: Number of relevant documents to retrieve
         
         Returns:
             Dictionary with answer, sources, and conversation context
         """
-        print(f"\n🔍 Processing question: {question}")
+        print(f"\n Processing question: {question}")
+        
+        token = self._normalize_session_token(session_token)
+        memory = self._get_memory(token)
+        current_conversation_id = self._get_conversation_id(token)
+        
+        # Detect language and translate if necessary
+        detected_lang = self.language_helper.detect_language(question)
+        print(f"   Detected language: {detected_lang}")
+        
+        # Translate question to English for retrieval if it's not English
+        search_question = question
+        if detected_lang != 'en':
+            search_question = self.language_helper.translate_text(question, detected_lang, 'en')
+            print(f"   Translated question to English: {search_question}")
         
         # Get conversation history
-        chat_history = self.memory.buffer if hasattr(self.memory, 'buffer') else ""
+        chat_history = memory.buffer
         
-        # Step 1: Retrieve relevant documents
-        print("   📚 Retrieving relevant documents...")
-        retrieved_docs = vector_store.search(question, num_results=num_context_docs)
+        # Check if this is a general question (doesn't need course materials)
+        is_general_question = self._is_general_question(question)
         
-        if not retrieved_docs:
-            answer = "I couldn't find relevant course materials to answer this question."
-            sources = []
+        if is_general_question:
+            print("   General question detected - skipping document retrieval")
+            retrieved_docs = []
+            context = ""
         else:
-            print(f"   ✅ Found {len(retrieved_docs)} relevant documents")
+            print("   Retrieving relevant documents...")
+            retrieved_docs = vector_store.search(search_question, num_results=num_context_docs)
             
-            # Step 2: Prepare context
-            context = "\n\n---\n\n".join([
-                f"[{doc['metadata']['source']}] {doc['content']}"
-                for doc in retrieved_docs
-            ])
-            
-            # Step 3: Generate answer with conversation history
-            print("   🤖 Generating answer with Groq...")
-            try:
-                answer = self.chain.run(
-                    context=context,
-                    question=question,
-                    chat_history=chat_history
-                )
-                answer = str(answer).strip()
-            except Exception as e:
-                print(f"   ❌ Error generating answer: {e}")
-                answer = f"Error: {str(e)}"
-            
-            # Step 4: Prepare sources
-            sources = list(set([doc['metadata']['source'] for doc in retrieved_docs]))
+            if not retrieved_docs:
+                print("   No relevant documents found")
+                context = ""
+            else:
+                print(f"   Found {len(retrieved_docs)} relevant documents")
+                context = "\n\n---\n\n".join([
+                    f"[{doc['metadata']['source']}] {doc['content']}"
+                    for doc in retrieved_docs
+                ])
         
-        # Step 5: Save to memory for next conversation
-        self.memory.save_context(
-            {"input": question},
-            {"output": answer}
-        )
+        print("   Generating answer with Groq...")
+        try:
+            prompt_input = self.prompt_template.format(
+                context=context,
+                question=question,
+                chat_history=chat_history
+            )
+            response = self.llm.invoke(prompt_input)
+            answer = response.content.strip() if hasattr(response, 'content') else str(response).strip()
+        except Exception as e:
+            print(f"   Error generating answer: {e}")
+            answer = ""
         
-        # Count turns
-        buffer_text = self.memory.buffer if hasattr(self.memory, 'buffer') else ""
+        if detected_lang != 'en':
+            answer = self.language_helper.translate_text(answer, 'en', detected_lang)
+            print(f"   Translated answer back to {detected_lang}")
+        
+        memory.save_context({"input": question}, {"output": answer})
+        
+        buffer_text = memory.buffer
         conversation_turn = buffer_text.count('Student:')
+        
+        if not current_conversation_id and conversation_turn == 1:
+            current_conversation_id = conversation_manager.create_conversation("Auto-generated Conversation", session_token=token)
+            self._set_conversation_id(current_conversation_id, token)
+            print(f"   Auto-created conversation: {current_conversation_id}")
+        
+        if current_conversation_id:
+            conversation_manager.add_query_result(
+                question=question,
+                answer=answer,
+                sources=[doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else [],
+                num_context_docs=len(retrieved_docs),
+                conversation_id=current_conversation_id,
+                session_token=token
+            )
+            self._set_conversation_id(current_conversation_id, token)
         
         result = {
             "question": question,
             "answer": answer,
-            "sources": sources,
+            "sources": list(set([doc['metadata']['source'] for doc in retrieved_docs])) if retrieved_docs else [],
             "num_context_docs": len(retrieved_docs),
-            "conversation_turn": conversation_turn
+            "conversation_turn": conversation_turn,
+            "conversation_id": current_conversation_id,
+            "is_general": is_general_question
         }
         
-        print(f"   ✅ Answer generated (Turn {conversation_turn})")
+        print(f"   Answer generated (Turn {conversation_turn})")
         return result
     
-    def get_conversation_history(self) -> List[Dict]:
-        """Get the current conversation history"""
+    def _is_general_question(self, question: str) -> bool:
+        """
+        Detect if a question is general and doesn't require course materials
+        (e.g., greetings, meta questions about the AI itself)
+        
+        Args:
+            question: The question to check
+        
+        Returns:
+            True if it's a general question, False otherwise
+        """
+        question_lower = question.lower().strip()
+        
+        # List of patterns for general questions
+        general_patterns = [
+            # Greetings
+            'hello', 'hi ', 'hey ', 'greetings', 'howdy',
+            # Personal/Meta questions about the AI
+            'who are you', "what's your name", 'what is your name', 'your name', 'tell me about yourself',
+            'what can you do', 'how can you help', 'what are your capabilities',
+            'how are you', "how're you",
+            # Casual questions
+            'nice to meet you', 'glad to meet you',
+            # Help questions
+            'can you help me', 'please help', 'help me',
+            # General pleasantries
+            'thank you', 'thanks', 'appreciate', "thank's", 'thank u',
+        ]
+        
+        # Check if question matches any general pattern
+        for pattern in general_patterns:
+            if pattern in question_lower:
+                return True
+        
+        return False
+    
+    def get_conversation_history(self, session_token: str = None) -> List[Dict]:
+        """Get the current conversation history for a session"""
         history = []
+        memory = self._get_memory(self._normalize_session_token(session_token))
+        buffer_text = memory.buffer
         
-        # Get buffer from memory
-        buffer_text = self.memory.buffer if hasattr(self.memory, 'buffer') else ""
-        
-        # Parse the conversation from buffer
         lines = buffer_text.split('\n')
         for line in lines:
             if line.strip().startswith('Student:'):
@@ -159,16 +312,114 @@ Answer:"""
         
         return history
     
-    def clear_memory(self):
-        """Clear conversation memory (start fresh conversation)"""
-        self.memory.clear()
-        print("✅ Conversation memory cleared")
+    def clear_memory(self, session_token: str = None):
+        """Clear conversation memory (start fresh conversation) for a session"""
+        memory = self._get_memory(self._normalize_session_token(session_token))
+        memory.clear()
+        self._set_conversation_id(None, self._normalize_session_token(session_token))
+        print(f"Conversation memory cleared for session {self._normalize_session_token(session_token)}")
     
-    def get_memory_summary(self) -> dict:
-        """Get summary of current conversation"""
-        buffer_text = self.memory.buffer if hasattr(self.memory, 'buffer') else ""
+    def start_new_conversation(self, session_token: str = None, title: str = None) -> str:
+        """
+        Start a new conversation and save it for a session
         
-        # Count turns
+        Args:
+            session_token: Session token for user isolation
+            title: Optional title for the conversation
+        
+        Returns:
+            Conversation ID
+        """
+        token = self._normalize_session_token(session_token)
+        memory = self._get_memory(token)
+        memory.clear()
+        
+        conversation_id = conversation_manager.create_conversation(title, session_token=token)
+        self._set_conversation_id(conversation_id, token)
+        print(f"Started new conversation: {conversation_id} for session {token}")
+        
+        return conversation_id
+    
+    def load_conversation(self, conversation_id: str, session_token: str = None) -> bool:
+        """
+        Load a saved conversation for a session
+        
+        Args:
+            conversation_id: ID of conversation to load
+            session_token: Session token for user isolation
+        
+        Returns:
+            True if successful
+        """
+        token = self._normalize_session_token(session_token)
+        conv_data = conversation_manager.get_conversation(conversation_id, session_token=token)
+        
+        if not conv_data:
+            print(f"Conversation not found: {conversation_id}")
+            return False
+        
+        memory = self._get_memory(token)
+        memory.clear()
+        
+        messages = conv_data.get("messages", [])
+        
+        if messages:
+            for i in range(0, len(messages), 2):
+                student_msg = messages[i] if i < len(messages) else None
+                assistant_msg = messages[i + 1] if i + 1 < len(messages) else None
+                
+                if student_msg and assistant_msg:
+                    memory.save_context(
+                        {"input": student_msg.get("content", "")},
+                        {"output": assistant_msg.get("content", "")}
+                    )
+                elif student_msg:
+                    memory.save_context(
+                        {"input": student_msg.get("content", "")},
+                        {"output": ""}
+                    )
+        
+        self._set_conversation_id(conversation_id, token)
+        conversation_manager.set_current_conversation(conversation_id, session_token=token)
+        print(f"Loaded conversation: {conversation_id} ({len(messages)} messages) for session {token}")
+        
+        return True
+    
+    def list_saved_conversations(self, limit: int = 10, session_token: str = None) -> List[Dict]:
+        """
+        List all saved conversations for a session
+        
+        Args:
+            limit: Maximum number to return
+            session_token: Session token for user isolation
+        
+        Returns:
+            List of conversation summaries
+        """
+        return conversation_manager.list_conversations(limit=limit, session_token=self._normalize_session_token(session_token))
+    
+    def get_current_conversation_id(self, session_token: str = None) -> str:
+        """Get the current conversation ID for a session"""
+        return self._get_conversation_id(self._normalize_session_token(session_token))
+    
+    def delete_conversation(self, conversation_id: str, session_token: str = None) -> bool:
+        """
+        Delete a saved conversation for a session
+        
+        Args:
+            conversation_id: ID to delete
+            session_token: Session token for user isolation
+        
+        Returns:
+            True if successful
+        """
+        return conversation_manager.delete_conversation(conversation_id, session_token=self._normalize_session_token(session_token))
+    
+    def get_memory_summary(self, session_token: str = None) -> dict:
+        """Get summary of current conversation for a session"""
+        memory = self._get_memory(self._normalize_session_token(session_token))
+        buffer_text = memory.buffer
+        
         student_count = buffer_text.count('Student:')
         assistant_count = buffer_text.count('Assistant:')
         

@@ -4,7 +4,10 @@ PDF Loader - Extract and process course PDFs
 from pathlib import Path
 from typing import List
 from pypdf import PdfReader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+try:
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+except ImportError:
+    from langchain.text_splitter import RecursiveCharacterTextSplitter
 from src.config import config
 
 class PDFLoader:
@@ -34,21 +37,21 @@ class PDFLoader:
         pdf_files = list(self.pdf_folder.glob("*.pdf"))
         
         if not pdf_files:
-            print(f"⚠️  No PDFs found in {self.pdf_folder}")
+            print(f"No PDFs found in {self.pdf_folder}")
             return documents
         
-        print(f"📚 Found {len(pdf_files)} PDF(s)")
+        print(f"Found {len(pdf_files)} PDF(s)")
         
         for pdf_path in pdf_files:
-            print(f"📖 Processing: {pdf_path.name}")
+            print(f"Processing: {pdf_path.name}")
             try:
                 docs = self._load_pdf(pdf_path)
                 documents.extend(docs)
-                print(f"   ✅ Extracted {len(docs)} chunks")
+                print(f"   Extracted {len(docs)} chunks")
             except Exception as e:
-                print(f"   ❌ Error processing {pdf_path.name}: {e}")
+                print(f"   Error processing {pdf_path.name}: {e}")
         
-        print(f"\n✅ Total chunks created: {len(documents)}")
+        print(f"\nTotal chunks created: {len(documents)}")
         return documents
     
     def _load_pdf(self, pdf_path: Path) -> List[dict]:

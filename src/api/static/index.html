@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduMate RAG - AI Course Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(100, 116, 139, 0.5) transparent;
+        }
+        
+        *::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        *::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        *::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.5);
+            border-radius: 3px;
+        }
+        
+        *::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 116, 139, 0.8);
+        }
+
+        .message-enter {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            animation: pulse 1.4s infinite;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        .message-content {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 70px);
+        }
+
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .conversation-item {
+            padding: 12px;
+            border-radius: 8px;
+            background: #334155;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .conversation-item:hover {
+            background: #475569;
+            transform: translateX(4px);
+        }
+
+        .conversation-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .turn-indicator {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
+    <!-- Conversation History Modal -->
+    <div id="conversation-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-white font-bold text-lg">Conversation History</h2>
+                <button onclick="closeConversationModal()" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="conversation-list" class="space-y-2">
+                <p class="text-slate-400 text-center py-4">Loading conversations...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-64 bg-slate-800 border-r border-slate-700 flex flex-col shadow-xl">
+            <!-- Header -->
+            <div class="p-4 border-b border-slate-700">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">E</span>
+                    </div>
+                    <div>
+                        <h1 class="text-white font-bold text-sm">EduMate</h1>
+                        <p class="text-slate-400 text-xs">AI Assistant</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversation Info -->
+            <div class="p-4 border-b border-slate-700">
+                <div class="bg-slate-700 rounded-lg p-3 space-y-2 mb-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-300 text-xs font-medium">CURRENT</span>
+                        <span id="turn-count" class="bg-gradient-bg text-white text-xs font-bold px-2 py-1 rounded">0</span>
+                    </div>
+                    <div id="current-conv-title" class="text-white text-xs truncate">New Conversation</div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span id="status-text" class="text-slate-300 text-xs">Ready</span>
+                    </div>
+                </div>
+
+                <button onclick="createNewConversation()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2 mb-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    New Chat
+                </button>
+
+                <button onclick="openConversationModal()" class="w-full bg-slate-600 hover:bg-slate-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2 mb-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                    History
+                </button>
+
+                <button onclick="openSourcesModal()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747S17.5 6.253 12 6.253z"></path>
+                    </svg>
+                    Sources
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="p-4 border-b border-slate-700 space-y-2">
+                <button onclick="reindexPDFs()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Index PDFs
+                </button>
+                <button onclick="clearConversation()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                    Clear Chat
+                </button>
+            </div>
+
+            <!-- Tips -->
+            <div class="p-4 flex-1 text-slate-400 text-xs space-y-2">
+                <p class="font-semibold text-slate-300">💡 Tips:</p>
+                <ul class="space-y-1">
+                    <li>• Ask follow-up questions naturally</li>
+                    <li>• System remembers context</li>
+                    <li>• View sources on the right</li>
+                    <li>• Save chats automatically</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Chat Area -->
+            <div class="chat-container">
+                <div id="messages" class="messages-area">
+                    <div class="flex items-center justify-center h-full">
+                        <div class="text-center">
+                            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl font-bold text-white mb-2">Welcome to EduMate</h2>
+                            <p class="text-slate-400">Ask me anything about your course materials</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="border-t border-slate-700 bg-slate-800 px-4 py-3">
+                    <div class="flex gap-3 items-end">
+                        <textarea
+                            id="question-input"
+                            placeholder="Ask a question about your courses... (Shift+Enter for new line)"
+                            class="flex-1 bg-slate-700 text-white placeholder-slate-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition rounded-lg text-sm resize-none min-h-[40px] max-h-32"
+                            onkeydown="handleKeyPress(event)"
+                            rows="1"
+                        ></textarea>
+                        <button
+                            onclick="sendQuestion()"
+                            id="send-btn"
+                            class="bg-gradient-bg hover:opacity-90 text-white px-5 py-2 font-medium transition duration-200 flex items-center gap-2 rounded-lg text-sm whitespace-nowrap"
+                        >
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            Ask
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Sources Modal -->
+    <div id="sources-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-white font-bold text-lg">Referenced Sources</h2>
+                <button onclick="closeSourcesModal()" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="sources-list" class="space-y-3 max-h-96 overflow-y-auto">
+                <p class="text-slate-400 text-center py-4">No sources available</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        const SESSION_TOKEN_KEY = 'edumate_session_token';
+        let isLoading = false;
+        let currentConversationTitle = 'New Conversation';
+        let currentSources = [];
+        let lastSourcesCount = 0;
+
+        function getSessionToken() {
+            let token = localStorage.getItem(SESSION_TOKEN_KEY);
+            if (!token) {
+                token = window.crypto?.randomUUID?.() || `user-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+                localStorage.setItem(SESSION_TOKEN_KEY, token);
+            }
+            return token;
+        }
+
+        function getAuthHeaders(includeJson = false) {
+            const headers = {
+                'X-Session-Token': getSessionToken()
+            };
+            if (includeJson) {
+                headers['Content-Type'] = 'application/json';
+            }
+            return headers;
+        }
+
+        async function sendQuestion() {
+            const input = document.getElementById('question-input');
+            const question = input.value.trim();
+
+            if (!question || isLoading) return;
+
+            isLoading = true;
+            document.getElementById('send-btn').disabled = true;
+
+            try {
+                // Add user message
+                addMessage('student', question);
+                input.value = '';
+                
+                // Reset textarea height
+                input.style.height = 'auto';
+
+                // Show loading indicator
+                addMessage('assistant', '<div class="loading-dots"><span></span><span></span><span></span></div>');
+
+                // Make API call
+                const response = await fetch(`${API_BASE}/api/query`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(true),
+                    body: JSON.stringify({ question }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Remove loading message
+                const messagesDiv = document.getElementById('messages');
+                messagesDiv.removeChild(messagesDiv.lastChild);
+
+                // Add assistant response
+                addMessage('assistant', data.answer, data.num_context_docs > 0 && !data.is_general);
+
+                // Update sources
+                updateSources(data.sources, data.num_context_docs, data.conversation_turn);
+
+                // Update turn count
+                updateTurnCount(data.conversation_turn);
+
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('assistant', '❌ Error: ' + error.message);
+            } finally {
+                isLoading = false;
+                document.getElementById('send-btn').disabled = false;
+                input.focus();
+            }
+        }
+
+        function addMessage(role, content, showSources = false) {
+            const messagesDiv = document.getElementById('messages');
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message-enter mb-4';
+
+            if (role === 'student') {
+                messageEl.innerHTML = `
+                    <div class="flex justify-end">
+                        <div class="bg-blue-600 text-white rounded-lg px-4 py-2 max-w-md rounded-br-none">
+                            <p class="message-content text-sm">${escapeHtml(content)}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                messageEl.innerHTML = `
+                    <div class="flex justify-start">
+                        <div class="bg-slate-700 text-white rounded-lg px-4 py-2 max-w-2xl rounded-bl-none">
+                            <p class="message-content text-sm">${content}</p>
+                            ${showSources && lastSourcesCount > 0 ? `<button onclick="openSourcesModal()" class="mt-2 text-xs bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded transition">View Sources (${lastSourcesCount})</button>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (messagesDiv.innerHTML.includes('Welcome to EduMate')) {
+                messagesDiv.innerHTML = '';
+            }
+
+            messagesDiv.appendChild(messageEl);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function setTextContentIfExists(id, value) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        function updateSources(sources, numDocs, turn) {
+            currentSources = sources;
+            lastSourcesCount = sources.length;
+        }
+
+        function openSourcesModal() {
+            if (currentSources.length === 0) {
+                alert('No sources available. Ask a question first!');
+                return;
+            }
+
+            const sourcesList = document.getElementById('sources-list');
+            sourcesList.innerHTML = currentSources.map((source, idx) => {
+                // Parse source name to extract book and chapter
+                const parsed = parseSourceName(source);
+                return `
+                    <div class="p-4 bg-slate-700 rounded-lg hover:bg-slate-600 transition">
+                        <div class="flex items-start gap-3">
+                            <div class="text-2xl">📖</div>
+                            <div class="flex-1">
+                                <p class="text-white font-semibold">${escapeHtml(parsed.book)}</p>
+                                <p class="text-slate-300 text-sm mt-1">${escapeHtml(parsed.chapter)}</p>
+                                <p class="text-slate-400 text-xs mt-2">Source ${idx + 1} of ${currentSources.length}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('sources-modal').classList.add('active');
+        }
+
+        function closeSourcesModal() {
+            document.getElementById('sources-modal').classList.remove('active');
+        }
+
+        function parseSourceName(source) {
+            // Extracts book name and chapter from filenames like "Chapter 3.pdf" or "OOP Book.pdf"
+            const filename = source.replace('.pdf', '').trim();
+            
+            // Check if it contains "Chapter"
+            if (filename.match(/chapter/i)) {
+                return {
+                    book: 'Course Materials',
+                    chapter: filename
+                };
+            }
+            
+            return {
+                book: filename,
+                chapter: 'Course Reference Material'
+            };
+        }
+
+        function updateTurnCount(turn) {
+            document.getElementById('turn-count').textContent = turn;
+        }
+
+        async function createNewConversation() {
+            const title = prompt('Enter a title for this conversation (optional):', '');
+            
+            if (title === null) return; // User cancelled
+
+            isLoading = true;
+            
+            try {
+                const url = `${API_BASE}/api/conversation/new?title=${encodeURIComponent(title)}`;
+                console.log('Creating conversation with URL:', url);
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: getAuthHeaders(false),
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Failed to create conversation');
+                }
+                
+                // Reset UI
+                document.getElementById('messages').innerHTML = `
+                    <div class="flex items-center justify-center h-full">
+                        <div class="text-center">
+                            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl font-bold text-white mb-2">Welcome to EduMate</h2>
+                            <p class="text-slate-400">Ask me anything about your course materials</p>
+                        </div>
+                    </div>
+                `;
+
+                const sourcesContainer = document.getElementById('sources-container');
+                if (sourcesContainer) {
+                    sourcesContainer.innerHTML = '<p class="text-slate-400 text-sm">Sources will appear here</p>';
+                }
+                setTextContentIfExists('turn-count', '0');
+                setTextContentIfExists('turn-number', '0');
+                setTextContentIfExists('doc-count', '0');
+                
+                currentConversationTitle = title || 'New Conversation';
+                document.getElementById('current-conv-title').textContent = currentConversationTitle;
+
+                addMessage('assistant', '✨ Started new conversation! Ask your first question.');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to create conversation');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        async function openConversationModal() {
+            const modal = document.getElementById('conversation-modal');
+            modal.classList.add('active');
+            
+            // Load conversations
+            try {
+                const response = await fetch(`${API_BASE}/api/conversation/list?limit=20`, {
+                    headers: getAuthHeaders(false),
+                });
+                
+                if (!response.ok) throw new Error('Failed to load conversations');
+
+                const data = await response.json();
+                const listEl = document.getElementById('conversation-list');
+
+                if (data.conversations.length === 0) {
+                    listEl.innerHTML = '<p class="text-slate-400 text-center py-4">No saved conversations yet</p>';
+                    return;
+                }
+
+                const html = data.conversations.map(conv => `
+                    <div class="conversation-item" onclick="loadConversation('${conv.id}', '${escapeHtml(conv.title)}')">
+                        <div class="flex-1">
+                            <p class="text-white text-sm font-medium truncate">${escapeHtml(conv.title)}</p>
+                            <p class="text-slate-400 text-xs">${conv.message_count} messages • ${new Date(conv.updated_at).toLocaleDateString()}</p>
+                        </div>
+                        <button onclick="event.stopPropagation(); deleteConversation('${conv.id}')" class="text-red-400 hover:text-red-300 ml-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `).join('');
+
+                listEl.innerHTML = html;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('conversation-list').innerHTML = `<p class="text-red-400 text-center py-4">Error loading conversations</p>`;
+            }
+        }
+
+        function closeConversationModal() {
+            document.getElementById('conversation-modal').classList.remove('active');
+        }
+
+        async function loadConversation(conversationId, title) {
+            isLoading = true;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/conversation/load/${conversationId}`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(false),
+                });
+
+                if (!response.ok) throw new Error('Failed to load conversation');
+
+                const data = await response.json();
+                closeConversationModal();
+                
+                // Reset UI and update title
+                currentConversationTitle = title;
+                document.getElementById('current-conv-title').textContent = title;
+                
+                // Clear current messages
+                document.getElementById('messages').innerHTML = '';
+                
+                // Display loaded messages
+                const messages = data.conversation.messages || [];
+                let turnCount = 0;
+                
+                for (const msg of messages) {
+                    if (msg.role === 'student') {
+                        addMessage('student', msg.content);
+                        turnCount++;
+                    } else if (msg.role === 'assistant') {
+                        addMessage('assistant', msg.content, (msg.sources && msg.sources.length > 0));
+                        // Update sources if available
+                        if (msg.sources) {
+                            updateSources(msg.sources, msg.context_docs || 0, turnCount);
+                        }
+                    }
+                }
+                
+                // Update turn count
+                updateTurnCount(Math.ceil(turnCount));
+                
+                addMessage('assistant', '✅ Conversation loaded! You can continue asking questions.');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to load conversation');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        async function deleteConversation(conversationId) {
+            if (!confirm('Delete this conversation permanently?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/conversation/${conversationId}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders(false),
+                });
+
+                if (!response.ok) throw new Error('Failed to delete');
+
+                // Reload the list
+                openConversationModal();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to delete conversation');
+            }
+        }
+
+        async function clearConversation() {
+            if (!confirm('Clear all messages in this conversation?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/conversation/clear`, {
+                    method: 'POST',
+                    headers: getAuthHeaders(false),
+                });
+
+                if (!response.ok) throw new Error('Failed to clear');
+
+                // Reset UI
+                document.getElementById('messages').innerHTML = `
+                    <div class="flex items-center justify-center h-full">
+                        <div class="text-center">
+                            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl font-bold text-white mb-2">Welcome to EduMate</h2>
+                            <p class="text-slate-400">Ask me anything about your course materials</p>
+                        </div>
+                    </div>
+                `;
+
+                const sourcesContainer = document.getElementById('sources-container');
+                if (sourcesContainer) {
+                    sourcesContainer.innerHTML = '<p class="text-slate-400 text-sm">Sources will appear here</p>';
+                }
+                setTextContentIfExists('turn-count', '0');
+                setTextContentIfExists('turn-number', '0');
+                setTextContentIfExists('doc-count', '0');
+
+                addMessage('assistant', '✨ Conversation cleared! Start fresh with a new question.');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to clear conversation');
+            }
+        }
+
+        async function reindexPDFs() {
+            if (!confirm('Re-index all PDFs? This may take a moment...')) return;
+
+            const originalText = document.getElementById('send-btn').innerHTML;
+            document.getElementById('send-btn').innerHTML = '<span class="loading-dots"><span></span><span></span><span></span></span>';
+            document.getElementById('send-btn').disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/index`, {
+                    method: 'POST',
+                });
+
+                if (!response.ok) throw new Error('Indexing failed');
+
+                const data = await response.json();
+                addMessage('assistant', `PDFs re-indexed successfully!\n${data.documents_indexed} documents are now available.`);
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('assistant', 'Error re-indexing PDFs: ' + error.message);
+            } finally {
+                document.getElementById('send-btn').innerHTML = originalText;
+                document.getElementById('send-btn').disabled = false;
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                if (event.shiftKey) {
+                    // Shift+Enter: Add new line
+                    event.preventDefault();
+                    const textarea = event.target;
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    textarea.value = textarea.value.substring(0, start) + '\n' + textarea.value.substring(end);
+                    textarea.selectionStart = textarea.selectionEnd = start + 1;
+                    
+                    // Auto-resize
+                    autoResizeTextarea(textarea);
+                } else {
+                    // Enter: Send question
+                    event.preventDefault();
+                    sendQuestion();
+                }
+            }
+        }
+
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 128) + 'px'; // Max 128px height
+        }
+
+        // Load initial data
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('System healthy:', data);
+                }
+            } catch (error) {
+                console.error('Health check failed:', error);
+                addMessage('assistant', '⚠️ Warning: Cannot connect to backend. Make sure the server is running on http://localhost:8000');
+            }
+            
+            // Add auto-resize listener to textarea
+            const textarea = document.getElementById('question-input');
+            textarea.addEventListener('input', () => autoResizeTextarea(textarea));
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('conversation-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'conversation-modal') {
+                closeConversationModal();
+            }
+        });
+
+        // Close sources modal when clicking outside
+        document.getElementById('sources-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'sources-modal') {
+                closeSourcesModal();
+            }
+        });
+    </script>
+</body>
+</html>

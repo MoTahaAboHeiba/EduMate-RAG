@@ -21,6 +21,9 @@ class Config:
     # PDF Configuration
     PDF_FOLDER_PATH = os.getenv("PDF_FOLDER_PATH", "./assets/course_pdfs")
     
+    # Conversation Configuration
+    CONVERSATION_DIR = os.getenv("CONVERSATION_DIR", "./assets/conversations")
+    
     # API Configuration
     API_HOST = os.getenv("API_HOST", "localhost")
     API_PORT = int(os.getenv("API_PORT", 8000))
@@ -34,6 +37,7 @@ class Config:
         # Create directories if they don't exist
         Path(self.CHROMA_DB_PATH).mkdir(parents=True, exist_ok=True)
         Path(self.PDF_FOLDER_PATH).mkdir(parents=True, exist_ok=True)
+        Path(self.CONVERSATION_DIR).mkdir(parents=True, exist_ok=True)
 
 # Create global config instance
 config = Config()

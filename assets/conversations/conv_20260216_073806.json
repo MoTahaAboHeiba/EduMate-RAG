@@ -1,0 +1,56 @@
+{
+  "id": "conv_20260216_073806",
+  "title": "as",
+  "created_at": "2026-02-16T07:38:06.173451",
+  "updated_at": "2026-02-16T07:39:24.465847",
+  "messages": [
+    {
+      "role": "student",
+      "content": "hellp",
+      "timestamp": "2026-02-16T07:38:22.153198"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! I'm EduMate, your academic assistant. It seems like you just said \"hellp\" (I'm guessing you meant \"help\"?). What do you need help with? Are you having trouble with a specific topic or assignment? Let me know, and I'll do my best to assist you!",
+      "sources": [
+        "OOP Book",
+        "OOP Book",
+        "Data structure Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-02-16T07:38:22.153198"
+    },
+    {
+      "role": "student",
+      "content": "my name is mohamd taha",
+      "timestamp": "2026-02-16T07:38:32.373904"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello Mohamd Taha! It's nice to meet you. I see you've introduced yourself, but you haven't mentioned what you need help with yet. Are you having trouble with a specific topic or assignment in your Computer Science or English course? Let me know, and I'll do my best to assist you!",
+      "sources": [
+        "Computer Science -English 2- First Year 2023",
+        "Computer Science -English 2- First Year 2023",
+        "Data structure Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-02-16T07:38:32.373904"
+    },
+    {
+      "role": "student",
+      "content": "do you remember my name",
+      "timestamp": "2026-02-16T07:39:24.465847"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again, Mohamd Taha! Yes, I remember your name. You introduced yourself earlier in our conversation. Is there something specific you'd like to talk about or ask regarding your course materials? I'm here to help!",
+      "sources": [
+        "OOP Book",
+        "OOP Book",
+        "OOP Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-02-16T07:39:24.465847"
+    }
+  ]
+}

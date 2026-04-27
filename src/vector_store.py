@@ -32,18 +32,18 @@ class VectorStore:
         """
         Load PDFs and create vector embeddings
         """
-        print("🔄 Starting PDF indexing...")
+        print("Starting PDF indexing...")
         
         # Load all PDFs
         documents = pdf_loader.load_all_pdfs()
         
         if not documents:
-            print("❌ No documents to index")
+            print("No documents to index")
             return False
         
         # Add documents to ChromaDB
         # ChromaDB automatically creates embeddings using its default model
-        print(f"📝 Adding {len(documents)} documents to ChromaDB...")
+        print(f"Adding {len(documents)} documents to ChromaDB...")
         
         for idx, doc in enumerate(documents):
             try:
@@ -54,12 +54,12 @@ class VectorStore:
                 )
                 
                 if (idx + 1) % 10 == 0:
-                    print(f"   ✅ Indexed {idx + 1}/{len(documents)} documents")
+                    print(f"  Indexed {idx + 1}/{len(documents)} documents")
             
             except Exception as e:
-                print(f"   ⚠️  Error indexing document {idx}: {e}")
+                print(f"   Error indexing document {idx}: {e}")
         
-        print(f"✅ Indexing complete! Total documents: {len(documents)}")
+        print(f" Indexing complete! Total documents: {len(documents)}")
         return True
     
     def search(self, query: str, num_results: int = 3) -> List[dict]:
@@ -92,7 +92,7 @@ class VectorStore:
             return documents
         
         except Exception as e:
-            print(f"❌ Search error: {e}")
+            print(f"Search error: {e}")
             return []
     
     def get_collection_info(self) -> dict:

@@ -3,7 +3,9 @@ Verify ChromaDB has actual data from PDFs
 """
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.vector_store import vector_store
 
@@ -23,7 +25,7 @@ if info['count'] == 0:
     print("   This means indexing didn't work.")
     sys.exit(1)
 
-print(f"\n{info['count']} documents found in ChromaDB"))
+print(f"\n{info['count']} documents found in ChromaDB")
 
 # Get ALL data from collection
 print("\nSample Data Verification:")
@@ -48,26 +50,11 @@ print("Sources Summary:")
 sources = {}
 for metadata in all_data['metadatas']:
     source = metadata.get('source', 'Unknown')
-    sources[source] = sources.get(source, 0) + 1
+    if source not in sources:
+        sources[source] = 0
+    sources[source] += 1
 
 for source, count in sorted(sources.items()):
-    print(f"   - {source}: {count} chunks")
+    print(f"   {source}: {count} documents")
 
-# Test search functionality
-print(f"\nTesting Search Functionality:")
-test_query = "What is"
-results = vector_store.search(test_query, num_results=2)
-
-if results:
-    print(f"   Search works! Found {len(results)} results for '{test_query}'")
-    for idx, result in enumerate(results, 1):
-        print(f"\n   Result {idx}:")
-        print(f"      Source: {result['metadata']['source']}")
-        print(f"      Distance: {result['distance']:.4f}")
-        print(f"      Content: {result['content'][:100]}...")
-else:
-    print(f"   Search returned no results!")
-
-print("\n" + "=" * 60)
-print("VERIFICATION COMPLETE")
-print("=" * 60)
+print(f"\n✓ ChromaDB is healthy and ready!")

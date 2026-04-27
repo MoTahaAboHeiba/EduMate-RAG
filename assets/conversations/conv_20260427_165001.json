@@ -1,0 +1,40 @@
+{
+  "id": "conv_20260427_165001",
+  "title": "1",
+  "created_at": "2026-04-27T16:50:01.388068",
+  "updated_at": "2026-04-27T16:50:22.625536",
+  "messages": [
+    {
+      "role": "student",
+      "content": "do you remember my name",
+      "timestamp": "2026-04-27T16:50:12.679986"
+    },
+    {
+      "role": "assistant",
+      "content": "Unfortunately, I don't have this information in the course materials. Our conversation just started, and we haven't discussed or stored any information about your name. If you'd like to share it with me, I'd be happy to chat with you and help with any questions you have about the course materials.",
+      "sources": [
+        "OOP Book",
+        "OOP Book",
+        "OOP Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-04-27T16:50:12.679986"
+    },
+    {
+      "role": "student",
+      "content": "my name is Mohamed taha",
+      "timestamp": "2026-04-27T16:50:22.624543"
+    },
+    {
+      "role": "assistant",
+      "content": "Nice to meet you, Mohamed Taha. I'll make sure to remember your name for our conversation. Is there something specific you'd like to know or discuss about the course materials? Perhaps you have a question about the C++ operators, the college's internal regulations, or something else? I'm here to help.",
+      "sources": [
+        "C++",
+        "اللائحة الداخلية لمرحلة البكالوريوس بنظام الساعات المعتمدة لكلية الحاسبات_النسخة المعتمدة 2",
+        "اللائحة الداخلية لمرحلة البكالوريوس بنظام الساعات المعتمدة لكلية الحاسبات_النسخة المعتمدة 2"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-04-27T16:50:22.625536"
+    }
+  ]
+}
