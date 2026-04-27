@@ -138,7 +138,7 @@ Answers are **grounded exclusively in your course materials**—no hallucination
 ### Step 1: Clone Repository
 
 ```bash
-git clone <your-repository-url>
+git clone <https://github.com/MoTahaAboHeiba/EduMate-RAG.git>
 cd EduMate-RAG
 ```
 
@@ -308,7 +308,7 @@ http://localhost:8000/docs
 ```
 
 - Click on any endpoint
-- Click "Try it out"
+- Click "Try it out."
 - Enter your data
 - Click "Execute"
 
