@@ -336,7 +336,7 @@
     </div>
 
     <script>
-        const API_BASE = 'http://localhost:8000';
+        const API_BASE = window.location.origin;
         const SESSION_TOKEN_KEY = 'edumate_session_token';
         let isLoading = false;
         let currentConversationTitle = 'New Conversation';
@@ -804,7 +804,7 @@
                 }
             } catch (error) {
                 console.error('Health check failed:', error);
-                addMessage('assistant', '⚠️ Warning: Cannot connect to backend. Make sure the server is running on http://localhost:8000');
+                addMessage('assistant', '⚠️ Warning: Cannot connect to backend. Please check your server connection.');
             }
             
             // Add auto-resize listener to textarea
