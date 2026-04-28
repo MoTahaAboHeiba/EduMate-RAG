@@ -359,3 +359,9 @@ if __name__ == "__main__":
         host=config.API_HOST,
         port=config.API_PORT
     )
+@app.on_event("startup")
+async def startup_event():
+    """Auto-index PDFs on every container start"""
+    print("Starting up — indexing PDFs...")
+    vector_store.index_pdfs()
+    print("Indexing complete.")
