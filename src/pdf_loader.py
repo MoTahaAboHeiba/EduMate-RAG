@@ -66,15 +66,16 @@ class PDFLoader:
         """
         documents = []
         
-        # Read PDF
-        pdf_reader = PdfReader(pdf_path)
         pdf_name = pdf_path.stem  # Filename without extension
-        
-        # Extract text from all pages
-        full_text = ""
-        for page_num, page in enumerate(pdf_reader.pages):
-            text = page.extract_text()
-            full_text += text + "\n"
+
+        try:
+            full_text = self._extract_with_pypdf(pdf_path)
+        except Exception as e:
+            print(f"   pypdf failed for {pdf_path.name}: {e}")
+            full_text = ""
+
+        if not full_text.strip():
+            full_text = self._extract_with_pymupdf(pdf_path)
         
         # Split into chunks
         chunks = self.text_splitter.split_text(full_text)
@@ -92,6 +93,26 @@ class PDFLoader:
             documents.append(doc)
         
         return documents
+
+    def _extract_with_pypdf(self, pdf_path: Path) -> str:
+        pdf_reader = PdfReader(pdf_path)
+        full_text = ""
+
+        for page in pdf_reader.pages:
+            text = page.extract_text() or ""
+            full_text += text + "\n"
+
+        return full_text
+
+    def _extract_with_pymupdf(self, pdf_path: Path) -> str:
+        import fitz
+
+        full_text = ""
+        with fitz.open(pdf_path) as pdf:
+            for page in pdf:
+                full_text += page.get_text() + "\n"
+
+        return full_text
 
 
 # Global instance

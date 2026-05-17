@@ -115,7 +115,7 @@ class TestRunner:
         ]
         
         print(f"\n{'='*70}")
-        print(f"▶️  Running Smoke Tests (Quick Sanity Checks)")
+        print(f"  Running Smoke Tests (Quick Sanity Checks)")
         print(f"{'='*70}\n")
         
         all_passed = True
@@ -131,7 +131,7 @@ class TestRunner:
     def run_all_with_report(self) -> bool:
         """Run all tests and generate detailed report"""
         print(f"\n{'='*70}")
-        print(f"🧪 EduMate RAG - Comprehensive Test Suite")
+        print(f" EduMate RAG - Comprehensive Test Suite")
         print(f"{'='*70}")
         print(f"Start Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"{'='*70}\n")
@@ -145,20 +145,20 @@ class TestRunner:
         
         # Print summary
         print(f"\n{'='*70}")
-        print(f"📊 TEST SUMMARY")
+        print(f" TEST SUMMARY")
         print(f"{'='*70}\n")
         
         for name, passed in results.items():
-            status = "✅ PASSED" if passed else "❌ FAILED"
+            status = " PASSED" if passed else " FAILED"
             print(f"{name:.<50} {status}")
         
         all_passed = all(results.values())
         
         print(f"\n{'='*70}")
         if all_passed:
-            print(f"✅ ALL TESTS PASSED!")
+            print(f" ALL TESTS PASSED!")
         else:
-            print(f"❌ SOME TESTS FAILED - See above for details")
+            print(f" SOME TESTS FAILED - See above for details")
         print(f"{'='*70}\n")
         
         return all_passed
@@ -257,10 +257,10 @@ Examples:
         sys.exit(0 if success else 1)
     
     except KeyboardInterrupt:
-        print("\n\n⚠️  Tests interrupted by user")
+        print("\n\n  Tests interrupted by user")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
+        print(f"\n Unexpected error: {e}")
         sys.exit(1)
 
 

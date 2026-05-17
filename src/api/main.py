@@ -1,7 +1,7 @@
 """
 FastAPI server for EduMate RAG with conversation support
 """
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -33,6 +33,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+async def startup_event():
+    collection_info = vector_store.get_collection_info()
+    documents_indexed = collection_info["count"]
+
+    if documents_indexed == 0:
+        print("No indexed documents found. Starting PDF indexing...")
+        vector_store.index_pdfs()
+        print("PDF indexing complete.")
+    else:
+        print(f"Vector store already has {documents_indexed} indexed documents.")
 
 # Pydantic models for request/response
 class QueryRequest(BaseModel):
@@ -138,13 +150,16 @@ async def query(request: QueryRequest, request_obj: Request) -> QueryResponse:
         raise HTTPException(status_code=500, detail=f"Error processing query: {str(e)}")
 
 @app.post("/api/index")
-async def index():
+async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):
     """
     Re-index all PDFs in the database
     
     Returns:
         Success status and document count
     """
+    if x_admin_key != config.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
     try:
         success = vector_store.index_pdfs()
         
@@ -359,9 +374,3 @@ if __name__ == "__main__":
         host=config.API_HOST,
         port=config.API_PORT
     )
-@app.on_event("startup")
-async def startup_event():
-    """Auto-index PDFs on every container start"""
-    print("Starting up — indexing PDFs...")
-    vector_store.index_pdfs()
-    print("Indexing complete.")

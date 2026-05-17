@@ -88,7 +88,7 @@ class TestRunner:
     def run_all_with_report(self) -> bool:
         """Run all tests and generate detailed report"""
         print(f"\n{'='*70}")
-        print(f"🧪 EduMate RAG - Test Suite")
+        print(f" EduMate RAG - Test Suite")
         print(f"{'='*70}")
         print(f"Start Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"{'='*70}\n")
@@ -97,9 +97,9 @@ class TestRunner:
         
         print(f"\n{'='*70}")
         if success:
-            print(f"✅ ALL TESTS PASSED!")
+            print(f" ALL TESTS PASSED!")
         else:
-            print(f"❌ SOME TESTS FAILED - See above for details")
+            print(f" SOME TESTS FAILED - See above for details")
         print(f"{'='*70}\n")
         
         return success
@@ -153,10 +153,10 @@ Examples:
         sys.exit(0 if success else 1)
     
     except KeyboardInterrupt:
-        print("\n\n⚠️  Tests interrupted by user")
+        print("\n\n  Tests interrupted by user")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
+        print(f"\n Unexpected error: {e}")
         sys.exit(1)
 
 

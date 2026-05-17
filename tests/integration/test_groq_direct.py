@@ -15,11 +15,11 @@ try:
         max_tokens=1000
     )
     
-    print("🔄 Testing Groq connection...")
+    print(" Testing Groq connection...")
     response = llm.invoke("What is a prerequisite in university?")
-    print("✅ Groq is working!")
+    print(" Groq is working!")
     print(f"Response: {response}")
 
 except Exception as e:
-    print(f"❌ Groq Error: {e}")
+    print(f" Groq Error: {e}")
     sys.exit(1)

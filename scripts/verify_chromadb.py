@@ -57,4 +57,4 @@ for metadata in all_data['metadatas']:
 for source, count in sorted(sources.items()):
     print(f"   {source}: {count} documents")
 
-print(f"\n✓ ChromaDB is healthy and ready!")
+print(f"\n ChromaDB is healthy and ready!")

@@ -1,0 +1,40 @@
+{
+  "id": "conv_20260517_214555",
+  "title": "test1",
+  "created_at": "2026-05-17T21:45:55.282190",
+  "updated_at": "2026-05-17T21:46:52.706101",
+  "messages": [
+    {
+      "role": "student",
+      "content": "اذيك عامل ايه",
+      "timestamp": "2026-05-17T21:46:08.538529"
+    },
+    {
+      "role": "assistant",
+      "content": "I see you're asking \"اذيك عامل ايه\" which translates to \"How are you?\" in Arabic. I'm doing well, thank you for asking! However, I want to make sure we're on the same page regarding your course materials. Since we just started our conversation, I don't have any context about what you're referring to. Could you please clarify what you'd like to discuss or ask about your course materials? I'm here to help with any questions you have about computer architecture or OOP.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-17T21:46:08.538529"
+    },
+    {
+      "role": "student",
+      "content": "معلش انا عايزك تكلمني بالعربي دلوقتي انا اسمي طه انت اسمك ايه",
+      "timestamp": "2026-05-17T21:46:52.706101"
+    },
+    {
+      "role": "assistant",
+      "content": "مرحبا طه، أنا اسمي إدو مايتي أو EduMate، أنا هنا لمساعدتك في فهم المواد الدراسية الخاصة بك في مجال الهندسة الحاسوبية أو البرمجة الكائنية. كيف يمكنني مساعدتك اليوم؟ هل لديك أسئلة حول العمليات أو جدولة العمليات في نظم التشغيل، أو ربما عن البرمجة الكائنية؟",
+      "sources": [
+        "Operating Systems Lecture Notes",
+        "OOP Book",
+        "OOP Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-17T21:46:52.706101"
+    }
+  ]
+}

@@ -4,22 +4,22 @@ A beautiful, modern web interface for the EduMate RAG system with real-time chat
 
 ## Features
 
-✨ **Modern UI**
+ **Modern UI**
 - Beautiful gradient design with dark theme
 - Smooth animations and transitions
 - Responsive layout across all screen sizes
 
-💬 **Real-time Chat**
+ **Real-time Chat**
 - Interactive conversation interface
 - Multi-turn conversation support
 - Automatic scrolling to latest messages
 
-📚 **Source Attribution**
+ **Source Attribution**
 - View all referenced course materials
 - Document statistics and context tracking
 - Turn-based conversation history
 
-🔄 **Conversation Management**
+ **Conversation Management**
 - Clear chat history with one click
 - Re-index PDFs on demand
 - Real-time connection status

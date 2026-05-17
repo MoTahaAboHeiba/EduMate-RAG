@@ -17,6 +17,11 @@ class Config:
     
     # ChromaDB Configuration
     CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH", "./assets/chroma_db")
+
+    # Vector Store Configuration
+    VECTOR_STORE_BACKEND = os.getenv("VECTOR_STORE_BACKEND", "qdrant").lower()
+    QDRANT_URL = os.getenv("QDRANT_URL")
+    QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
     
     # PDF Configuration
     PDF_FOLDER_PATH = os.getenv("PDF_FOLDER_PATH", "./assets/course_pdfs")
@@ -28,14 +33,32 @@ class Config:
     API_HOST = os.getenv("API_HOST", "localhost")
     API_PORT = int(os.getenv("API_PORT", 8000))
     DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+    ADMIN_KEY = os.getenv("ADMIN_KEY")
     
     def __init__(self):
         """Validate configuration"""
         if not self.GROQ_API_KEY:
             raise ValueError("GROQ_API_KEY not set in .env file")
+
+        if not self.ADMIN_KEY:
+            raise ValueError("ADMIN_KEY not set")
+
+        if self.VECTOR_STORE_BACKEND not in {"chroma", "qdrant"}:
+            raise ValueError("VECTOR_STORE_BACKEND must be either 'chroma' or 'qdrant'")
+
+        if self.VECTOR_STORE_BACKEND == "qdrant":
+            if not self.QDRANT_URL:
+                raise ValueError("QDRANT_URL must be set when VECTOR_STORE_BACKEND=qdrant")
+            if not self.QDRANT_API_KEY:
+                raise ValueError("QDRANT_API_KEY must be set when VECTOR_STORE_BACKEND=qdrant")
+            if "your" in self.QDRANT_URL.lower():
+                raise ValueError("QDRANT_URL contains a placeholder value. Set your real Qdrant Cloud URL.")
+            if "your" in self.QDRANT_API_KEY.lower():
+                raise ValueError("QDRANT_API_KEY contains a placeholder value. Set your real Qdrant API key.")
         
         # Create directories if they don't exist
-        Path(self.CHROMA_DB_PATH).mkdir(parents=True, exist_ok=True)
+        if self.VECTOR_STORE_BACKEND == "chroma":
+            Path(self.CHROMA_DB_PATH).mkdir(parents=True, exist_ok=True)
         Path(self.PDF_FOLDER_PATH).mkdir(parents=True, exist_ok=True)
         Path(self.CONVERSATION_DIR).mkdir(parents=True, exist_ok=True)
 

@@ -1,4 +1,4 @@
-# 🎓 EduMate RAG System
+#  EduMate RAG System
 
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)](https://fastapi.tiangolo.com/)
@@ -9,7 +9,7 @@ A **production-ready Retrieval-Augmented Generation (RAG)** backend for the EduM
 
 ---
 
-## 📖 Table of Contents
+##  Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -43,18 +43,18 @@ Answers are **grounded exclusively in your course materials**—no hallucination
 
 ##  Features
 
-- **📚 PDF-Based Q&A** - Answer questions only from indexed course materials (no external data)
-- **💬 Multi-Turn Conversations** - Remember context across questions for natural dialogue
-- **🚀 Instant Retrieval** - ChromaDB enables sub-second semantic search across thousands of documents
-- **🤖 AI-Powered Generation** - Groq's Llama 3.3 70B for high-quality, contextual answers
-- **🌍 Multilingual Support** - Seamlessly handles Arabic and English questions and documents
-- **📊 Source Attribution** - Every answer includes source document references for verification
-- **🔐 Security-First** - Secrets stored in `.env`, never committed to Git
-- **⚡ Zero-Cost Inference** - Uses Groq's free tier (no LLM hosting costs)
-- **📱 Flutter-Ready** - RESTful API endpoints optimized for mobile integration
-- **📈 Production-Ready** - Professional code structure, comprehensive error handling, detailed logging
-- **⚙️ Intelligent Caching** - Efficient indexing with vector embeddings for fast retrieval
-- **🧠 Context-Aware** - Understands references to previous questions
+- ** PDF-Based Q&A** - Answer questions only from indexed course materials (no external data)
+- ** Multi-Turn Conversations** - Remember context across questions for natural dialogue
+- ** Instant Retrieval** - ChromaDB enables sub-second semantic search across thousands of documents
+- ** AI-Powered Generation** - Groq's Llama 3.3 70B for high-quality, contextual answers
+- ** Multilingual Support** - Seamlessly handles Arabic and English questions and documents
+- ** Source Attribution** - Every answer includes source document references for verification
+- ** Security-First** - Secrets stored in `.env`, never committed to Git
+- ** Zero-Cost Inference** - Uses Groq's free tier (no LLM hosting costs)
+- ** Flutter-Ready** - RESTful API endpoints optimized for mobile integration
+- ** Production-Ready** - Professional code structure, comprehensive error handling, detailed logging
+- ** Intelligent Caching** - Efficient indexing with vector embeddings for fast retrieval
+- ** Context-Aware** - Understands references to previous questions
 
 ---
 
@@ -78,39 +78,39 @@ Answers are **grounded exclusively in your course materials**—no hallucination
 ##  Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                   Flutter Mobile App                    │
-│              (Student Interface Layer)                  │
-└────────────────────┬────────────────────────────────────┘
-                     │ HTTP/REST
-                     ├─────────────────────────────────────┐
-                     ▼                                     │
-        ┌─────────────────────────────┐                    │
-        │   FastAPI Server (Port 8000)│                    │
-        │  ├─ POST /api/query         │                    │
-        │  ├─ GET /api/conversation/* │                    │
-        │  └─ POST /api/index         │                    │
-        └────────┬────────────────────┘                    │
-                 │                                         │
-        ┌────────▼──────────────────────────────────┐      │
-        │   RAG Pipeline (LangChain)                │      │
-        │  ┌─ Conversation Memory  ─────────────────┤      │
-        │  ├─ PDF Retrieval (ChromaDB)              │      │
-        │  └─ LLM Generation (Groq)                 │      │
-        └────────┬──────────────────────────────────┘      │
-                 │                                         │
-        ┌────────▼──────────────────────────────────┐      │
-        │   Data Layer                              │      │
-        │  ├─ ChromaDB (Vector DB)                  │      │
-        │  ├─ PDF Embeddings                        │      │
-        │  └─ Conversation History                  │      │
-        └───────────────────────────────────────────┘      │
-                                                           │
-        ┌──────────────────────────────────────────────┐   │
-        │   External Services                          │   │
-        │  ├─ Groq API (LLM Inference)                 │   │
-        │  └─ (No storage of personal data)            │   │
-        └──────────────────────────────────────────────┘   │
+
+                   Flutter Mobile App                    
+              (Student Interface Layer)                  
+
+                      HTTP/REST
+                     
+                                                          
+                            
+           FastAPI Server (Port 8000)                    
+           POST /api/query                             
+           GET /api/conversation/*                     
+           POST /api/index                             
+                            
+                                                          
+              
+           RAG Pipeline (LangChain)                      
+           Conversation Memory        
+           PDF Retrieval (ChromaDB)                    
+           LLM Generation (Groq)                       
+              
+                                                          
+              
+           Data Layer                                    
+           ChromaDB (Vector DB)                        
+           PDF Embeddings                              
+           Conversation History                        
+              
+                                                           
+           
+           External Services                             
+           Groq API (LLM Inference)                    
+           (No storage of personal data)               
+           
 ```
 
 ---
@@ -185,10 +185,10 @@ GROQ_API_KEY=gsk_your_actual_key_here
 Place PDF files in:
 ```
 assets/course_pdfs/
-├── Course_1.pdf
-├── Course_2.pdf
-├── Math_Fundamentals.pdf
-└── ...
+ Course_1.pdf
+ Course_2.pdf
+ Math_Fundamentals.pdf
+ ...
 ```
 
 ### Step 6: Verify Installation
@@ -199,8 +199,8 @@ python test_groq_direct.py
 
 **Expected output:**
 ```
-🔄 Testing Groq connection...
-✅ Groq is working!
+ Testing Groq connection...
+ Groq is working!
 Response: content='...'
 ```
 
@@ -249,9 +249,9 @@ DEBUG=True                                  # Enable debug logging
 
 | Model | Speed | Quality | Cost | Best For |
 |-------|-------|---------|------|----------|
-| `llama-3.1-8b-instant` | ⭐⭐⭐⭐⭐ Very Fast | ⭐⭐⭐ Good | Free | Budget/Speed |
-| `llama-3.3-70b-versatile` | ⭐⭐⭐ Medium | ⭐⭐⭐⭐⭐ Excellent | Free | **Recommended** |
-| `llama-2-70b-4096` | ⭐⭐⭐⭐ Fast | ⭐⭐⭐⭐ Great | Free | Alternative |
+| `llama-3.1-8b-instant` |  Very Fast |  Good | Free | Budget/Speed |
+| `llama-3.3-70b-versatile` |  Medium |  Excellent | Free | **Recommended** |
+| `llama-2-70b-4096` |  Fast |  Great | Free | Alternative |
 
 ---
 
@@ -542,38 +542,38 @@ A: "بناءً على مواد المقرر، متطلبات مادة البرم
 
 ```
 EduMate-RAG/
-│
-├── 📄 main.py                    # Entry point - starts the server
-├── 📄 requirements.txt            # Python dependencies
-├── 📄 README.md                  # This file
-├── 📄 .env.example               # Environment template (safe)
-├── 📄 .env                       # Your secrets (NOT in Git)
-├── 📄 .gitignore                 # Git ignore rules
-│
-├── 📁 src/                       # Source code (core logic)
-│   ├── 📄 __init__.py
-│   ├── 📄 config.py              # Configuration loader
-│   ├── 📄 pdf_loader.py          # PDF extraction & chunking
-│   ├── 📄 vector_store.py        # ChromaDB integration
-│   ├── 📄 rag_chain.py           # RAG pipeline with memory
-│   └── 📁 api/
-│       ├── 📄 __init__.py
-│       └── 📄 main.py            # FastAPI endpoints
-│
-├── 📁 assets/                    # Data & storage
-│   ├── 📁 course_pdfs/           # Your course PDF files
-│   └── 📁 chroma_db/             # Vector database (auto-created)
-│
-├── 📁 tests/                     # Test & verification scripts
-│   ├── 📄 __init__.py
-│   ├── 📄 test_groq_direct.py    # Test Groq connection
-│   ├── 📄 test_embeddings.py     # Test embeddings
-│   └── 📄 verify_chromadb.py     # Verify vector database
-│
-└── 📁 venv/                      # Python virtual environment
-    ├── 📁 Scripts/ (Windows)
-    ├── 📁 bin/ (macOS/Linux)
-    └── ...
+
+  main.py                    # Entry point - starts the server
+  requirements.txt            # Python dependencies
+  README.md                  # This file
+  .env.example               # Environment template (safe)
+  .env                       # Your secrets (NOT in Git)
+  .gitignore                 # Git ignore rules
+
+  src/                       # Source code (core logic)
+     __init__.py
+     config.py              # Configuration loader
+     pdf_loader.py          # PDF extraction & chunking
+     vector_store.py        # ChromaDB integration
+     rag_chain.py           # RAG pipeline with memory
+     api/
+         __init__.py
+         main.py            # FastAPI endpoints
+
+  assets/                    # Data & storage
+     course_pdfs/           # Your course PDF files
+     chroma_db/             # Vector database (auto-created)
+
+  tests/                     # Test & verification scripts
+     __init__.py
+     test_groq_direct.py    # Test Groq connection
+     test_embeddings.py     # Test embeddings
+     verify_chromadb.py     # Verify vector database
+
+  venv/                      # Python virtual environment
+      Scripts/ (Windows)
+      bin/ (macOS/Linux)
+     ...
 ```
 
 ---
@@ -730,12 +730,12 @@ curl -X POST http://localhost:8000/api/index
 
 ## Security Considerations
 
-- ✅ API Keys in `.env` (not in Git)
-- ✅ CORS enabled for Flutter (can be restricted)
-- ✅ Input validation on all endpoints
-- ✅ Error messages don't expose sensitive data
-- ⚠️ No authentication implemented (add before production)
-- ⚠️ No rate limiting (add before public deployment)
+-  API Keys in `.env` (not in Git)
+-  CORS enabled for Flutter (can be restricted)
+-  Input validation on all endpoints
+-  Error messages don't expose sensitive data
+-  No authentication implemented (add before production)
+-  No rate limiting (add before public deployment)
 
 ---
 
@@ -824,14 +824,14 @@ For issues, questions, or suggestions:
 
 This project demonstrates:
 
-- ✅ **RAG Architecture** - Retrieval-Augmented Generation implementation
-- ✅ **Vector Databases** - Semantic search with embeddings
-- ✅ **LLM Integration** - Using Groq API for inference
-- ✅ **Conversational AI** - Multi-turn memory management
-- ✅ **API Design** - RESTful endpoint design with FastAPI
-- ✅ **Production Practices** - Error handling, logging, security
-- ✅ **PDF Processing** - Text extraction and chunking
-- ✅ **Version Control** - Git workflow
+-  **RAG Architecture** - Retrieval-Augmented Generation implementation
+-  **Vector Databases** - Semantic search with embeddings
+-  **LLM Integration** - Using Groq API for inference
+-  **Conversational AI** - Multi-turn memory management
+-  **API Design** - RESTful endpoint design with FastAPI
+-  **Production Practices** - Error handling, logging, security
+-  **PDF Processing** - Text extraction and chunking
+-  **Version Control** - Git workflow
 
 ---
 
@@ -857,7 +857,7 @@ This project demonstrates:
 
 ---
 
-## ✨ Acknowledgments
+##  Acknowledgments
 
 - **Groq** for free LLM API access
 - **LangChain** for RAG orchestration
@@ -870,19 +870,19 @@ This project demonstrates:
 ##  Changelog
 
 ### v2.0.0 (Current)
-- ✅ Conversational RAG with memory
-- ✅ Multi-turn context awareness
-- ✅ Improved error handling
-- ✅ Professional API documentation
+-  Conversational RAG with memory
+-  Multi-turn context awareness
+-  Improved error handling
+-  Professional API documentation
 
 ### v1.0.0 (Initial)
-- ✅ Basic RAG pipeline
-- ✅ Single-question support
-- ✅ PDF indexing
+-  Basic RAG pipeline
+-  Single-question support
+-  PDF indexing
 
 ---
 
-**Made with ❤️ for education | Last updated: December 3, 2025**
+**Made with  for education | Last updated: December 3, 2025**
 
 ---
 

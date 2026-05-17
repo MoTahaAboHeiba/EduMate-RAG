@@ -1,0 +1,92 @@
+
+
+                    RAG EVALUATION DATASET REPORT                           
+
+
+ DATASET OVERVIEW
+
+  • Dataset Name:        EduMate RAG Evaluation Dataset v1
+  • Total QA Pairs:      85
+  • Source PDFs:         6
+  • File Path:           D:\College \Final Project\edumate\EduMate-RAG\evaluation\datasets\rag_evaluation_dataset_v1.json
+
+ BREAKDOWN BY CATEGORY
+
+  • Computer Architecture...................  15 ( 17.6%)
+  • Data Structures & Algorithms............  26 ( 30.6%)
+  • Machine Learning........................  15 ( 17.6%)
+  • Object-Oriented Programming.............  17 ( 20.0%)
+  • Operating Systems.......................  12 ( 14.1%)
+
+ BREAKDOWN BY DIFFICULTY
+
+  • medium..................................  85 (100.0%)
+
+ EVALUATION METRICS PLANNED
+
+  Retrieval Metrics:
+     Precision@3 (% of top-3 docs are relevant)
+     Recall@5 (% of all relevant docs found in top-5)
+     MRR (Mean Reciprocal Rank)
+     NDCG@10 (Normalized Discounted Cumulative Gain)
+
+  Generation Metrics:
+     Faithfulness (% answers grounded in sources)
+     Relevance (% answers address the question)
+     Completeness (information coverage)
+     Source Attribution Accuracy
+
+  Performance Metrics:
+     Query Latency (ms)
+     Throughput (queries/sec)
+     Memory Usage (MB)
+
+ SAMPLE QA PAIRS (First 5)
+
+
+  [qa_001] Computer Architecture
+  Q: An encoder has 2" (or less) input lines and n output lines?...
+  A: An encoder has 2" (or less) input lines and n output lines. The output lines 
+generate the binary co...
+  Source: computer Architecture Book
+
+  [qa_002] Computer Architecture
+  Q: The output lines 
+generate the binary code corresponding to the input value?...
+  A: An encoder has 2" (or less) input lines and n output lines. The output lines 
+generate the binary co...
+  Source: computer Architecture Book
+
+  [qa_003] Computer Architecture
+  Q: (It must be realized that this type of connection cannot be done with 
+gates tha...
+  A: bus line. (It must be realized that this type of connection cannot be done with 
+gates that do not h...
+  Source: computer Architecture Book
+
+  [qa_004] Computer Architecture
+  Q: location 1, and clears lEN, R, and SC to 0?...
+  A: location 1, and clears lEN, R, and SC to 0. This can be done with the following 
+sequence of microop...
+  Source: computer Architecture Book
+
+  [qa_005] Computer Architecture
+  Q: This can be done with the following 
+sequence of microoperations: 
+RT0: AR +- 0,...
+  A: location 1, and clears lEN, R, and SC to 0. This can be done with the following 
+sequence of microop...
+  Source: computer Architecture Book
+
+ DATASET READY FOR EVALUATION
+
+  Next steps:
+  1. Run RAG system against this dataset
+  2. Calculate retrieval metrics
+  3. Calculate generation metrics
+  4. Generate evaluation report
+  5. Identify improvement areas
+
+
+                    Ready for Phase 2: Metrics Calculation                 
+

@@ -194,7 +194,7 @@ PDFLoader Tests (5)
 VectorStore Tests (4)
 Smoke Tests (3)
 Utility Tests (1)
-═════════════════
+
 TOTAL: 17 PASSING TESTS
 """
 
