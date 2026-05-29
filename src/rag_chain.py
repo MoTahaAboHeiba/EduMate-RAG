@@ -8,6 +8,7 @@ from googletrans import Translator
 from src.config import config
 from src.vector_store import vector_store
 from src.conversation_manager import conversation_manager
+from src.retrieval_optimizer import retrieval_optimizer
 from typing import List, Dict
 
 
@@ -89,13 +90,16 @@ class RAGChain:
         Args:
             max_memory_messages: Number of previous messages to remember
         """
-        # Initialize Groq LLM
+        # Initialize Groq LLM with optimization settings
+        # Lower temperature (0.5 vs 0.7) reduces hallucinations
+        # Higher max_tokens (1500 vs 1000) increases answer completeness
         self.llm = ChatGroq(
             api_key=config.GROQ_API_KEY,
             model_name=config.GROQ_MODEL,
-            temperature=0.7,
-            max_tokens=1000
+            temperature=config.LLM_TEMPERATURE,  # Optimized: 0.5 (was 0.7)
+            max_tokens=config.LLM_MAX_TOKENS  # Optimized: 1500 (was 1000)
         )
+        print(f"[RAGChain] LLM initialized: temperature={config.LLM_TEMPERATURE}, max_tokens={config.LLM_MAX_TOKENS}")
         
         # Initialize conversation memory storage per session
         self.session_memory: Dict[str, SimpleMemory] = {}
@@ -105,6 +109,7 @@ class RAGChain:
         self.language_helper = LanguageHelper()
         
         # Create prompt template with conversation history
+        # OPTIMIZATION: Improved instructions to reduce hallucinations and increase completeness
         self.prompt_template = PromptTemplate(
             input_variables=["context", "question", "chat_history"],
             template="""Your name is EduMate. You are a helpful academic assistant for Student.
@@ -122,18 +127,28 @@ Below is the conversation history so far, followed by relevant course materials 
 Student: {question}
 
 IMPORTANT INSTRUCTIONS:
-1. Use the course materials to answer accurately
-2. Reference previous questions in the conversation if relevant
-3. If the student asks "tell me more", "explain further", or "why", refer to your previous answer
-4. If information is not in the provided materials, say "I don't have this information in the course materials"
-5. Be conversational and helpful
-6. Keep your answers concise but complete
+1. **ONLY use information from the provided course materials.** Do not use external knowledge.
+2. **Base all claims on the provided materials.** If something is not mentioned, say so explicitly.
+3. Provide detailed, comprehensive answers with examples from the materials.
+4. Reference previous questions in the conversation if relevant.
+5. If the student asks "tell me more", "explain further", or "why", provide additional detail.
+6. **If information is NOT in the provided materials, clearly state: "I don't have this information in the course materials"**
+7. Be conversational, helpful, and thorough.
+8. Structure complex answers with clear sections or bullet points.
+9. **Ground every claim with evidence from the materials.**
+10. Include relevant page context or section references when possible.
 
 Answer:"""
         )
         
         # Store max memory setting
         self.max_memory = max_memory_messages
+        
+        # Log Phase 6 enhancements if enabled
+        if config.ENFORCE_VALIDATION:
+            print(f"[RAGChain] Phase 6 Enforcement: ENABLED (grounding threshold: {config.GROUNDING_THRESHOLD:.0%})")
+        if config.ENABLE_SIMILARITY_FILTERING:
+            print(f"[RAGChain] Similarity Filtering: ENABLED (threshold: {config.SIMILARITY_THRESHOLD:.1f})")
     
     def _normalize_session_token(self, session_token: str) -> str:
         return session_token or 'anonymous'
@@ -151,6 +166,50 @@ Answer:"""
     def _set_conversation_id(self, conversation_id: str, session_token: str):
         token = self._normalize_session_token(session_token)
         self.session_conversation_ids[token] = conversation_id
+
+    def _validate_answer_grounding(self, answer: str, context: str) -> tuple[bool, float]:
+        """
+        OPTIMIZATION: Validate if answer is grounded in retrieved context.
+        This helps detect hallucinations where LLM generates information not in context.
+        
+        Args:
+            answer: Generated answer
+            context: Retrieved context from documents
+        
+        Returns:
+            Tuple of (is_grounded: bool, confidence: float 0-1)
+        """
+        if not context or not answer:
+            return True, 1.0  # Can't validate, assume OK
+        
+        # Simple validation: Check if key phrases from answer appear in context
+        # Split answer into key phrases (sentences/chunks)
+        answer_sentences = [s.strip() for s in answer.split('.') if s.strip() and len(s.split()) > 3]
+        
+        if not answer_sentences:
+            return True, 1.0
+        
+        # Check what percentage of answer sentences are grounded in context
+        grounded_count = 0
+        for sentence in answer_sentences:
+            # Check if sentence (or parts of it) appear in context
+            # Use key words from sentence
+            words = [w.lower() for w in sentence.split() if len(w) > 4]  # Focus on longer words
+            
+            if any(word in context.lower() for word in words[:3]):  # Check first 3 key words
+                grounded_count += 1
+        
+        if not answer_sentences:
+            return True, 1.0
+        
+        grounding_score = grounded_count / len(answer_sentences)
+        is_grounded = grounding_score >= 0.6  # Require 60% grounding
+        
+        if config.ENABLE_RETRIEVAL_VALIDATION and not is_grounded:
+            print(f"   [VALIDATION] Answer grounding score: {grounding_score:.1%} (threshold: {config.GROUNDING_THRESHOLD:.0%})")
+            return False, grounding_score
+        
+        return True, grounding_score
 
     def query(self, question: str, session_token: str = None, num_context_docs: int = 3) -> dict:
         """
@@ -192,13 +251,31 @@ Answer:"""
             context = ""
         else:
             print("   Retrieving relevant documents...")
-            retrieved_docs = vector_store.search(search_question, num_results=num_context_docs)
+            # OPTIMIZATION: Retrieve more documents (5 instead of 3) to reduce precision gap
+            # Will filter to top-3 based on relevance and reranking if enabled
+            retrieve_k = min(config.RETRIEVAL_TOP_K, max(num_context_docs + 2, 5))  # Retrieve at least 5
+            raw_docs = vector_store.search(search_question, num_results=retrieve_k)
             
-            if not retrieved_docs:
+            if not raw_docs:
                 print("   No relevant documents found")
+                retrieved_docs = []
                 context = ""
             else:
-                print(f"   Found {len(retrieved_docs)} relevant documents")
+                print(f"   Found {len(raw_docs)} raw documents from vector store")
+                
+                # OPTIMIZATION: Apply optimization pipeline to improve precision
+                # This includes filtering, reranking, deduplication
+                retrieved_docs = retrieval_optimizer.optimize_retrieval(
+                    raw_docs,
+                    query=search_question,
+                    top_k=num_context_docs,  # Return only top_k for context
+                    enable_dedup=True,
+                    enable_rerank=True,
+                    similarity_threshold=config.RETRIEVAL_SIMILARITY_THRESHOLD
+                )
+                
+                print(f"   After optimization: {len(retrieved_docs)} documents selected for context")
+                
                 context = "\n\n---\n\n".join([
                     f"[{doc['metadata']['source']}] {doc['content']}"
                     for doc in retrieved_docs
@@ -213,6 +290,17 @@ Answer:"""
             )
             response = self.llm.invoke(prompt_input)
             answer = response.content.strip() if hasattr(response, 'content') else str(response).strip()
+            
+            # OPTIMIZATION: Validate answer grounding if retrieval validation enabled
+            if retrieved_docs and config.ENABLE_RETRIEVAL_VALIDATION:
+                is_grounded, grounding_score = self._validate_answer_grounding(answer, context)
+                if not is_grounded:
+                    print(f"   [VALIDATION WARNING] Answer may contain hallucinations (grounding: {grounding_score:.1%})")
+                    # Phase 6: Enforce validation - reject ungrounded answers
+                    if config.ENFORCE_VALIDATION:
+                        print(f"   [PHASE 6 ENFORCEMENT] Rejecting answer - grounding {grounding_score:.1%} below threshold {config.GROUNDING_THRESHOLD:.0%}")
+                        answer = "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic."
+                        print(f"   [FALLBACK] Using safe response instead")
         except Exception as e:
             print(f"   Error generating answer: {e}")
             answer = ""

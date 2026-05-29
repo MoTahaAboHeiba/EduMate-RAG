@@ -20,10 +20,11 @@ A **production-ready Retrieval-Augmented Generation (RAG)** backend for the EduM
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
 - [Flutter Integration](#flutter-integration)
 - [Users & Conversation Handling](#users--conversation-handling)
 - [Conversation Examples](#conversation-examples)
-- [Project Structure](#project-structure)
 - [How RAG Works](#how-rag-works)
 - [Troubleshooting](#troubleshooting)
 - [Performance Metrics](#performance-metrics)
@@ -112,6 +113,32 @@ Answers are **grounded exclusively in your course materials**—no hallucination
            (No storage of personal data)               
            
 ```
+
+---
+
+## Documentation
+
+For detailed information about specific topics, refer to our organized documentation:
+
+### 🚀 Getting Started
+- **[Quick Start Guide](./docs/QUICKSTART_UI.md)** - Get EduMate running in minutes
+- **[UI Setup](./docs/UI_SETUP.md)** - Frontend integration and setup
+
+### 🏗️ Architecture & Structure  
+- **[Project Structure](./docs/PROJECT_STRUCTURE.md)** - Feature-based organization and module layout
+- **[Technical Guide](./TECHNICAL_GUIDE.md)** - Deep dive into implementation details
+- **[Vector Store Migration](./afterQDRANT.md)** - Qdrant integration and persistence strategy
+
+### 🔌 Integration
+- **[Flutter Integration](./docs/EDUMATE_INTEGRATION.md)** - How to integrate with Flutter apps
+- **[Users & Conversations](./docs/EDUMATE_USERS_AND_CONVERSATIONS.md)** - Session and conversation management
+
+### 📊 Optimization
+- **[Optimization Guide](./OPTIMIZATION_GUIDE.md)** - Performance tuning and best practices
+- **[Phase 5 Improvements](./PHASE5_OPTIMIZATION_SUMMARY.md)** - Latest optimizations and enhancements
+
+### ✅ Testing
+- **[Testing Guide](./docs/TESTING.md)** - How to run tests and verify functionality
 
 ---
 

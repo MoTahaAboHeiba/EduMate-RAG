@@ -35,6 +35,40 @@ class Config:
     DEBUG = os.getenv("DEBUG", "False").lower() == "true"
     ADMIN_KEY = os.getenv("ADMIN_KEY")
     
+    # LLM Optimization Configuration (Phase 5 & 6)
+    # Temperature: Lower = more deterministic, less hallucination (0.3-0.5 recommended)
+    # Phase 6: Default 0.3 for more grounded responses (was 0.5 in Phase 5)
+    LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", 0.3))
+    # Max tokens: Higher = more complete answers (1500-2000 recommended)
+    LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", 1500))
+    
+    # Phase 6: Stricter validation settings
+    # Grounding threshold: % of answer that must be in context (higher = stricter)
+    GROUNDING_THRESHOLD = float(os.getenv("GROUNDING_THRESHOLD", 0.6))
+    # Enforce validation: If True, reject answers below threshold
+    ENFORCE_VALIDATION = os.getenv("ENFORCE_VALIDATION", "true").lower() == "true"
+    
+    # Retrieval Optimization Configuration (Phase 5)
+    # Chunk size: Smaller chunks = better precision, larger = more context
+    PDF_CHUNK_SIZE = int(os.getenv("PDF_CHUNK_SIZE", 800))  # Default 800, test: 512, 1024, 2048
+    PDF_CHUNK_OVERLAP = int(os.getenv("PDF_CHUNK_OVERLAP", 200))
+    # Number of documents to retrieve: Increase for better recall
+    RETRIEVAL_TOP_K = int(os.getenv("RETRIEVAL_TOP_K", 5))  # Retrieve 5 docs, filter top-3
+    # Similarity threshold: Higher = more strict retrieval
+    RETRIEVAL_SIMILARITY_THRESHOLD = float(os.getenv("RETRIEVAL_SIMILARITY_THRESHOLD", 0.0))  # 0.0 = no filtering
+    
+    # Validation Configuration (Phase 5 & 6)
+    # Enable retrieval validation: Check if answer is grounded in context
+    ENABLE_RETRIEVAL_VALIDATION = os.getenv("ENABLE_RETRIEVAL_VALIDATION", "true").lower() == "true"
+    # Enable reranking: Use cross-encoder to rerank results
+    ENABLE_RERANKING = os.getenv("ENABLE_RERANKING", "false").lower() == "true"
+    
+    # Phase 6: Advanced retrieval tuning
+    # Enable strict similarity filtering
+    ENABLE_SIMILARITY_FILTERING = os.getenv("ENABLE_SIMILARITY_FILTERING", "false").lower() == "true"
+    # Similarity threshold for filtering (0.3-0.7 recommended)
+    SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", 0.3))
+    
     def __init__(self):
         """Validate configuration"""
         if not self.GROQ_API_KEY:

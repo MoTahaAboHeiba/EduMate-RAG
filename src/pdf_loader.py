@@ -16,13 +16,15 @@ class PDFLoader:
     def __init__(self):
         """Initialize PDF loader"""
         self.pdf_folder = Path(config.PDF_FOLDER_PATH)
-        self.chunk_size = 1000  # Characters per chunk
-        self.chunk_overlap = 200  # Overlap between chunks
+        # Use configurable chunk sizes from config (allows tuning without code changes)
+        self.chunk_size = config.PDF_CHUNK_SIZE  # Configurable: default 800, test 512/1024/2048
+        self.chunk_overlap = config.PDF_CHUNK_OVERLAP  # Configurable: default 200
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=self.chunk_size,
             chunk_overlap=self.chunk_overlap,
             separators=["\n\n", "\n", " ", ""]
         )
+        print(f"[PDFLoader] Initialized with chunk_size={self.chunk_size}, chunk_overlap={self.chunk_overlap}")
     
     def load_all_pdfs(self) -> List[dict]:
         """

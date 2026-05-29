@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Explain the concept of binary search and how it improves performance over linear search.",
+    "expected_answer_pattern": ["binary search", "logarithmic", "O(log n)", "sorted", "divide and conquer"]
+  },
+  {
+    "question": "What is the difference between depth-first search and breadth-first search?",
+    "expected_answer_pattern": ["DFS", "BFS", "stack", "queue", "recursion", "iterative"]
+  },
+  {
+    "question": "How does quicksort algorithm work and what is its time complexity?",
+    "expected_answer_pattern": ["partition", "pivot", "O(n log n)", "divide", "average case"]
+  },
+  {
+    "question": "Explain the concept of inheritance in object-oriented programming.",
+    "expected_answer_pattern": ["parent class", "child class", "extends", "derived", "base"]
+  },
+  {
+    "question": "What is polymorphism and give an example of its use.",
+    "expected_answer_pattern": ["method overriding", "method overloading", "virtual", "dynamic dispatch"]
+  },
+  {
+    "question": "Describe the structure and operations of a hash table.",
+    "expected_answer_pattern": ["hash function", "collision", "chaining", "probing", "bucket"]
+  },
+  {
+    "question": "What is a linked list and how does it compare to arrays?",
+    "expected_answer_pattern": ["node", "pointer", "sequential access", "dynamic allocation", "insertion"]
+  },
+  {
+    "question": "Explain the concept of recursion with an example.",
+    "expected_answer_pattern": ["base case", "recursive case", "stack", "function calls itself"]
+  },
+  {
+    "question": "What is the significance of Big O notation in algorithm analysis?",
+    "expected_answer_pattern": ["time complexity", "space complexity", "asymptotic", "worst case", "growth rate"]
+  },
+  {
+    "question": "Describe how a binary tree is structured and traversed.",
+    "expected_answer_pattern": ["root", "left subtree", "right subtree", "inorder", "preorder", "postorder"]
+  },
+  {
+    "question": "What is encapsulation in OOP and why is it important?",
+    "expected_answer_pattern": ["data hiding", "private", "public", "access control", "abstraction"]
+  },
+  {
+    "question": "Explain the concept of a stack and its real-world applications.",
+    "expected_answer_pattern": ["LIFO", "push", "pop", "function call stack", "undo operation"]
+  },
+  {
+    "question": "What is a queue and how is it different from a stack?",
+    "expected_answer_pattern": ["FIFO", "enqueue", "dequeue", "first in", "first out"]
+  },
+  {
+    "question": "Describe the merge sort algorithm and its advantages.",
+    "expected_answer_pattern": ["divide and conquer", "O(n log n)", "merge", "stable", "auxiliary space"]
+  },
+  {
+    "question": "What is dynamic programming and how does it improve algorithm efficiency?",
+    "expected_answer_pattern": ["overlapping subproblems", "memoization", "optimal substructure", "bottom-up"]
+  },
+  {
+    "question": "Explain the concept of a graph and its representations.",
+    "expected_answer_pattern": ["vertices", "edges", "adjacency matrix", "adjacency list", "directed", "undirected"]
+  },
+  {
+    "question": "What is the difference between ArrayList and LinkedList?",
+    "expected_answer_pattern": ["dynamic array", "array access", "insertion", "deletion", "performance"]
+  },
+  {
+    "question": "Describe the concept of abstraction in object-oriented programming.",
+    "expected_answer_pattern": ["abstract class", "interface", "implementation details", "hide complexity"]
+  },
+  {
+    "question": "What is the significance of constructors in OOP?",
+    "expected_answer_pattern": ["initialization", "state", "member variables", "object creation", "default"]
+  },
+  {
+    "question": "Explain the concept of a heap and its applications.",
+    "expected_answer_pattern": ["complete binary tree", "priority queue", "heap sort", "min-heap", "max-heap"]
+  }
+]
