@@ -1,0 +1,22 @@
+{
+  "num_queries": 85,
+  "retrieval": {
+    "avg_precision_at_3": 0.24313725490196073,
+    "avg_precision_at_5": 0.1458823529411764,
+    "avg_recall_at_5": 0.7294117647058823,
+    "avg_mrr": 0.6823529411764706,
+    "avg_ndcg_at_10": 0.6946757415126078
+  },
+  "generation": {
+    "avg_faithfulness": 0.7999999999999998,
+    "avg_relevance": 0.8499999999999995,
+    "avg_completeness": 0.75,
+    "avg_source_accuracy": 0.9000000000000005
+  },
+  "performance": {
+    "avg_latency_ms": 1545.53843386033,
+    "p95_latency_ms": 2245.527267456054,
+    "p99_latency_ms": 26720.81754684448,
+    "throughput_qps": 0.6470237026084656
+  }
+}

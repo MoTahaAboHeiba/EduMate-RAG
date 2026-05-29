@@ -1,0 +1,81 @@
+{
+  "timestamp": "20260519_023228",
+  "analysis": {
+    "summary": {
+      "total_metrics": 10,
+      "passed": 3,
+      "failed": 7,
+      "pass_rate": 0.3
+    },
+    "retrieval": {
+      "avg_precision_at_3": {
+        "value": 0.24313725490196073,
+        "target": 0.7,
+        "status": "FAIL"
+      },
+      "avg_recall_at_5": {
+        "value": 0.7294117647058823,
+        "target": 0.6,
+        "status": "PASS"
+      },
+      "avg_mrr": {
+        "value": 0.6823529411764706,
+        "target": 0.75,
+        "status": "FAIL"
+      },
+      "avg_ndcg_at_10": {
+        "value": 0.6946757415126078,
+        "target": 0.7,
+        "status": "FAIL"
+      }
+    },
+    "generation": {
+      "avg_faithfulness": {
+        "value": 0.7999999999999998,
+        "target": 0.95,
+        "status": "FAIL"
+      },
+      "avg_relevance": {
+        "value": 0.8499999999999995,
+        "target": 0.9,
+        "status": "FAIL"
+      },
+      "avg_completeness": {
+        "value": 0.75,
+        "target": 0.8,
+        "status": "FAIL"
+      },
+      "avg_source_accuracy": {
+        "value": 0.9000000000000005,
+        "target": 0.95,
+        "status": "FAIL"
+      }
+    },
+    "performance": {
+      "p95_latency_ms": {
+        "value": 654.9420833587646,
+        "target": 5000,
+        "status": "PASS"
+      },
+      "throughput_qps": {
+        "value": 1.9026376932956652,
+        "target": 0.5,
+        "status": "PASS"
+      }
+    }
+  },
+  "recommendations": [
+    "RETRIEVAL: avg_precision_at_3 is below target (24.3% vs 70.0%)",
+    "  -> Try: Improve embedding model or adjust chunk size",
+    "RETRIEVAL: avg_mrr is below target (68.2% vs 75.0%)",
+    "  -> Try: Improve embedding model or adjust chunk size",
+    "RETRIEVAL: avg_ndcg_at_10 is below target (69.5% vs 70.0%)",
+    "  -> Try: Improve embedding model or adjust chunk size",
+    "GENERATION: Hallucinations detected (80.0%)",
+    "  -> Try: Add retrieval validation or stricter prompts",
+    "GENERATION: Relevance is low (85.0%)",
+    "  -> Try: Improve LLM prompt or context window",
+    "GENERATION: Answers incomplete (75.0%)",
+    "  -> Try: Increase max_tokens or improve prompts"
+  ]
+}
