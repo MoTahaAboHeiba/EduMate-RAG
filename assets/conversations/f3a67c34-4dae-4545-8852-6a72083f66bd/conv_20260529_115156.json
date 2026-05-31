@@ -1,0 +1,52 @@
+{
+  "id": "conv_20260529_115156",
+  "title": "Auto-generated Conversation",
+  "created_at": "2026-05-29T11:51:56.972119",
+  "updated_at": "2026-05-29T11:52:34.558431",
+  "messages": [
+    {
+      "role": "student",
+      "content": "ممكن تشرحلي OOP",
+      "timestamp": "2026-05-29T11:51:57.042255"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:51:57.042255"
+    },
+    {
+      "role": "student",
+      "content": "hey i am Mohamed Taha what's your name and how can you help me as student",
+      "timestamp": "2026-05-29T11:52:10.296826"
+    },
+    {
+      "role": "assistant",
+      "content": "مرحبا محمد طه، اسمي EduMate، وانا هنا لمساعدتك في دراستك. يمكنني مساعدتك في فهم المواد الدراسية، وتقديم معلومات حول مختلف المواضيع الأكاديمية. كما يمكنني مساعدتك في تفسير المفاهيم الصعبة، وتقديم أمثلة واضحة لجعل المواد أكثر سهولة.\n\nلديك أي سؤال معين عن مادة معينة؟ أو تريد أن نبدأ بمناقشة موضوع معين؟ أنا هنا لأساعدك في كل ما تحتاج إليه. \n\nوأنا أتذكر أنك سألتني عن OOP في بداية المحادثة، ولكن للأسف لم أكن قادرا على تقديم معلومات كافية عنها لأنها لم تكن متاحة في المواد الدراسية التي لدي. إذا كنت تريد أن نناقش موضوعا آخر، فأنا هنا لأساعدك.",
+      "sources": [],
+      "context_docs": 0,
+      "timestamp": "2026-05-29T11:52:10.296826"
+    },
+    {
+      "role": "student",
+      "content": "can you explain to me oop",
+      "timestamp": "2026-05-29T11:52:34.558431"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "OOP Book",
+        "OOP Book",
+        "OOP Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:52:34.558431"
+    }
+  ]
+}

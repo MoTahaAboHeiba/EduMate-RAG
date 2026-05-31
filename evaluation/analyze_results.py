@@ -303,7 +303,7 @@ class Phase4Analyzer:
         html += """    </table>
     
     <h2>Summary</h2>
-    <p><strong>Pass Rate:</strong> <span class="pass">""" + f"{analysis['summary']['pass_rate']*100:.1f}%</span> ({analysis['summary']['passed']}/{analysis['summary']['total_metrics']} metrics)</p>
+    <p><strong>Pass Rate:</strong> <span class="pass">""" + f"{analysis['summary']['pass_rate']*100:.1f}%" + f"""</span> ({analysis['summary']['passed']}/{analysis['summary']['total_metrics']} metrics)</p>
     
     <div class="recommendations">
         <h2>Recommendations</h2>

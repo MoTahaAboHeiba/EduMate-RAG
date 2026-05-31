@@ -2,7 +2,7 @@
   "id": "conv_20260427_173345",
   "title": "Auto-generated Conversation",
   "created_at": "2026-04-27T17:33:45.279247",
-  "updated_at": "2026-04-27T17:49:42.532697",
+  "updated_at": "2026-05-29T11:31:40.539330",
   "messages": [
     {
       "role": "student",
@@ -79,6 +79,66 @@
       ],
       "context_docs": 3,
       "timestamp": "2026-04-27T17:49:42.532697"
+    },
+    {
+      "role": "student",
+      "content": "hey i am Mohamed Taha what's your name and how can you help me as student",
+      "timestamp": "2026-05-29T11:30:02.288060"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello again, Mohamed Taha. My name is EduMate, and I'm your helpful academic assistant. I'm here to support you with any questions or concerns you have about your course materials. I can provide you with explanations, examples, and guidance on the topics you're studying. \n\nAs we've discussed earlier, you had questions about the difference between OOP and data structure, the 4 concepts of OOP, and the fastest components in a computer's hardware. If you'd like to revisit any of those topics or explore new ones, I'm here to help. \n\nTo get started, what's on your mind, and what do you need help with today? Are you looking for clarification on a specific topic, or do you have a new question about your course materials? I'm all ears and ready to assist you. \n\nPlease let me know how I can help, and I'll do my best to provide a detailed and comprehensive answer based on the course materials.",
+      "sources": [],
+      "context_docs": 0,
+      "timestamp": "2026-05-29T11:30:02.288060"
+    },
+    {
+      "role": "student",
+      "content": "can you communicate with me in Arabic",
+      "timestamp": "2026-05-29T11:31:03.273565"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:31:03.273565"
+    },
+    {
+      "role": "student",
+      "content": "من انت هل تفهمني",
+      "timestamp": "2026-05-29T11:31:29.495381"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:31:29.495381"
+    },
+    {
+      "role": "student",
+      "content": "اشرح لي oop",
+      "timestamp": "2026-05-29T11:31:40.539330"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "OOP Book",
+        "OOP Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:31:40.539330"
     }
   ]
 }

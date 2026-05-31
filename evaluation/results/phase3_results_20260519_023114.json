@@ -1,0 +1,2659 @@
+{
+  "timestamp": "20260519_023114",
+  "total_queries": 85,
+  "results": [
+    {
+      "question_id": "qa_001",
+      "question": "An encoder has 2\" (or less) input lines and n output lines?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 493.5574531555176,
+        "p95_latency_ms": 493.5574531555176,
+        "p99_latency_ms": 493.5574531555176,
+        "throughput_qps": 2.0261065730171537,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_002",
+      "question": "The output lines \ngenerate the binary code corresponding to the input value?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 509.9966526031494,
+        "p95_latency_ms": 509.9966526031494,
+        "p99_latency_ms": 509.9966526031494,
+        "throughput_qps": 1.9607971834633657,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_003",
+      "question": "(It must be realized that this type of connection cannot be done with \ngates that do not have three-state outputs?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 453.1714916229248,
+        "p95_latency_ms": 453.1714916229248,
+        "p99_latency_ms": 453.1714916229248,
+        "throughput_qps": 2.20667014250773,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_004",
+      "question": "location 1, and clears lEN, R, and SC to 0?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 499.1567134857178,
+        "p95_latency_ms": 499.1567134857178,
+        "p99_latency_ms": 499.1567134857178,
+        "throughput_qps": 2.0033788447255105,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_005",
+      "question": "This can be done with the following \nsequence of microoperations: \nRT0: AR +- 0, TR +-PC \nRT1: M[ AR] +- TR, PC +-0 \nRT2: PC +-PC + 1, IEN <-0 , R<- 0, SC +-0 \nDuring the first timing signal AR is cleared to 0, and the content of PC is \ntransferred to the temporary register TR?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 526.9243717193604,
+        "p95_latency_ms": 526.9243717193604,
+        "p99_latency_ms": 526.9243717193604,
+        "throughput_qps": 1.897805555542987,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_006",
+      "question": "Write a subroutine to circulate E andAC four times to the right?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 443.556547164917,
+        "p95_latency_ms": 443.556547164917,
+        "p99_latency_ms": 443.556547164917,
+        "throughput_qps": 2.2545039778844567,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_007",
+      "question": "If AC contains \nhexadecimal 079C and E = 1, what are the contents of AC and E after the \nsubroutine is executed? \nWrite a program to accept input characters, pack two characters in one word \nand store them in consecutive locations in a memory buffer?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 501.56188011169434,
+        "p95_latency_ms": 501.56188011169434,
+        "p99_latency_ms": 501.56188011169434,
+        "throughput_qps": 1.9937719345363865,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_008",
+      "question": "address field of the instruction defines the beginning address of a data array \nin memory?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 417.651891708374,
+        "p95_latency_ms": 417.651891708374,
+        "p99_latency_ms": 417.651891708374,
+        "throughput_qps": 2.3943384906257084,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_009",
+      "question": "Each operand in the array is stored in memory relative to the \nbeginning address?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 498.12793731689453,
+        "p95_latency_ms": 498.12793731689453,
+        "p99_latency_ms": 498.12793731689453,
+        "throughput_qps": 2.0075163930503037,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_010",
+      "question": "Branch difficulties arise from branch and other instructions that change \nthe value of PC?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 464.2486572265625,
+        "p95_latency_ms": 464.2486572265625,
+        "p99_latency_ms": 464.2486572265625,
+        "throughput_qps": 2.1540180772391126,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_011",
+      "question": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10\u00b76 Decimal Arithmetic Unit 36 7 \nor z, must have a 1?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 467.7431583404541,
+        "p95_latency_ms": 467.7431583404541,
+        "p99_latency_ms": 467.7431583404541,
+        "throughput_qps": 2.1379254451267347,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_012",
+      "question": "The condition for a correction and an output-carry can be \nexpressed by the Boolean function \nC = K + Z8 Z4 + z, z, \nWhen C = 1, it is necessary to add 0110 to the binary sum and provide an \noutput-carry for the next stage?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 565.1955604553223,
+        "p95_latency_ms": 565.1955604553223,
+        "p99_latency_ms": 565.1955604553223,
+        "throughput_qps": 1.769299106302956,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_013",
+      "question": "CPU and lOP communicate depends on the level of sophistication included in \nthe system?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 598.6683368682861,
+        "p95_latency_ms": 598.6683368682861,
+        "p99_latency_ms": 598.6683368682861,
+        "throughput_qps": 1.6703739590290232,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_014",
+      "question": "In very-large-scale computers, each processor is independent of \nall others and any one processor can initiate an operation?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 464.27202224731445,
+        "p95_latency_ms": 464.27202224731445,
+        "p99_latency_ms": 464.27202224731445,
+        "throughput_qps": 2.153909673814691,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_015",
+      "question": "Portions of a program or data are brought into main memory as they \nare needed by the CPU?",
+      "retrieved_docs": [],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "computer Architecture Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 298.9230155944824,
+        "p95_latency_ms": 298.9230155944824,
+        "p99_latency_ms": 298.9230155944824,
+        "throughput_qps": 3.3453429405937594,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_016",
+      "question": "DATA STRUCTURES\nUSING C++\nSECOND EDITION\nD?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 520.3433036804199,
+        "p95_latency_ms": 520.3433036804199,
+        "p99_latency_ms": 520.3433036804199,
+        "throughput_qps": 1.92180814651969,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_017",
+      "question": "double boxType::volume() const\n{\nreturn rectangleType::area() * height;\n}\nIn the next section, we discuss how to specify a call to the constructor of the base class\nwhen writing the definition of a constructor of the derived class?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 468.1694507598877,
+        "p95_latency_ms": 468.1694507598877,
+        "p99_latency_ms": 468.1694507598877,
+        "throughput_qps": 2.1359787537971475,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_018",
+      "question": "Constructors of Derived and Base Classes\nA derived class can have its ownprivate member variables, and so a derived class can\nexplicitly include its own constructors?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 445.1560974121094,
+        "p95_latency_ms": 445.1560974121094,
+        "p99_latency_ms": 445.1560974121094,
+        "throughput_qps": 2.2464030164103,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_019",
+      "question": "of another object leads to a shallow copying of the data, if the default\nmemberwise copying of data is allowed?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 502.1967887878418,
+        "p95_latency_ms": 502.1967887878418,
+        "p99_latency_ms": 502.1967887878418,
+        "throughput_qps": 1.9912512830153923,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_020",
+      "question": "\u2022 If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 570.446252822876,
+        "p95_latency_ms": 570.446252822876,
+        "p99_latency_ms": 570.446252822876,
+        "throughput_qps": 1.7530135311634711,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_021",
+      "question": "following statement?\ncopy(vecList?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 567.9049491882324,
+        "p95_latency_ms": 567.9049491882324,
+        "p99_latency_ms": 567.9049491882324,
+        "throughput_qps": 1.7608580475120132,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_022",
+      "question": "Identify the base cases and provide a direct solution to each base case?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 443.0041313171387,
+        "p95_latency_ms": 443.0041313171387,
+        "p99_latency_ms": 443.0041313171387,
+        "throughput_qps": 2.257315291906653,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_023",
+      "question": "array that stores the queue elements?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 543.2395935058594,
+        "p95_latency_ms": 543.2395935058594,
+        "p99_latency_ms": 543.2395935058594,
+        "throughput_qps": 1.840808387228156,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_024",
+      "question": "has two outcomes, the comparison tree is a binary tree?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 433.7806701660156,
+        "p95_latency_ms": 433.7806701660156,
+        "p99_latency_ms": 433.7806701660156,
+        "throughput_qps": 2.3053124972518533,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_025",
+      "question": "While drawing this figure, we draw\neach comparison as a circle, called anode?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 499.88842010498047,
+        "p95_latency_ms": 499.88842010498047,
+        "p99_latency_ms": 499.88842010498047,
+        "throughput_qps": 2.000446419202894,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_026",
+      "question": "member functions of the class implementing the container)?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 464.3876552581787,
+        "p95_latency_ms": 464.3876552581787,
+        "p99_latency_ms": 464.3876552581787,
+        "throughput_qps": 2.1533733480577664,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_027",
+      "question": "However, several operations\u2014\nsuch as\nfind, sort,a n dmerge\u2014are common to all containers?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 541.0103797912598,
+        "p95_latency_ms": 541.0103797912598,
+        "p99_latency_ms": 541.0103797912598,
+        "throughput_qps": 1.8483933716499747,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_028",
+      "question": "848\u2013849, 849n\nutility header file, 732, 734\nV\nvalidating input: withassert\nstatements, 6\nvalue parameters, 851, 851\nconstant reference parameters\nvs?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structure Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 408.0014228820801,
+        "p95_latency_ms": 408.0014228820801,
+        "p99_latency_ms": 408.0014228820801,
+        "throughput_qps": 2.450971844500205,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_029",
+      "question": "com\nMarketing Manager: Yez Alayan Media Project Manager: Renata Butera\nSenior Marketing Coordinator: Kathryn Ferranti Full-Service Project Management: Integra Software\nMarketing Assistant: Jon Bryant Services Pvt?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 651.0913372039795,
+        "p95_latency_ms": 651.0913372039795,
+        "p99_latency_ms": 651.0913372039795,
+        "throughput_qps": 1.5358828214400146,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_030",
+      "question": "deletion is performed at the other end?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 478.1947135925293,
+        "p95_latency_ms": 478.1947135925293,
+        "p99_latency_ms": 478.1947135925293,
+        "throughput_qps": 2.091198358273994,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_031",
+      "question": "19 Show the result of inserting 2, 1, 4, 5, 9, 3, 6, 7 into an initially empty AVL tree?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 508.5303783416748,
+        "p95_latency_ms": 508.5303783416748,
+        "p99_latency_ms": 508.5303783416748,
+        "throughput_qps": 1.9664508603419426,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_032",
+      "question": "is used without a quali\ufb01er, it is generally assumed to be referring to this implementation\nof the data structure?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 499.1481304168701,
+        "p95_latency_ms": 499.1481304168701,
+        "p99_latency_ms": 499.1481304168701,
+        "throughput_qps": 2.003413293694673,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_033",
+      "question": "In this section, we will refer to binary heaps merely as heaps?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 420.76826095581055,
+        "p95_latency_ms": 420.76826095581055,
+        "p99_latency_ms": 420.76826095581055,
+        "throughput_qps": 2.3766051121071152,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_034",
+      "question": "known as either a weight or a cost?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 485.9616756439209,
+        "p95_latency_ms": 485.9616756439209,
+        "p99_latency_ms": 485.9616756439209,
+        "throughput_qps": 2.0577754381041578,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_035",
+      "question": "A path in a graph is a sequence of vertices w1, w2, w3,?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 509.1526508331299,
+        "p95_latency_ms": 509.1526508331299,
+        "p99_latency_ms": 509.1526508331299,
+        "throughput_qps": 1.9640475177016035,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_036",
+      "question": "Structures (1991), 400\u2013411?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 481.0013771057129,
+        "p95_latency_ms": 481.0013771057129,
+        "p99_latency_ms": 481.0013771057129,
+        "throughput_qps": 2.078996126824442,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_037",
+      "question": "Tic-tac-toe is a draw if both sides play optimally?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 632.573127746582,
+        "p95_latency_ms": 632.573127746582,
+        "p99_latency_ms": 632.573127746582,
+        "throughput_qps": 1.580844895454703,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_038",
+      "question": "By performing a careful case-by-case\nanalysis, it is not a dif\ufb01cult matter to construct an algorithm that never loses and always\nwins when presented the opportunity?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 498.74067306518555,
+        "p95_latency_ms": 498.74067306518555,
+        "p99_latency_ms": 498.74067306518555,
+        "throughput_qps": 2.0050500270093266,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_039",
+      "question": "37 : element{ std::move( e ) }, left{ lt }, right{ rt }, priority{ pr }\n38 {}\n39 };\n40\n41 TreapNode *root;\n42 TreapNode *nullNode;\n43 UniformRandom randomNums;\n44\n45 // Additional private member functions (not shown)\n46 };\nFigure 12?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 459.40661430358887,
+        "p95_latency_ms": 459.40661430358887,
+        "p99_latency_ms": 459.40661430358887,
+        "throughput_qps": 2.1767209458137486,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_040",
+      "question": "18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satis\ufb01es heap order?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 486.79637908935547,
+        "p95_latency_ms": 486.79637908935547,
+        "p99_latency_ms": 486.79637908935547,
+        "throughput_qps": 2.0542469972161435,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_041",
+      "question": "returning, 25\nvan Emde Boas, P?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Data structures and Algorithm Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 600.8992195129395,
+        "p95_latency_ms": 600.8992195129395,
+        "p99_latency_ms": 600.8992195129395,
+        "throughput_qps": 1.6641725725830578,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_042",
+      "question": "Lecture notes on Machine Learning\nfor Computer Science Department\nFirst Edition\n2\nContents\n1 Introduction 9\n1?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 1417.823314666748,
+        "p95_latency_ms": 1417.823314666748,
+        "p99_latency_ms": 1417.823314666748,
+        "throughput_qps": 0.7053065002214643,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_043",
+      "question": "1 What is Machine Learning??",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 813.9150142669678,
+        "p95_latency_ms": 813.9150142669678,
+        "p99_latency_ms": 813.9150142669678,
+        "throughput_qps": 1.2286295036596973,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_044",
+      "question": "Unlike traditional programming, where explicit instructions dictate every action,\nmachine learning enables computers to learn patterns from data and make intelligent de-\ncisions without being explicitly programmed for every scenario?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 536.4723205566406,
+        "p95_latency_ms": 536.4723205566406,
+        "p99_latency_ms": 536.4723205566406,
+        "throughput_qps": 1.8640290685685437,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_045",
+      "question": "19\nClassi\ufb01cation approach:Predict whether the application will be \u201capproved\u201d or \u201cre-\njected\u201d based on income, credit score, and employment history?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 454.35047149658203,
+        "p95_latency_ms": 454.35047149658203,
+        "p99_latency_ms": 454.35047149658203,
+        "throughput_qps": 2.2009441229500797,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_046",
+      "question": "The output is a binary\ndecision?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 540.921688079834,
+        "p95_latency_ms": 540.921688079834,
+        "p99_latency_ms": 540.921688079834,
+        "throughput_qps": 1.8486964417156282,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_047",
+      "question": "1 Problem Formulation\nIn the unsupervised learning setting, we are given a datasetD= {x1,x2,?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 639.2982006072998,
+        "p95_latency_ms": 639.2982006072998,
+        "p99_latency_ms": 639.2982006072998,
+        "throughput_qps": 1.5642152583098974,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_048",
+      "question": "mization decomposes intom independent problems?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 532.4497222900391,
+        "p95_latency_ms": 532.4497222900391,
+        "p99_latency_ms": 532.4497222900391,
+        "throughput_qps": 1.8781116002822784,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_049",
+      "question": "The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj\u2032\n\u2225xi \u2212\u00b5j\u2032\u22252, (2?",
+      "retrieved_docs": [
+        "ML-Book-FCI",
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 442.4548149108887,
+        "p95_latency_ms": 442.4548149108887,
+        "p99_latency_ms": 442.4548149108887,
+        "throughput_qps": 2.260117793500342,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_050",
+      "question": "zj = wT\nj (x \u2212\u00afx) =\nd\u2211\nk=1\nwjk(xk \u2212\u00afxk) (2?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 572.9851722717285,
+        "p95_latency_ms": 572.9851722717285,
+        "p99_latency_ms": 572.9851722717285,
+        "throughput_qps": 1.7452458604387182,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_051",
+      "question": "68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\n\u02c6x = \u00afx + Wmz = \u00afx +\nm\u2211\nj=1\nzjwj (2?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 499.0384578704834,
+        "p95_latency_ms": 499.0384578704834,
+        "p99_latency_ms": 499.0384578704834,
+        "throughput_qps": 2.0038535792757126,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_052",
+      "question": "The transition from equation (3?",
+      "retrieved_docs": [
+        "Data structures and Algorithm Book",
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 647.5074291229248,
+        "p95_latency_ms": 647.5074291229248,
+        "p99_latency_ms": 647.5074291229248,
+        "throughput_qps": 1.544383824838181,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_053",
+      "question": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an e\ufb03cient method for \ufb01nding optimal model parameters?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 614.4287586212158,
+        "p95_latency_ms": 614.4287586212158,
+        "p99_latency_ms": 614.4287586212158,
+        "throughput_qps": 1.6275279859035405,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_054",
+      "question": "The beauty of linear regression lies in its interpretability and mathematical tractability?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 479.4886112213135,
+        "p95_latency_ms": 479.4886112213135,
+        "p99_latency_ms": 479.4886112213135,
+        "throughput_qps": 2.085555269921601,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_055",
+      "question": "5 Detailed Worked Example with Three Iterations\nLet us work through a complete example to illustrate the gradient descent process in de-\ntail?",
+      "retrieved_docs": [
+        "ML-Book-FCI"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 543.7817573547363,
+        "p95_latency_ms": 543.7817573547363,
+        "p99_latency_ms": 543.7817573547363,
+        "throughput_qps": 1.8389730557798933,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_056",
+      "question": "\u2022But it fails completely at the actual task (detecting fraud)\n5?",
+      "retrieved_docs": [
+        "ML-Book-FCI",
+        "Data structures and Algorithm Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "ML-Book-FCI"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 832.0624828338623,
+        "p95_latency_ms": 832.0624828338623,
+        "p99_latency_ms": 832.0624828338623,
+        "throughput_qps": 1.2018328198071992,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_057",
+      "question": "Robert Lafore\n800 East 96th St?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 559.3008995056152,
+        "p95_latency_ms": 559.3008995056152,
+        "p99_latency_ms": 559.3008995056152,
+        "throughput_qps": 1.7879463467409644,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_058",
+      "question": ",Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright \uf8e9 2002 by Sams Publishing\nAll rights reserved?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 441.32137298583984,
+        "p95_latency_ms": 441.32137298583984,
+        "p99_latency_ms": 441.32137298583984,
+        "throughput_qps": 2.2659224347878704,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_059",
+      "question": "This result is then divided by 10 and assigned to the normal int variable intVar?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 523.4718322753906,
+        "p95_latency_ms": 523.4718322753906,
+        "p99_latency_ms": 523.4718322753906,
+        "throughput_qps": 1.9103224631080342,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_060",
+      "question": "listing for CIRCSTRC:\n// circstrc?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 465.3284549713135,
+        "p95_latency_ms": 465.3284549713135,
+        "p99_latency_ms": 465.3284549713135,
+        "throughput_qps": 2.149019664102957,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_061",
+      "question": "cpp\n// circles as graphics objects\n#include \u201cmsoftcon?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 475.4195213317871,
+        "p95_latency_ms": 475.4195213317871,
+        "p99_latency_ms": 475.4195213317871,
+        "throughput_qps": 2.1034054243265228,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_062",
+      "question": "clear\u2014the flags at some later point in your program, you can use the resetiosflags\nmanipulator?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 665.6091213226318,
+        "p95_latency_ms": 665.6091213226318,
+        "p99_latency_ms": 665.6091213226318,
+        "throughput_qps": 1.5023832576285916,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_063",
+      "question": ") The fixed flag prevents numbers from being printed in exponential format, such\nas 3?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 454.8604488372803,
+        "p95_latency_ms": 454.8604488372803,
+        "p99_latency_ms": 454.8604488372803,
+        "throughput_qps": 2.198476483405431,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_064",
+      "question": "the count when they come in and decrement it when they go out, so that the count represents\nthe number of people in the bank at any moment?",
+      "retrieved_docs": [],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 309.10420417785645,
+        "p95_latency_ms": 309.10420417785645,
+        "p99_latency_ms": 309.10420417785645,
+        "throughput_qps": 3.2351549622554043,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_065",
+      "question": "We could insert a decrement routine directly into the source code of the Counterclass?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 536.792516708374,
+        "p95_latency_ms": 536.792516708374,
+        "p99_latency_ms": 536.792516708374,
+        "throughput_qps": 1.862917177258779,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_066",
+      "question": "When our program, HORSE, is started, it asks the user to supply the race\u2019s distance and the\nnumber of horses that will run in it?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 598.710298538208,
+        "p95_latency_ms": 598.710298538208,
+        "p99_latency_ms": 598.710298538208,
+        "throughput_qps": 1.6702568879165234,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_067",
+      "question": "The classic unit of distance for horse racing (at least in\nEnglish-speaking countries) is the furlong, which is 1/8 of a mile?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 487.52331733703613,
+        "p95_latency_ms": 487.52331733703613,
+        "p99_latency_ms": 487.52331733703613,
+        "throughput_qps": 2.0511839422619387,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_068",
+      "question": "return 0;                   //if so, not correct feet\nreturn 1;                      //it is correct feet\n}\n////////////////////////////////////////////////////////////////\nint main()\n{\nDistance d;                    //make a Distance object\nchar ans;\ndo\n{\nd?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 573.6174583435059,
+        "p95_latency_ms": 573.6174583435059,
+        "p99_latency_ms": 573.6174583435059,
+        "throughput_qps": 1.7433221138139743,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_069",
+      "question": "getdist();                //get its value from user\ncout << \u201c\\nDistance = \u201c;\nd?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 514.5764350891113,
+        "p95_latency_ms": 514.5764350891113,
+        "p99_latency_ms": 514.5764350891113,
+        "throughput_qps": 1.9433458895699836,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_070",
+      "question": "verylong can be negative as well as positive?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 508.93473625183105,
+        "p95_latency_ms": 508.93473625183105,
+        "p99_latency_ms": 508.93473625183105,
+        "throughput_qps": 1.9648884793455719,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_071",
+      "question": "This complicates the addition and multipli-\ncation routines, which must do different things depending on the signs of the numbers?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 434.4615936279297,
+        "p95_latency_ms": 434.4615936279297,
+        "p99_latency_ms": 434.4615936279297,
+        "throughput_qps": 2.3016994244522198,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_072",
+      "question": "begin(); iter != mapStates?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 522.0708847045898,
+        "p95_latency_ms": 522.0708847045898,
+        "p99_latency_ms": 522.0708847045898,
+        "throughput_qps": 1.9154487049509437,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_073",
+      "question": "X = x - 1;          //Windows starts at (0, 0)\ncursor_pos?",
+      "retrieved_docs": [
+        "OOP Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "OOP Book"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 475.97670555114746,
+        "p95_latency_ms": 475.97670555114746,
+        "p99_latency_ms": 475.97670555114746,
+        "throughput_qps": 2.1009431519176354,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_074",
+      "question": "Fayoum University Faculty of Computers & Artificial Intelligence          Introduction  to  Operating System                3rd Level Students 2024 - 2025?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 509.5639228820801,
+        "p95_latency_ms": 509.5639228820801,
+        "p99_latency_ms": 509.5639228820801,
+        "throughput_qps": 1.9624623233607796,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_075",
+      "question": "such as the arithmetic logic unit (ALU) and the floating point unit (FPU)?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 534.4939231872559,
+        "p95_latency_ms": 534.4939231872559,
+        "p99_latency_ms": 534.4939231872559,
+        "throughput_qps": 1.8709286609600193,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_076",
+      "question": "The ALU performs arithmetic operations such as addition and subtraction and also multiplication via repeated addition and division via repeated subtraction?",
+      "retrieved_docs": [
+        "computer Architecture Book"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.0,
+        "precision_at_5": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 547.2803115844727,
+        "p95_latency_ms": 547.2803115844727,
+        "p99_latency_ms": 547.2803115844727,
+        "throughput_qps": 1.8272172026521918,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_077",
+      "question": "22  \nA few processors have an interrupt controller that supports \"round robin scheduling\", which can be used to prevent a different kind of \"starvation\" of low-priority interrupt handlers?",
+      "retrieved_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 475.2073287963867,
+        "p95_latency_ms": 475.2073287963867,
+        "p99_latency_ms": 475.2073287963867,
+        "throughput_qps": 2.104344650013747,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_078",
+      "question": "Processors priority is encoded in a few bits of PS (Process Status register)?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 506.27899169921875,
+        "p95_latency_ms": 506.27899169921875,
+        "p99_latency_ms": 506.27899169921875,
+        "throughput_qps": 1.9751955273587607,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_079",
+      "question": "of running many different programs or processes at the same time?",
+      "retrieved_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 467.96369552612305,
+        "p95_latency_ms": 467.96369552612305,
+        "p99_latency_ms": 467.96369552612305,
+        "throughput_qps": 2.1369179052997227,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_080",
+      "question": "However, the CPU is only capable of handling one process at a time?",
+      "retrieved_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 557.3070049285889,
+        "p95_latency_ms": 557.3070049285889,
+        "p99_latency_ms": 557.3070049285889,
+        "throughput_qps": 1.7943431379049974,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_081",
+      "question": "\u2013 amount of CPU used for process execution, time limits, execution ID etc?",
+      "retrieved_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 497.20239639282227,
+        "p95_latency_ms": 497.20239639282227,
+        "p99_latency_ms": 497.20239639282227,
+        "throughput_qps": 2.011253379418419,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_082",
+      "question": "I/O Status Information \u2013 list of I/O devices allocated to the process?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 453.92870903015137,
+        "p95_latency_ms": 453.92870903015137,
+        "p99_latency_ms": 453.92870903015137,
+        "throughput_qps": 2.2029891040303795,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_083",
+      "question": "A more elegant method for achieving mutual exclusion is the busy-wait?",
+      "retrieved_docs": [
+        "computer Architecture Book",
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 0.5,
+        "ndcg_at_10": 0.6309297535714575
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 655.9047698974609,
+        "p95_latency_ms": 655.9047698974609,
+        "p99_latency_ms": 655.9047698974609,
+        "throughput_qps": 1.5246115684695085,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_084",
+      "question": "When Allocation [i, j] = K, it means that process P[i] is currently allocated K instances of Resources type R[j] in the system?",
+      "retrieved_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 530.8339595794678,
+        "p95_latency_ms": 530.8339595794678,
+        "p99_latency_ms": 530.8339595794678,
+        "throughput_qps": 1.8838282328286051,
+        "memory_usage_mb": 0.0
+      }
+    },
+    {
+      "question_id": "qa_085",
+      "question": "Consider a fixed partitioning scheme with equal size partitions of 216 bytes and a total main memory size of 224 bytes?",
+      "retrieved_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "generated_answer": "",
+      "ground_truth_docs": [
+        "Operating Systems Lecture Notes"
+      ],
+      "retrieval_metrics": {
+        "precision_at_3": 0.3333333333333333,
+        "precision_at_5": 0.2,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "generation_metrics": {
+        "faithfulness_score": 0.8,
+        "relevance_score": 0.85,
+        "completeness_score": 0.75,
+        "source_accuracy": 0.9
+      },
+      "performance_metrics": {
+        "avg_latency_ms": 502.24947929382324,
+        "p95_latency_ms": 502.24947929382324,
+        "p99_latency_ms": 502.24947929382324,
+        "throughput_qps": 1.9910423827736523,
+        "memory_usage_mb": 0.0
+      }
+    }
+  ]
+}

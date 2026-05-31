@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import sys
+import time
 from pathlib import Path
 from typing import List
 
@@ -17,6 +18,12 @@ from src.config import config
 from src.vector_store import vector_store
 from src.rag_chain import rag_chain
 from src.conversation_manager import conversation_manager
+
+HEALTH_CACHE_TTL_SECONDS = 30
+_health_cache = {
+    "timestamp": 0.0,
+    "collection_info": None,
+}
 
 # Create FastAPI app
 app = FastAPI(
@@ -57,6 +64,7 @@ class QueryResponse(BaseModel):
     num_context_docs: int
     conversation_turn: int
     is_general: bool = False
+    latency_ms: float = 0.0
 
 class ConversationMessage(BaseModel):
     role: str  # "student" or "assistant"
@@ -96,10 +104,24 @@ async def api_root():
 @app.get("/health")
 async def health():
     """Health check endpoint"""
-    collection_info = vector_store.get_collection_info()
+    start_time = time.perf_counter()
+    now = time.time()
+
+    if (
+        _health_cache["collection_info"] is None
+        or now - _health_cache["timestamp"] > HEALTH_CACHE_TTL_SECONDS
+    ):
+        _health_cache["collection_info"] = vector_store.get_collection_info()
+        _health_cache["timestamp"] = now
+
+    collection_info = _health_cache["collection_info"]
+    latency_ms = round((time.perf_counter() - start_time) * 1000, 2)
+
     return {
         "status": "healthy",
         "model": config.GROQ_MODEL,
+        "latency_ms": latency_ms,
+        "cache_ttl_seconds": HEALTH_CACHE_TTL_SECONDS,
         "vector_store": {
             "collection": collection_info["collection_name"],
             "documents_indexed": collection_info["count"]
@@ -134,7 +156,12 @@ async def query(request: QueryRequest, request_obj: Request) -> QueryResponse:
     
     try:
         session_token = get_session_token(request_obj)
+        start_time = time.perf_counter()
         result = rag_chain.query(request.question, session_token=session_token)
+        latency_ms = round((time.perf_counter() - start_time) * 1000, 2)
+        
+        if not result.get("answer", "").strip():
+            raise RuntimeError("RAG chain returned an empty answer")
         
         return QueryResponse(
             question=result["question"],
@@ -142,7 +169,8 @@ async def query(request: QueryRequest, request_obj: Request) -> QueryResponse:
             sources=result["sources"],
             num_context_docs=result["num_context_docs"],
             conversation_turn=result["conversation_turn"],
-            is_general=result.get("is_general", False)
+            is_general=result.get("is_general", False),
+            latency_ms=latency_ms
         )
     
     except Exception as e:
@@ -157,8 +185,13 @@ async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):
     Returns:
         Success status and document count
     """
+    # If ADMIN_KEY is not configured, disable this endpoint.
+    if not config.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Admin not configured")
+
     if x_admin_key != config.ADMIN_KEY:
         raise HTTPException(status_code=403, detail="Forbidden")
+
 
     try:
         success = vector_store.index_pdfs()

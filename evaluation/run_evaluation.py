@@ -76,7 +76,7 @@ class Phase3Executor:
             response = requests.post(
                 f"{self.api_base_url}/api/query",
                 json={"question": question},
-                timeout=30
+                timeout=60
             )
             
             if response.status_code == 200:
@@ -85,7 +85,7 @@ class Phase3Executor:
                 print(f"Error: {response.status_code}")
                 return None
         except requests.exceptions.Timeout:
-            print("Query timeout (30s)")
+            print("Query timeout (60s)")
             return None
         except Exception as e:
             print(f"Query error: {e}")
@@ -141,9 +141,13 @@ class Phase3Executor:
         for idx, qa_pair in enumerate(qa_pairs, 1):
             question = qa_pair["question"]
             
-            # Show progress
-            status = f"[{idx:3d}/{total}] Processing: {question[:50]}..."
-            print(status, end=' ', flush=True)
+            # Show progress - sanitize for console output
+            safe_question = question[:50].encode('utf-8', errors='ignore').decode('utf-8', errors='ignore')
+            status = f"[{idx:3d}/{total}] Processing: {safe_question}..."
+            try:
+                print(status, end=' ', flush=True)
+            except UnicodeEncodeError:
+                print(f"[{idx:3d}/{total}] Processing: [Q{idx}]...", end=' ', flush=True)
             
             # Query RAG system and measure latency
             start_time = time.time()

@@ -1,0 +1,52 @@
+{
+  "id": "conv_20260529_112736",
+  "title": "Auto-generated Conversation",
+  "created_at": "2026-05-29T11:27:36.643205",
+  "updated_at": "2026-05-29T11:28:18.446019",
+  "messages": [
+    {
+      "role": "student",
+      "content": "اهلا ياصديقي",
+      "timestamp": "2026-05-29T11:27:36.714835"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:27:36.714835"
+    },
+    {
+      "role": "student",
+      "content": "hey friend",
+      "timestamp": "2026-05-29T11:27:51.297276"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello. It's nice to meet you. I see that this is the start of our conversation, and you've said \"hey friend.\" I'm here to help with any questions you have about your course materials. However, I don't have any specific information to share yet since we've just begun. \n\nIf you have a particular topic or question in mind, feel free to ask, and I'll do my best to assist you based on the provided course materials. Unfortunately, since there are no course materials provided, I won't be able to give you detailed information on any specific subject. \n\nLet's get started. What would you like to know or discuss? I'm here to help.",
+      "sources": [],
+      "context_docs": 0,
+      "timestamp": "2026-05-29T11:27:51.297276"
+    },
+    {
+      "role": "student",
+      "content": "can you communicate with me in Arabic",
+      "timestamp": "2026-05-29T11:28:18.446019"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:28:18.446019"
+    }
+  ]
+}

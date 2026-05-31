@@ -1,0 +1,64 @@
+{
+  "id": "conv_20260529_114640",
+  "title": "Auto-generated Conversation",
+  "created_at": "2026-05-29T11:46:40.486028",
+  "updated_at": "2026-05-29T11:48:24.079733",
+  "messages": [
+    {
+      "role": "student",
+      "content": "اهلا ياصديقي",
+      "timestamp": "2026-05-29T11:46:40.634210"
+    },
+    {
+      "role": "assistant",
+      "content": "مرحباً! أنا EduMate، مساعدك الأكاديمي. كيف يمكنني مساعدتك اليوم؟ لا توجد محادثة سابقة أو مواد دورة متاحة حتى الآن، لذلك لنبدأ من هنا. ماذا تريد أن نتناول في محادثتنا؟",
+      "sources": [],
+      "context_docs": 0,
+      "timestamp": "2026-05-29T11:46:40.635218"
+    },
+    {
+      "role": "student",
+      "content": "hey i am Mohamed Taha what's your name and how can you help me as student",
+      "timestamp": "2026-05-29T11:47:09.548018"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello Mohamed Taha, nice to meet you. My name is EduMate, and I'm your academic assistant. I'm here to help you with any questions or concerns you may have about your course materials. Since we just started our conversation, I don't have any prior context or materials to draw from, but I'm ready to assist you as we move forward.\n\nAs we begin, I want to assure you that I'll do my best to provide accurate and concise answers to your questions. If I don't have the information you're looking for in the course materials, I'll let you know so we can explore other options together.\n\nWhat would you like to talk about or ask about your course materials, Mohamed Taha? Is there something specific on your mind, or would you like me to help you get started with a particular topic?",
+      "sources": [],
+      "context_docs": 0,
+      "timestamp": "2026-05-29T11:47:09.548018"
+    },
+    {
+      "role": "student",
+      "content": "ممكن تشرحلي OOP \nبالعربي بس استخدم المصطلحات بالانجليزي",
+      "timestamp": "2026-05-29T11:47:57.646592"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "Operating Systems Lecture Notes",
+        "OOP Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:47:57.646592"
+    },
+    {
+      "role": "student",
+      "content": "ممكن تشرحلي OOP",
+      "timestamp": "2026-05-29T11:48:24.079733"
+    },
+    {
+      "role": "assistant",
+      "content": "I don't have enough information in the course materials to answer this question confidently. Please try rephrasing or ask about a different topic.",
+      "sources": [
+        "computer Architecture Book",
+        "computer Architecture Book",
+        "computer Architecture Book"
+      ],
+      "context_docs": 3,
+      "timestamp": "2026-05-29T11:48:24.079733"
+    }
+  ]
+}

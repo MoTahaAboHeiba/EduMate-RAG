@@ -263,7 +263,7 @@
 
             <!-- Tips -->
             <div class="p-4 flex-1 text-slate-400 text-xs space-y-2">
-                <p class="font-semibold text-slate-300"> Tips:</p>
+                <p class="font-semibold text-slate-300">💡 Tips:</p>
                 <ul class="space-y-1">
                     <li>• Ask follow-up questions naturally</li>
                     <li>• System remembers context</li>
@@ -336,7 +336,7 @@
     </div>
 
     <script>
-        const API_BASE_URL = window.location.origin;
+        const API_BASE = window.location.origin;
         const SESSION_TOKEN_KEY = 'edumate_session_token';
         let isLoading = false;
         let currentConversationTitle = 'New Conversation';
@@ -383,7 +383,7 @@
                 addMessage('assistant', '<div class="loading-dots"><span></span><span></span><span></span></div>');
 
                 // Make API call
-                const response = await fetch(`${API_BASE_URL}/api/query`, {
+                const response = await fetch(`${API_BASE}/api/query`, {
                     method: 'POST',
                     headers: getAuthHeaders(true),
                     body: JSON.stringify({ question }),
@@ -410,7 +410,7 @@
 
             } catch (error) {
                 console.error('Error:', error);
-                addMessage('assistant', ' Error: ' + error.message);
+                addMessage('assistant', '❌ Error: ' + error.message);
             } finally {
                 isLoading = false;
                 document.getElementById('send-btn').disabled = false;
@@ -486,7 +486,7 @@
                 return `
                     <div class="p-4 bg-slate-700 rounded-lg hover:bg-slate-600 transition">
                         <div class="flex items-start gap-3">
-                            <div class="text-2xl"></div>
+                            <div class="text-2xl">📖</div>
                             <div class="flex-1">
                                 <p class="text-white font-semibold">${escapeHtml(parsed.book)}</p>
                                 <p class="text-slate-300 text-sm mt-1">${escapeHtml(parsed.chapter)}</p>
@@ -534,7 +534,7 @@
             isLoading = true;
             
             try {
-                const url = `${API_BASE_URL}/api/conversation/new?title=${encodeURIComponent(title)}`;
+                const url = `${API_BASE}/api/conversation/new?title=${encodeURIComponent(title)}`;
                 console.log('Creating conversation with URL:', url);
                 
                 const response = await fetch(url, {
@@ -578,7 +578,7 @@
                 currentConversationTitle = title || 'New Conversation';
                 document.getElementById('current-conv-title').textContent = currentConversationTitle;
 
-                addMessage('assistant', ' Started new conversation! Ask your first question.');
+                addMessage('assistant', '✨ Started new conversation! Ask your first question.');
             } catch (error) {
                 console.error('Error:', error);
                 alert('Failed to create conversation');
@@ -593,7 +593,7 @@
             
             // Load conversations
             try {
-                const response = await fetch(`${API_BASE_URL}/api/conversation/list?limit=20`, {
+                const response = await fetch(`${API_BASE}/api/conversation/list?limit=20`, {
                     headers: getAuthHeaders(false),
                 });
                 
@@ -636,7 +636,7 @@
             isLoading = true;
             
             try {
-                const response = await fetch(`${API_BASE_URL}/api/conversation/load/${conversationId}`, {
+                const response = await fetch(`${API_BASE}/api/conversation/load/${conversationId}`, {
                     method: 'POST',
                     headers: getAuthHeaders(false),
                 });
@@ -673,7 +673,7 @@
                 // Update turn count
                 updateTurnCount(Math.ceil(turnCount));
                 
-                addMessage('assistant', ' Conversation loaded! You can continue asking questions.');
+                addMessage('assistant', '✅ Conversation loaded! You can continue asking questions.');
                 
             } catch (error) {
                 console.error('Error:', error);
@@ -687,7 +687,7 @@
             if (!confirm('Delete this conversation permanently?')) return;
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/conversation/${conversationId}`, {
+                const response = await fetch(`${API_BASE}/api/conversation/${conversationId}`, {
                     method: 'DELETE',
                     headers: getAuthHeaders(false),
                 });
@@ -706,7 +706,7 @@
             if (!confirm('Clear all messages in this conversation?')) return;
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/conversation/clear`, {
+                const response = await fetch(`${API_BASE}/api/conversation/clear`, {
                     method: 'POST',
                     headers: getAuthHeaders(false),
                 });
@@ -736,7 +736,7 @@
                 setTextContentIfExists('turn-number', '0');
                 setTextContentIfExists('doc-count', '0');
 
-                addMessage('assistant', ' Conversation cleared! Start fresh with a new question.');
+                addMessage('assistant', '✨ Conversation cleared! Start fresh with a new question.');
             } catch (error) {
                 console.error('Error:', error);
                 alert('Failed to clear conversation');
@@ -751,7 +751,7 @@
             document.getElementById('send-btn').disabled = true;
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/index`, {
+                const response = await fetch(`${API_BASE}/api/index`, {
                     method: 'POST',
                 });
 
@@ -797,14 +797,14 @@
         // Load initial data
         window.addEventListener('load', async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/health`);
+                const response = await fetch(`${API_BASE}/health`);
                 if (response.ok) {
                     const data = await response.json();
                     console.log('System healthy:', data);
                 }
             } catch (error) {
                 console.error('Health check failed:', error);
-                addMessage('assistant', ' Warning: Cannot connect to backend. Please check your server connection.');
+                addMessage('assistant', '⚠️ Warning: Cannot connect to backend. Please check your server connection.');
             }
             
             // Add auto-resize listener to textarea
