@@ -1,41 +1,48 @@
 # Git
 .git
 .gitignore
-.github
 
-# Python
-__pycache__
+# Python cache
+__pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
-env/
+
+# Virtual environments
 venv/
+env/
 ENV/
-*.egg-info/
-dist/
-build/
 
-# Testing
-.pytest_cache
-htmlcov/
-.coverage
-
-# IDE
-.vscode
-.idea
+# IDE / OS
+.vscode/
+.idea/
 *.swp
-*.swo
-
-# OS
 .DS_Store
-Thumbs.db
 
-# Local
+# Secrets
 .env
-.env.local
+*.env
+
+# Documentation & dev files
+docs/
+*.md
+!README.md
+HUGGING_FACE_DEPLOYMENT.md
+MASTER_PRESENTATION.md
+pytest.ini
+requirements-test.txt
+run_dev.py
+
+# Tests
+tests/
+scripts/
+
+# Evaluation framework (not needed at runtime)
+evaluation/
+
+# Runtime data (generated inside container)
 assets/conversations/
 assets/chroma_db/
 
-# Misc
-*.md
+# CI/CD (runs on GitHub, not inside the image)
+.github/
