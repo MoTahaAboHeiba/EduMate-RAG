@@ -3,6 +3,7 @@ title: EduMate RAG
 colorFrom: blue
 colorTo: green
 sdk: docker
+app_port: 8080
 pinned: false
 ---
 
@@ -262,13 +263,15 @@ GROQ_API_KEY=gsk_your_key_here              # Get from console.groq.com
 GROQ_MODEL=llama-3.3-70b-versatile          # Latest recommended model
 
 # ChromaDB Configuration
-CHROMA_DB_PATH=./assets/chroma_db           # Vector database location
+CHROMA_DB_PATH=/tmp/edumate/chroma_db      # Runtime vector database location
+CONVERSATION_DIR=/tmp/edumate/conversations # Runtime conversation storage
 PDF_FOLDER_PATH=./assets/course_pdfs        # PDF source folder
 
 # API Configuration
 API_HOST=localhost                           # Server host
 API_PORT=8000                               # Server port
 DEBUG=True                                  # Enable debug logging
+ADMIN_KEY=change-this-admin-key             # Required for admin endpoints
 ```
 
 ### Get Groq API Key

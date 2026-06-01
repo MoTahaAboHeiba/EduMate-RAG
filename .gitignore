@@ -38,7 +38,11 @@ wheels/
 
 # ChromaDB
 chroma_db/
+assets/chroma_db/
 *.db
+
+# Runtime conversations
+assets/conversations/
 
 # Logs
 *.log

@@ -314,11 +314,13 @@ QDRANT_URL=your_qdrant_cloud_url
 QDRANT_API_KEY=your_qdrant_api_key
 
 PDF_FOLDER_PATH=/app/assets/course_pdfs
-CHROMA_DB_PATH=/app/assets/chroma_db
+CHROMA_DB_PATH=/data/edumate/chroma_db
+CONVERSATION_DIR=/data/edumate/conversations
 
 DEBUG=False
 API_HOST=0.0.0.0
 API_PORT=7860
+ADMIN_KEY=change-this-admin-key
 ```
 
 ### Step 7: Update requirements.txt
