@@ -14,10 +14,10 @@ from typing import List
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from src.config import config
-from src.vector_store import vector_store
-from src.rag_chain import rag_chain
-from src.conversation_manager import conversation_manager
+from src.config.config import config
+from src.document_processing.vector_store import vector_store
+from src.core.rag_chain import rag_chain
+from src.conversation.conversation_manager import conversation_manager
 
 HEALTH_CACHE_TTL_SECONDS = 30
 _health_cache = {
@@ -135,22 +135,7 @@ async def health():
 
 @app.post("/api/query")
 async def query(request: QueryRequest, request_obj: Request) -> QueryResponse:
-    """
-    Query the RAG system (with conversation memory)
-    
-    Args:
-        request: QueryRequest with question field
-        request_obj: FastAPI Request for session token extraction
-    
-    Returns:
-        QueryResponse with answer, sources, and conversation turn
-    
-    Example:
-        POST /api/query
-        {
-            "question": "What are the prerequisites?"
-        }
-    """
+    """Query the RAG system (with conversation memory)"""
     if not request.question.strip():
         raise HTTPException(status_code=400, detail="Question cannot be empty")
     
@@ -212,15 +197,7 @@ async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):
 
 @app.get("/api/conversation/history")
 async def get_conversation_history(request_obj: Request) -> ConversationHistoryResponse:
-    """
-    Get the current conversation history
-    
-    Returns:
-        List of all messages in current conversation
-    
-    Example:
-        GET /api/conversation/history
-    """
+    """Get the current conversation history"""
     try:
         session_token = get_session_token(request_obj)
         history = rag_chain.get_conversation_history(session_token=session_token)
@@ -239,15 +216,7 @@ async def get_conversation_history(request_obj: Request) -> ConversationHistoryR
 
 @app.post("/api/conversation/clear")
 async def clear_conversation(request_obj: Request):
-    """
-    Clear the conversation memory (start fresh)
-    
-    Returns:
-        Success message
-    
-    Example:
-        POST /api/conversation/clear
-    """
+    """Clear the conversation memory (start fresh)"""
     try:
         session_token = get_session_token(request_obj)
         rag_chain.clear_memory(session_token=session_token)
@@ -262,15 +231,7 @@ async def clear_conversation(request_obj: Request):
 
 @app.get("/api/conversation/info")
 async def get_conversation_info(request_obj: Request):
-    """
-    Get conversation statistics
-    
-    Returns:
-        Information about current conversation
-    
-    Example:
-        GET /api/conversation/info
-    """
+    """Get conversation statistics"""
     try:
         session_token = get_session_token(request_obj)
         summary = rag_chain.get_memory_summary(session_token=session_token)
@@ -287,19 +248,7 @@ async def get_conversation_info(request_obj: Request):
 
 @app.post("/api/conversation/new")
 async def start_new_conversation(request_obj: Request, title: str = ""):
-    """
-    Start a new conversation (save current one if exists)
-    
-    Args:
-        request_obj: FastAPI Request for session token extraction
-        title: Optional title for the conversation
-    
-    Returns:
-        New conversation ID
-    
-    Example:
-        POST /api/conversation/new?title=Advanced%20Math
-    """
+    """Start a new conversation"""
     try:
         session_token = get_session_token(request_obj)
         conv_id = rag_chain.start_new_conversation(session_token=session_token, title=title or None)
@@ -313,18 +262,7 @@ async def start_new_conversation(request_obj: Request, title: str = ""):
 
 @app.get("/api/conversation/list")
 async def list_conversations(request_obj: Request, limit: int = 10):
-    """
-    List all saved conversations
-    
-    Args:
-        limit: Maximum number to return (default 10)
-    
-    Returns:
-        List of conversation summaries
-    
-    Example:
-        GET /api/conversation/list?limit=20
-    """
+    """List all saved conversations"""
     try:
         session_token = get_session_token(request_obj)
         conversations = rag_chain.list_saved_conversations(limit=limit, session_token=session_token)
@@ -338,19 +276,7 @@ async def list_conversations(request_obj: Request, limit: int = 10):
 
 @app.post("/api/conversation/load/{conversation_id}")
 async def load_conversation(conversation_id: str, request_obj: Request):
-    """
-    Load a saved conversation
-    
-    Args:
-        conversation_id: ID of conversation to load
-        request_obj: FastAPI Request for session token extraction
-    
-    Returns:
-        Loaded conversation data
-    
-    Example:
-        POST /api/conversation/load/conv_20260216_153045
-    """
+    """Load a saved conversation"""
     try:
         session_token = get_session_token(request_obj)
         success = rag_chain.load_conversation(conversation_id, session_token=session_token)
@@ -372,19 +298,7 @@ async def load_conversation(conversation_id: str, request_obj: Request):
 
 @app.delete("/api/conversation/{conversation_id}")
 async def delete_conversation(conversation_id: str, request_obj: Request):
-    """
-    Delete a saved conversation
-    
-    Args:
-        conversation_id: ID of conversation to delete
-        request_obj: FastAPI Request for session token extraction
-    
-    Returns:
-        Success status
-    
-    Example:
-        DELETE /api/conversation/conv_20260216_153045
-    """
+    """Delete a saved conversation"""
     try:
         session_token = get_session_token(request_obj)
         success = rag_chain.delete_conversation(conversation_id, session_token=session_token)
