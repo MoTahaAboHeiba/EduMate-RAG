@@ -1,0 +1,20 @@
+{
+  "id": "conv_20260601_043646",
+  "title": "Auto-generated Conversation",
+  "created_at": "2026-06-01T04:36:46.850728",
+  "updated_at": "2026-06-01T04:36:46.993081",
+  "messages": [
+    {
+      "role": "student",
+      "content": "hey mate",
+      "timestamp": "2026-06-01T04:36:46.993081"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello. It's nice to meet you. I'm EduMate, your helpful academic assistant. How can I assist you with your course materials today?",
+      "sources": [],
+      "context_docs": 0,
+      "timestamp": "2026-06-01T04:36:46.993081"
+    }
+  ]
+}
