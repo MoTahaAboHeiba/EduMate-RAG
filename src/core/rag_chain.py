@@ -1,6 +1,7 @@
 """
 RAG Chain with Conversation Memory - Multi-turn conversations
 """
+import time
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from googletrans import Translator
@@ -31,21 +32,21 @@ class LanguageHelper:
     """Helper class for detecting and translating languages"""
     
     def __init__(self):
-        self.translator = Translator()
+        self.translator = Translator() if config.ENABLE_TRANSLATION else None
         self.supported_languages = ['ar', 'en', 'fr', 'es', 'de']
     
     def detect_language(self, text: str) -> str:
-        """Detect the language of the text"""
-        try:
-            result = self.translator.detect(text)
-            return result.lang
-        except Exception as e:
-            print(f"Error detecting language: {e}")
-            return 'en'
+        """Detect only the cases we can safely support in the request path."""
+        if any('\u0600' <= char <= '\u06ff' for char in text):
+            return 'ar'
+        return 'en'
     
     def translate_text(self, text: str, source_lang: str, target_lang: str) -> str:
         """Translate text from source to target language"""
         if source_lang == target_lang:
+            return text
+
+        if not config.ENABLE_TRANSLATION or self.translator is None:
             return text
         
         try:
@@ -117,23 +118,39 @@ Answer:"""
         token = self._normalize_session_token(session_token)
         self.session_conversation_ids[token] = conversation_id
 
-    def query(self, question: str, session_token: str = None, num_context_docs: int = 3) -> dict:
+    def query(
+        self,
+        question: str,
+        session_token: str = None,
+        num_context_docs: int = 3,
+        persist_conversation: bool = True,
+        external_chat_history: str = None,
+        update_memory: bool = True,
+    ) -> dict:
         """Query the RAG system"""
         print(f"\n Processing question: {question}")
+        query_start = time.perf_counter()
+        timings_ms = {}
         
         token = self._normalize_session_token(session_token)
         memory = self._get_memory(token)
         current_conversation_id = self._get_conversation_id(token)
         
+        stage_start = time.perf_counter()
         detected_lang = self.language_helper.detect_language(question)
+        timings_ms["language_detection"] = round((time.perf_counter() - stage_start) * 1000, 2)
         print(f"   Detected language: {detected_lang}")
         
         search_question = question
         if detected_lang != 'en':
+            stage_start = time.perf_counter()
             search_question = self.language_helper.translate_text(question, detected_lang, 'en')
+            timings_ms["translation_to_english"] = round((time.perf_counter() - stage_start) * 1000, 2)
             print(f"   Translated question to English: {search_question}")
+        else:
+            timings_ms["translation_to_english"] = 0.0
         
-        chat_history = memory.buffer
+        chat_history = external_chat_history if external_chat_history is not None else memory.buffer
         is_general_question = self._is_general_question(question)
         
         if is_general_question:
@@ -142,73 +159,189 @@ Answer:"""
             context = ""
         else:
             print("   Retrieving relevant documents...")
-            retrieved_docs = vector_store.search(search_question, num_results=num_context_docs)
+            stage_start = time.perf_counter()
+            # Retrieve more documents initially to allow reranking and optimization
+            initial_k = max(num_context_docs * 3, 10)
+            raw_docs = vector_store.search(search_question, num_results=initial_k)
+            
+            # Optimize retrieval (similarity filtering, reranking, deduplication)
+            retrieved_docs = retrieval_optimizer.optimize_retrieval(
+                documents=raw_docs,
+                query=search_question,
+                top_k=num_context_docs,
+                enable_dedup=True,
+                enable_rerank=True,
+                similarity_threshold=0.0
+            )
+            timings_ms["retrieval"] = round((time.perf_counter() - stage_start) * 1000, 2)
             
             if not retrieved_docs:
                 print("   No relevant documents found")
                 context = ""
             else:
-                print(f"   Found {len(retrieved_docs)} relevant documents")
+                print(f"   Found {len(retrieved_docs)} relevant documents after optimization")
                 context = "\n\n---\n\n".join([
                     f"[{doc['metadata']['source']}] {doc['content']}"
                     for doc in retrieved_docs
                 ])
+        if is_general_question:
+            timings_ms["retrieval"] = 0.0
         
-        print("   Generating answer with Groq...")
-        try:
+        if config.MOCK_LLM:
+            print("   [MOCK LLM] Skipping Groq call and generating placeholder answer...")
+            class MockResponse:
+                content = "This is a mock answer for offline retrieval evaluation."
+            response = MockResponse()
+            timings_ms["prompt_build"] = 0.0
+            timings_ms["generation"] = 0.0
+        else:
+            print("   Generating answer with Groq...")
+            stage_start = time.perf_counter()
             prompt_input = self.prompt_template.format(
                 context=context,
                 question=question,
                 chat_history=chat_history
             )
-            response = self.llm.invoke(prompt_input)
-            answer = response.content.strip() if hasattr(response, 'content') else str(response).strip()
-        except Exception as e:
-            print(f"   Error generating answer: {e}")
-            answer = ""
-        
+            timings_ms["prompt_build"] = round((time.perf_counter() - stage_start) * 1000, 2)
+
+            try:
+                stage_start = time.perf_counter()
+                response = self.llm.invoke(prompt_input)
+                timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
+            except Exception as e:
+                msg = str(e).lower()
+
+                # ── Rate limit ──────────────────────────────────────────────────────
+                # Groq returns 429 / "rate_limit_exceeded" when a key is exhausted.
+                # If a second API key is configured (GROQ_API_KEY_2), rotate to it
+                # transparently before giving up.
+                if "rate_limit_exceeded" in msg or "429" in msg:
+                    if config.GROQ_API_KEY_2:
+                        print("   Primary Groq key rate-limited — rotating to GROQ_API_KEY_2...")
+                        try:
+                            backup_llm = ChatGroq(
+                                api_key=config.GROQ_API_KEY_2,
+                                model_name=config.GROQ_MODEL,
+                                temperature=0.7,
+                                max_tokens=1000,
+                            )
+                            stage_start = time.perf_counter()
+                            response = backup_llm.invoke(prompt_input)
+                            timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
+                            print("   Successfully answered using GROQ_API_KEY_2.")
+                        except Exception as e2:
+                            # Second key also failed — surface the original error.
+                            raise RuntimeError(f"GROQ_RATE_LIMIT: both keys exhausted. key1={e} key2={e2}")
+                    else:
+                        # No backup key configured — fail immediately.
+                        raise RuntimeError(f"GROQ_RATE_LIMIT: {e}")
+
+                # ── Decommissioned model ─────────────────────────────────────────────
+                # If the configured model is no longer available, retry with the
+                # safe fallback model (same key).
+                elif "decommissioned" in msg or "model" in msg:
+                    fallback_llm = ChatGroq(
+                        api_key=config.GROQ_API_KEY,
+                        model_name=config.GROQ_FALLBACK_MODEL,
+                        temperature=0.7,
+                        max_tokens=1000,
+                    )
+                    print(f"   Groq model rejected, retrying with fallback model: {config.GROQ_FALLBACK_MODEL}")
+                    stage_start = time.perf_counter()
+                    response = fallback_llm.invoke(prompt_input)
+                    timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
+                else:
+                    raise
+
+
+        answer = response.content.strip() if hasattr(response, 'content') else str(response).strip()
+
         if detected_lang != 'en':
+            stage_start = time.perf_counter()
             answer = self.language_helper.translate_text(answer, 'en', detected_lang)
+            timings_ms["translation_from_english"] = round((time.perf_counter() - stage_start) * 1000, 2)
             print(f"   Translated answer back to {detected_lang}")
+        else:
+            timings_ms["translation_from_english"] = 0.0
         
-        memory.save_context({"input": question}, {"output": answer})
+        if update_memory:
+            memory.save_context({"input": question}, {"output": answer})
+            buffer_text = memory.buffer
+            conversation_turn = buffer_text.count('Student:')
+        else:
+            conversation_turn = chat_history.count('Student:') + 1
         
-        buffer_text = memory.buffer
-        conversation_turn = buffer_text.count('Student:')
-        
-        if not current_conversation_id and conversation_turn == 1:
-            current_conversation_id = conversation_manager.create_conversation("Auto-generated Conversation", session_token=token)
-            self._set_conversation_id(current_conversation_id, token)
-            print(f"   Auto-created conversation: {current_conversation_id}")
-        
-        if current_conversation_id:
-            conversation_manager.add_query_result(
-                question=question,
-                answer=answer,
-                sources=[doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else [],
-                num_context_docs=len(retrieved_docs),
-                conversation_id=current_conversation_id,
-                session_token=token
-            )
-            self._set_conversation_id(current_conversation_id, token)
+        stage_start = time.perf_counter()
+        if persist_conversation and update_memory:
+            if not current_conversation_id and conversation_turn == 1:
+                current_conversation_id = conversation_manager.create_conversation("Auto-generated Conversation", session_token=token)
+                self._set_conversation_id(current_conversation_id, token)
+                print(f"   Auto-created conversation: {current_conversation_id}")
+            
+            if current_conversation_id:
+                conversation_manager.add_query_result(
+                    question=question,
+                    answer=answer,
+                    sources=[doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else [],
+                    num_context_docs=len(retrieved_docs),
+                    conversation_id=current_conversation_id,
+                    session_token=token
+                )
+                self._set_conversation_id(current_conversation_id, token)
+        timings_ms["conversation_persistence"] = round((time.perf_counter() - stage_start) * 1000, 2)
+        timings_ms["total"] = round((time.perf_counter() - query_start) * 1000, 2)
         
         result = {
             "question": question,
             "answer": answer,
-            "sources": list(set([doc['metadata']['source'] for doc in retrieved_docs])) if retrieved_docs else [],
+            "sources": [doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else [],
             "num_context_docs": len(retrieved_docs),
             "conversation_turn": conversation_turn,
             "conversation_id": current_conversation_id,
-            "is_general": is_general_question
+            "is_general": is_general_question,
+            "timings_ms": timings_ms,
         }
         
-        print(f"   Answer generated (Turn {conversation_turn})")
         return result
-    
+
+    def query_with_history(
+        self,
+        question: str,
+        history: List[Dict[str, str]],
+        conversation_id: str,
+        user_id: str,
+        num_context_docs: int = 3,
+    ) -> dict:
+        """Query with request-scoped history supplied by an external backend."""
+        chat_history = self._format_external_history(history)
+        result = self.query(
+            question=question,
+            session_token=f"{user_id}:{conversation_id}",
+            num_context_docs=num_context_docs,
+            persist_conversation=False,
+            external_chat_history=chat_history,
+            update_memory=False,
+        )
+        result["conversation_id"] = conversation_id
+        return result
+
+    def _format_external_history(self, history: List[Dict[str, str]]) -> str:
+        """Convert previous Q&A pairs into the prompt history format."""
+        lines = []
+        for item in history or []:
+            question = str(item.get("question", "")).strip()
+            answer = str(item.get("answer", "")).strip()
+            if question:
+                lines.append(f"Student: {question}")
+            if answer:
+                lines.append(f"Assistant: {answer}")
+            if question or answer:
+                lines.append("")
+        return "\n".join(lines).strip()
+
     def _is_general_question(self, question: str) -> bool:
         """Detect if a question is general"""
         question_lower = question.lower().strip()
-        
         general_patterns = [
             'hello', 'hi ', 'hey ', 'greetings', 'howdy',
             'who are you', "what's your name", 'your name',

@@ -5,11 +5,11 @@ from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import sys
 import time
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -56,6 +56,7 @@ async def startup_event():
 # Pydantic models for request/response
 class QueryRequest(BaseModel):
     question: str
+    num_context_docs: int = 3
 
 class QueryResponse(BaseModel):
     question: str
@@ -65,6 +66,29 @@ class QueryResponse(BaseModel):
     conversation_turn: int
     is_general: bool = False
     latency_ms: float = 0.0
+    timings_ms: Dict[str, float] = {}
+
+class IntegrationMessage(BaseModel):
+    question: str
+    answer: str
+
+class IntegrationQueryRequest(BaseModel):
+    user_id: str = Field(alias="userId")
+    conversation_id: str = Field(alias="conversationId")
+    message: str
+    messages: List[IntegrationMessage] = Field(default_factory=list)
+    num_context_docs: int = Field(default=3, alias="numContextDocs")
+
+class IntegrationQueryResponse(BaseModel):
+    user_id: str = Field(alias="userId")
+    conversation_id: str = Field(alias="conversationId")
+    question: str
+    answer: str
+    sources: List[str]
+    num_context_docs: int = Field(alias="numContextDocs")
+    is_general: bool = Field(default=False, alias="isGeneral")
+    latency_ms: float = Field(default=0.0, alias="latencyMs")
+    timings_ms: Dict[str, float] = Field(default_factory=dict, alias="timingsMs")
 
 class ConversationMessage(BaseModel):
     role: str  # "student" or "assistant"
@@ -123,6 +147,7 @@ async def health():
         "latency_ms": latency_ms,
         "cache_ttl_seconds": HEALTH_CACHE_TTL_SECONDS,
         "vector_store": {
+            "backend": config.VECTOR_STORE_BACKEND,
             "collection": collection_info["collection_name"],
             "documents_indexed": collection_info["count"]
         },
@@ -134,19 +159,38 @@ async def health():
     }
 
 @app.post("/api/query")
-async def query(request: QueryRequest, request_obj: Request) -> QueryResponse:
+def query(
+    request: QueryRequest,
+    request_obj: Request,
+    x_evaluation_mode: str = Header(None, alias="X-Evaluation-Mode"),
+) -> QueryResponse:
     """Query the RAG system (with conversation memory)"""
     if not request.question.strip():
         raise HTTPException(status_code=400, detail="Question cannot be empty")
+
+    if request.num_context_docs < 1 or request.num_context_docs > 10:
+        raise HTTPException(status_code=400, detail="num_context_docs must be between 1 and 10")
     
     try:
         session_token = get_session_token(request_obj)
+        persist_conversation = str(x_evaluation_mode).lower() not in {"1", "true", "yes"}
         start_time = time.perf_counter()
-        result = rag_chain.query(request.question, session_token=session_token)
+        try:
+            result = rag_chain.query(
+                request.question,
+                session_token=session_token,
+                num_context_docs=request.num_context_docs,
+                persist_conversation=persist_conversation,
+            )
+        except RuntimeError as e:
+            if "GROQ_RATE_LIMIT" in str(e):
+                raise HTTPException(status_code=503, detail="Groq rate limit reached. Stop evaluation and try again later.")
+            raise
         latency_ms = round((time.perf_counter() - start_time) * 1000, 2)
-        
+
         if not result.get("answer", "").strip():
             raise RuntimeError("RAG chain returned an empty answer")
+
         
         return QueryResponse(
             question=result["question"],
@@ -155,12 +199,68 @@ async def query(request: QueryRequest, request_obj: Request) -> QueryResponse:
             num_context_docs=result["num_context_docs"],
             conversation_turn=result["conversation_turn"],
             is_general=result.get("is_general", False),
-            latency_ms=latency_ms
+            latency_ms=latency_ms,
+            timings_ms=result.get("timings_ms", {}),
         )
     
+    except HTTPException:
+        raise
     except Exception as e:
         print(f"API Error: {e}")
         raise HTTPException(status_code=500, detail=f"Error processing query: {str(e)}")
+
+@app.post("/api/integrations/query", response_model=IntegrationQueryResponse)
+def integration_query(request: IntegrationQueryRequest) -> IntegrationQueryResponse:
+    """Stateless query endpoint for the .NET backend integration."""
+    if not request.user_id.strip():
+        raise HTTPException(status_code=400, detail="userId cannot be empty")
+
+    if not request.conversation_id.strip():
+        raise HTTPException(status_code=400, detail="conversationId cannot be empty")
+
+    if not request.message.strip():
+        raise HTTPException(status_code=400, detail="message cannot be empty")
+
+    if request.num_context_docs < 1 or request.num_context_docs > 10:
+        raise HTTPException(status_code=400, detail="numContextDocs must be between 1 and 10")
+
+    try:
+        bounded_history = request.messages[-5:]
+        history = [item.model_dump() for item in bounded_history]
+        start_time = time.perf_counter()
+        try:
+            result = rag_chain.query_with_history(
+                question=request.message,
+                history=history,
+                conversation_id=request.conversation_id,
+                user_id=request.user_id,
+                num_context_docs=request.num_context_docs,
+            )
+        except RuntimeError as e:
+            if "GROQ_RATE_LIMIT" in str(e):
+                raise HTTPException(status_code=503, detail="Groq rate limit reached. Try again later.")
+            raise
+        latency_ms = round((time.perf_counter() - start_time) * 1000, 2)
+
+        if not result.get("answer", "").strip():
+            raise RuntimeError("RAG chain returned an empty answer")
+
+        return IntegrationQueryResponse(
+            userId=request.user_id,
+            conversationId=request.conversation_id,
+            question=result["question"],
+            answer=result["answer"],
+            sources=result["sources"],
+            numContextDocs=result["num_context_docs"],
+            isGeneral=result.get("is_general", False),
+            latencyMs=latency_ms,
+            timingsMs=result.get("timings_ms", {}),
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Integration API Error: {e}")
+        raise HTTPException(status_code=500, detail=f"Error processing integration query: {str(e)}")
 
 @app.post("/api/index")
 async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):

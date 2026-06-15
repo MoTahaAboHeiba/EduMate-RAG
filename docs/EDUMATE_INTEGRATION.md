@@ -1,11 +1,117 @@
-# EduMate Integration Guide
+# EduMate App and Standalone Integration Guide
 
 ## 1. Overview
-This document explains how a Flutter developer should integrate the EduMate backend into a main Flutter project.
+This document explains how EduMate-RAG integrates with the main EduMate application and how it can still run as a standalone service.
 
-EduMate exposes a REST API built with FastAPI. Flutter should connect using HTTP requests and include a per-user session token header for isolated conversation history.
+There are two supported modes:
 
-## 2. Required API Endpoints
+- Standalone mode: Flutter calls EduMate-RAG directly and uses `X-Session-Token`.
+- Backend integration mode: Flutter calls the .NET backend, and .NET calls EduMate-RAG through `/api/integrations/query`.
+
+For the main app flow, use backend integration mode. The .NET backend owns users, conversations, and durable message storage. EduMate-RAG only performs retrieval and answer generation.
+
+## 2. .NET Integration Contract
+
+### Responsibility split
+
+The .NET backend owns:
+
+- User identity
+- Conversation creation and deletion
+- Conversation listing
+- Message history retrieval
+- Durable message storage
+
+EduMate-RAG owns:
+
+- PDF retrieval
+- Answer generation
+- Source attribution
+- Per-request short-term context from the messages sent by .NET
+
+EduMate-RAG should not be the source of truth for integration conversation history.
+
+### Ask question
+
+Endpoint:
+
+```http
+POST /api/integrations/query
+```
+
+Request body:
+
+```json
+{
+  "userId": "user-123",
+  "conversationId": "conv-456",
+  "message": "Explain instruction pipelining",
+  "messages": [
+    {
+      "question": "What is CPU architecture?",
+      "answer": "CPU architecture describes the structure and behavior of the processor."
+    }
+  ],
+  "numContextDocs": 3
+}
+```
+
+Rules:
+
+- `message` is the current user question.
+- `messages` contains previous Q&A pairs only, ordered oldest to newest.
+- `.NET` should send only the latest 5 previous Q&A pairs.
+- EduMate-RAG also caps the received history to the latest 5 pairs as a defensive guard.
+- `numContextDocs` must be between 1 and 10.
+
+Response body:
+
+```json
+{
+  "userId": "user-123",
+  "conversationId": "conv-456",
+  "question": "Explain instruction pipelining",
+  "answer": "...",
+  "sources": ["computer Architecture Book.pdf"],
+  "numContextDocs": 3,
+  "isGeneral": false,
+  "latencyMs": 2410.7,
+  "timingsMs": {
+    "retrieval": 120.3,
+    "generation": 2200.1,
+    "total": 2408.5
+  }
+}
+```
+
+After receiving this response, `.NET` should save the new message row.
+
+Recommended table shape:
+
+```text
+Messages
+Id
+ConversationId
+Question
+Answer
+SourcesJson
+CreatedAt
+```
+
+Storing `SourcesJson` matters. Without it, the app loses citation and audit value, which is the point of a RAG system.
+
+### Conversation endpoints
+
+These should be implemented on the .NET backend side:
+
+- New conversation: request `userId`, optional `name`; response `conversationId`
+- Delete conversation: request `conversationId`; response `204 No Content`
+- Get conversations by user
+- Get messages inside a conversation
+
+EduMate-RAG does not need to create, list, or delete integration conversations.
+
+## 3. Standalone API Endpoints
 The following endpoints are the core integration points for Flutter:
 
 - `POST /api/query`
@@ -41,7 +147,7 @@ The following endpoints are the core integration points for Flutter:
   - Trigger PDF indexing. Usually used by admin or maintenance workflows.
   - Headers: `X-Session-Token: <token>` (optional but recommended)
 
-## 3. Session Token Strategy
+## 4. Session Token Strategy
 EduMate uses `X-Session-Token` to isolate users and conversations.
 
 ### Flutter integration pattern
@@ -53,7 +159,7 @@ EduMate uses `X-Session-Token` to isolate users and conversations.
 - Use authenticated user ID if available: `user-12345`
 - Or create a random UUID for anonymous users.
 
-## 4. Example Flutter HTTP calls
+## 5. Example Flutter HTTP calls
 ### Using `http` package
 ```dart
 import 'dart:convert';
@@ -114,7 +220,7 @@ Future<void> createNewConversation(String title) async {
 }
 ```
 
-## 5. Conversation state in Flutter
+## 6. Conversation state in Flutter
 A Flutter integration should maintain these values locally:
 
 - `sessionToken` — current user session ID
@@ -131,18 +237,18 @@ A Flutter integration should maintain these values locally:
 5. Send questions via `/api/query`.
 6. Store UI state and refresh history from `/api/conversation/history`.
 
-## 6. Notes for Flutter developers
+## 7. Notes for Flutter developers
 - Always send `X-Session-Token` with every request.
 - Keep the token stable while the user is active.
 - Use `SharedPreferences` or secure storage to persist the token.
 - Treat the token as the isolation key for conversation history.
 - If using authentication, prefer a stable user identifier.
 
-## 7. Recommended architecture
+## 8. Recommended architecture
 - `AuthService` or `SessionService` to manage session tokens
 - `EduMateApiClient` to perform REST calls
 - `ConversationRepository` to map backend messages into UI chat models
 - `ConversationBloc` / `Provider` / `Riverpod` to manage conversation state
 
-## 8. Summary
-EduMate integration is straightforward: call the REST endpoints from Flutter, keep a stable session token for each user, and use the existing conversation endpoints to manage chat history and saved conversations.
+## 9. Summary
+For the main app, Flutter should call the .NET backend, and .NET should call `POST /api/integrations/query` with the current question plus the latest 5 previous Q&A pairs. Use the standalone `/api/query` and conversation endpoints only when running EduMate-RAG without the .NET backend.
