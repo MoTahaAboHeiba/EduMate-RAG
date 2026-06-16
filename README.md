@@ -70,19 +70,19 @@ EduMate-RAG can also run by itself. In this mode clients use `X-Session-Token` a
 
 ##  Features
 
-- ** PDF-Based Q&A** - Answer questions only from indexed course materials (no external data)
-- ** Multi-Turn Conversations** - Remember context across questions for natural dialogue
-- ** Semantic Retrieval** - Qdrant Cloud or local ChromaDB retrieves relevant PDF chunks
-- ** AI-Powered Generation** - Groq's Llama 3.3 70B for high-quality, contextual answers
-- ** Multilingual Support** - Seamlessly handles Arabic and English questions and documents
-- ** Source Attribution** - Every answer includes source document references for verification
-- ** Security-First** - Secrets stored in `.env`, never committed to Git
-- ** Zero-Cost Inference** - Uses Groq's free tier (no LLM hosting costs)
-- ** App Integration Endpoint** - Dedicated `.NET -> RAG` endpoint for the EduMate app flow
-- ** Standalone Demo Mode** - Direct FastAPI endpoints for local testing and demos
-- ** Intelligent Caching** - Efficient indexing with vector embeddings for fast retrieval
-- ** Incremental Indexing** - File change detection, embedding cache, and parallel PDF processing for fast re-indexing
-- ** Context-Aware** - Understands references to previous questions
+- **PDF-Based Q&A** - Answer questions only from indexed course materials (no external data)
+- **Multi-Turn Conversations** - Remember context across questions for natural dialogue
+- **Semantic Retrieval** - Qdrant Cloud or local ChromaDB retrieves relevant PDF chunks
+- **AI-Powered Generation** - Groq's Llama 3.3 70B for high-quality, contextual answers
+- **Multilingual Support** - Seamlessly handles Arabic and English questions and documents
+- **Source Attribution** - Every answer includes source document references for verification
+- **Security-First** - Secrets stored in `.env`, never committed to Git
+- **Zero-Cost Inference** - Uses Groq's free tier (no LLM hosting costs)
+- **App Integration Endpoint** - Dedicated `.NET -> RAG` endpoint for the EduMate app flow
+- **Standalone Demo Mode** - Direct FastAPI endpoints for local testing and demos
+- **Intelligent Caching** - Efficient indexing with vector embeddings for fast retrieval
+- **Incremental Indexing** - File change detection, embedding cache, and parallel PDF processing for fast re-indexing
+- **Context-Aware** - Understands references to previous questions
 
 ---
 
