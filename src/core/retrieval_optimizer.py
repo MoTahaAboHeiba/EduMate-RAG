@@ -35,10 +35,13 @@ class RetrievalOptimizer:
         
         filtered = []
         for doc in documents:
-            # ChromaDB returns distance; convert to similarity (cosine: lower is better)
-            # For cosine distance in range [0, 2], convert to similarity: 1 - distance/2
-            distance = doc.get('distance', 0)
-            similarity = 1 - (distance / 2) if distance <= 2 else 0
+            if 'similarity' in doc:
+                similarity = doc['similarity']
+            else:
+                # ChromaDB returns distance; convert to similarity (cosine: lower is better)
+                # For cosine distance in range [0, 2], convert to similarity: 1 - distance/2
+                distance = doc.get('distance', 0)
+                similarity = 1 - (distance / 2) if distance <= 2 else 0
             
             if similarity >= similarity_threshold:
                 doc['similarity'] = similarity

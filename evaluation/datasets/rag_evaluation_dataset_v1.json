@@ -4,8 +4,8 @@
     "version": "1.0.0",
     "description": "Comprehensive evaluation dataset for RAG system",
     "created": "1778083097.6313956",
-    "total_questions": 85,
-    "source_pdfs": 6
+    "total_questions": 73,
+    "source_pdfs": 5
   },
   "evaluation_config": {
     "retrieval_metrics": [
@@ -27,7 +27,7 @@
     {
       "id": "qa_001",
       "question": "An encoder has 2\" (or less) input lines and n output lines?",
-      "answer": "An encoder has 2\" (or less) input lines and n output lines. The output lines \n generate the binary code corresponding to the input value. An example of an \nencoder is the octal-to-binary encoder, whose truth table is given in Table 2-2. \nIt has eight inputs, one for each of the octal digits, and three outputs that \ngenerate the corresponding binary number. It is assumed that only one input \nhas a value of 1 at any given time; otherwise, the circuit has no meaning. \nTABLE 2-2 Truth Table for Octal-to-Binary Encoder \nInputs Outputs \nD, D, D, D, D, D, D, Do A, A, A, \n0 0 0 0 0 0 0 1 0 0 0 \n0 0 0 0 0 0 1 0 0 0 1 \n0 0 0 0 0 1 0 0 0 0 \n0 0 0 0 1 0 0 0 0 1 1 \n0 0 0 1 0 0 0 0 0 0 \n0 0 1 0 0 0 0 0 0 1 \n0 1 0 0 0 0 0 0 0 \n0 0 0 0 0 0 0 \nThe encoder can be implemented with OR gates whose inputs are deter­\nmined directly from the truth table. Output Ao = 1 if the input octal digit is 1 \nor 3 or 5 or 7. Similar conditions apply for the other two outputs. These",
+      "answer": "An encoder has 2\" (or less) input lines and n output lines. The output lines \n generate the binary code corresponding to the input value. An example of an \nencoder is the octal-to-binary encoder, whose truth table is given in Table 2-2. \nIt has eight inputs, one for each of the octal digits, and three outputs that \ngenerate the corresponding binary number. It is assumed that only one input \nhas a value of 1 at any given time; otherwise, the circuit has no meaning. \nTABLE 2-2 Truth Table for Octal-to-Binary Encoder \nInputs Outputs \nD, D, D, D, D, D, D, Do A, A, A, \n0 0 0 0 0 0 0 1 0 0 0 \n0 0 0 0 0 0 1 0 0 0 1 \n0 0 0 0 0 1 0 0 0 0 \n0 0 0 0 1 0 0 0 0 1 1 \n0 0 0 1 0 0 0 0 0 0 \n0 0 1 0 0 0 0 0 0 1 \n0 1 0 0 0 0 0 0 0 \n0 0 0 0 0 0 0 \nThe encoder can be implemented with OR gates whose inputs are deter\u00ad\nmined directly from the truth table. Output Ao = 1 if the input octal digit is 1 \nor 3 or 5 or 7. Similar conditions apply for the other two outputs. These",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -39,7 +39,7 @@
     {
       "id": "qa_002",
       "question": "The output lines \ngenerate the binary code corresponding to the input value?",
-      "answer": "An encoder has 2\" (or less) input lines and n output lines. The output lines \ngenerate the binary code corresponding to the input value. An example of an \nencoder is the octal-to-binary encoder, whose truth table is given in Table 2-2. \nIt has eight inputs, one for each of the octal digits, and three outputs that \ngenerate the corresponding binary number. It is assumed that only one input \nhas a value of 1 at any given time; otherwise, the circuit has no meaning. \nTABLE 2-2 Truth Table for Octal-to-Binary Encoder \nInputs Outputs \nD, D, D, D, D, D, D, Do A, A, A, \n0 0 0 0 0 0 0 1 0 0 0 \n0 0 0 0 0 0 1 0 0 0 1 \n0 0 0 0 0 1 0 0 0 0 \n0 0 0 0 1 0 0 0 0 1 1 \n0 0 0 1 0 0 0 0 0 0 \n0 0 1 0 0 0 0 0 0 1 \n0 1 0 0 0 0 0 0 0 \n0 0 0 0 0 0 0 \nThe encoder can be implemented with OR gates whose inputs are deter­\nmined directly from the truth table. Output Ao = 1 if the input octal digit is 1 \nor 3 or 5 or 7. Similar conditions apply for the other two outputs. These",
+      "answer": "An encoder has 2\" (or less) input lines and n output lines. The output lines \ngenerate the binary code corresponding to the input value. An example of an \nencoder is the octal-to-binary encoder, whose truth table is given in Table 2-2. \nIt has eight inputs, one for each of the octal digits, and three outputs that \ngenerate the corresponding binary number. It is assumed that only one input \nhas a value of 1 at any given time; otherwise, the circuit has no meaning. \nTABLE 2-2 Truth Table for Octal-to-Binary Encoder \nInputs Outputs \nD, D, D, D, D, D, D, Do A, A, A, \n0 0 0 0 0 0 0 1 0 0 0 \n0 0 0 0 0 0 1 0 0 0 1 \n0 0 0 0 0 1 0 0 0 0 \n0 0 0 0 1 0 0 0 0 1 1 \n0 0 0 1 0 0 0 0 0 0 \n0 0 1 0 0 0 0 0 0 1 \n0 1 0 0 0 0 0 0 0 \n0 0 0 0 0 0 0 \nThe encoder can be implemented with OR gates whose inputs are deter\u00ad\nmined directly from the truth table. Output Ao = 1 if the input octal digit is 1 \nor 3 or 5 or 7. Similar conditions apply for the other two outputs. These",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -51,7 +51,7 @@
     {
       "id": "qa_003",
       "question": "(It must be realized that this type of connection cannot be done with \ngates that do not have three-state outputs?",
-      "answer": "bus line. (It must be realized that this type of connection cannot be done with \ngates that do not have three-state outputs .) The control inputs to the buffers \ndetermine which of the four normal inputs will communicate with the bus line . \nNo more than one buffer may be in the active state at any given time. The \nconnected buffers must be controlled so that only one three-state buffer \nhas access to the bus line while all other buffers are maintained in a high­\nimpedance state. \nOne way to ensure that no more than one control input is active at any \ngiven time is to use a decoder, as shown in the diagram. When the enable input \nof the decoder is 0, all of its four outputs are 0, and the bus line is in a \nhigh-impedance state because all four buffers are disabled. When the enable \ninput is active, one of the three-state buffers will be active, depending on the \nbinary value in the select inputs of the decoder. Careful investigation will",
+      "answer": "bus line. (It must be realized that this type of connection cannot be done with \ngates that do not have three-state outputs .) The control inputs to the buffers \ndetermine which of the four normal inputs will communicate with the bus line . \nNo more than one buffer may be in the active state at any given time. The \nconnected buffers must be controlled so that only one three-state buffer \nhas access to the bus line while all other buffers are maintained in a high\u00ad\nimpedance state. \nOne way to ensure that no more than one control input is active at any \ngiven time is to use a decoder, as shown in the diagram. When the enable input \nof the decoder is 0, all of its four outputs are 0, and the bus line is in a \nhigh-impedance state because all four buffers are disabled. When the enable \ninput is active, one of the three-state buffers will be active, depending on the \nbinary value in the select inputs of the decoder. Careful investigation will",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -87,7 +87,7 @@
     {
       "id": "qa_006",
       "question": "Write a subroutine to circulate E andAC four times to the right?",
-      "answer": "Write a subroutine to circulate E andAC four times to the right. If AC contains \nhexadecimal 079C and E = 1, what are the contents of AC and E after the \nsubroutine is executed? \nWrite a program to accept input characters, pack two characters in one word \nand store them in consecutive locations in a memory buffer. The first address \nof the buffer is (400),.. The size of the buffer is (512)., words. If the buffer \noverflows, the computer should halt. \nWrite a program to unpack two characters from location WRD and store \nthem in bits 0 through 7 of locations CH 1 and CH2. Bits 9 through 15 should \ncontain zeros. \nObtain a flowchart for a program to check for a CR code (hexadecimal OD) \nin a memory buffer. The buffer contains two characters per word. When the \ncode for CR is encountered, the program transfers it to bits 0 through 7 of .. , \nlocation LNE without disturbing bits 8 through 15. \nTranslate the service routine SRV from Table 6-23 to its equivalent hexadec­",
+      "answer": "Write a subroutine to circulate E andAC four times to the right. If AC contains \nhexadecimal 079C and E = 1, what are the contents of AC and E after the \nsubroutine is executed? \nWrite a program to accept input characters, pack two characters in one word \nand store them in consecutive locations in a memory buffer. The first address \nof the buffer is (400),.. The size of the buffer is (512)., words. If the buffer \noverflows, the computer should halt. \nWrite a program to unpack two characters from location WRD and store \nthem in bits 0 through 7 of locations CH 1 and CH2. Bits 9 through 15 should \ncontain zeros. \nObtain a flowchart for a program to check for a CR code (hexadecimal OD) \nin a memory buffer. The buffer contains two characters per word. When the \ncode for CR is encountered, the program transfers it to bits 0 through 7 of .. , \nlocation LNE without disturbing bits 8 through 15. \nTranslate the service routine SRV from Table 6-23 to its equivalent hexadec\u00ad",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -99,7 +99,7 @@
     {
       "id": "qa_007",
       "question": "If AC contains \nhexadecimal 079C and E = 1, what are the contents of AC and E after the \nsubroutine is executed? \nWrite a program to accept input characters, pack two characters in one word \nand store them in consecutive locations in a memory buffer?",
-      "answer": "Write a subroutine to circulate E andAC four times to the right. If AC contains \nhexadecimal 079C and E = 1, what are the contents of AC and E after the \nsubroutine is executed? \nWrite a program to accept input characters, pack two characters in one word \nand store them in consecutive locations in a memory buffer. The first address \nof the buffer is (400),.. The size of the buffer is (512)., words. If the buffer \noverflows, the computer should halt. \nWrite a program to unpack two characters from location WRD and store \nthem in bits 0 through 7 of locations CH 1 and CH2. Bits 9 through 15 should \ncontain zeros. \nObtain a flowchart for a program to check for a CR code (hexadecimal OD) \nin a memory buffer. The buffer contains two characters per word. When the \ncode for CR is encountered, the program transfers it to bits 0 through 7 of .. , \nlocation LNE without disturbing bits 8 through 15. \nTranslate the service routine SRV from Table 6-23 to its equivalent hexadec­",
+      "answer": "Write a subroutine to circulate E andAC four times to the right. If AC contains \nhexadecimal 079C and E = 1, what are the contents of AC and E after the \nsubroutine is executed? \nWrite a program to accept input characters, pack two characters in one word \nand store them in consecutive locations in a memory buffer. The first address \nof the buffer is (400),.. The size of the buffer is (512)., words. If the buffer \noverflows, the computer should halt. \nWrite a program to unpack two characters from location WRD and store \nthem in bits 0 through 7 of locations CH 1 and CH2. Bits 9 through 15 should \ncontain zeros. \nObtain a flowchart for a program to check for a CR code (hexadecimal OD) \nin a memory buffer. The buffer contains two characters per word. When the \ncode for CR is encountered, the program transfers it to bits 0 through 7 of .. , \nlocation LNE without disturbing bits 8 through 15. \nTranslate the service routine SRV from Table 6-23 to its equivalent hexadec\u00ad",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -111,7 +111,7 @@
     {
       "id": "qa_008",
       "question": "address field of the instruction defines the beginning address of a data array \nin memory?",
-      "answer": "address field of the instruction defines the beginning address of a data array \nin memory. Each operand in the array is stored in memory relative to the \nbeginning address. The distance between the beginning address and the \naddress of the operand is the index value stored in the index register. Any \noperand in the array can be accessed with the same instruction provided that \nthe index register contains the correct index value. The index register can be \nincremented to facilitate access to consecutive operands. Note that if an index­\ntype instruction does not include an address field in its format, the instruction \nconverts to the register indirect mode of operation. \nSome computers dedicate one CPU register to function solely as an index \nregister. This register is involved implicitly when the index-mode instruction \nis used. In computers with many processor registers, any one of the CPU \nregisters can contain the index number. In such a case the register must be",
+      "answer": "address field of the instruction defines the beginning address of a data array \nin memory. Each operand in the array is stored in memory relative to the \nbeginning address. The distance between the beginning address and the \naddress of the operand is the index value stored in the index register. Any \noperand in the array can be accessed with the same instruction provided that \nthe index register contains the correct index value. The index register can be \nincremented to facilitate access to consecutive operands. Note that if an index\u00ad\ntype instruction does not include an address field in its format, the instruction \nconverts to the register indirect mode of operation. \nSome computers dedicate one CPU register to function solely as an index \nregister. This register is involved implicitly when the index-mode instruction \nis used. In computers with many processor registers, any one of the CPU \nregisters can contain the index number. In such a case the register must be",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -123,7 +123,7 @@
     {
       "id": "qa_009",
       "question": "Each operand in the array is stored in memory relative to the \nbeginning address?",
-      "answer": "address field of the instruction defines the beginning address of a data array \nin memory. Each operand in the array is stored in memory relative to the \nbeginning address. The distance between the beginning address and the \naddress of the operand is the index value stored in the index register. Any \noperand in the array can be accessed with the same instruction provided that \nthe index register contains the correct index value. The index register can be \nincremented to facilitate access to consecutive operands. Note that if an index­\ntype instruction does not include an address field in its format, the instruction \nconverts to the register indirect mode of operation. \nSome computers dedicate one CPU register to function solely as an index \nregister. This register is involved implicitly when the index-mode instruction \nis used. In computers with many processor registers, any one of the CPU \nregisters can contain the index number. In such a case the register must be",
+      "answer": "address field of the instruction defines the beginning address of a data array \nin memory. Each operand in the array is stored in memory relative to the \nbeginning address. The distance between the beginning address and the \naddress of the operand is the index value stored in the index register. Any \noperand in the array can be accessed with the same instruction provided that \nthe index register contains the correct index value. The index register can be \nincremented to facilitate access to consecutive operands. Note that if an index\u00ad\ntype instruction does not include an address field in its format, the instruction \nconverts to the register indirect mode of operation. \nSome computers dedicate one CPU register to function solely as an index \nregister. This register is involved implicitly when the index-mode instruction \nis used. In computers with many processor registers, any one of the CPU \nregisters can contain the index number. In such a case the register must be",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -146,8 +146,8 @@
     },
     {
       "id": "qa_011",
-      "question": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10·6 Decimal Arithmetic Unit 36 7 \nor z, must have a 1?",
-      "answer": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10·6 Decimal Arithmetic Unit 36 7 \nor z, must have a 1. The condition for a correction and an output-carry can be \nexpressed by the Boolean function \nC = K + Z8 Z4 + z, z, \nWhen C = 1, it is necessary to add 0110 to the binary sum and provide an \noutput-carry for the next stage. \nA BCD adder is a circuit that adds two BCD digits in parallel and produces \na sum digit also in BCD. A BCD adder must include the correction logic in its \ninternal construction. To add 0110 to the binary sum, we use a second 4-bit \nbinary adder as shown in Fig. 10-18. The two decimal digits, together with the \ninput-carry, are first added in the top 4-bit binary adder to produce the binary \nsum. When the output-carry is equal to 0, nothing is added to the binary sum. \nWhen it is equal to 1, binary 0110 is added to the binary sum through the \nbottom 4-bit binary adder. The output-carry generated from the bottom binary",
+      "question": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10\u00b76 Decimal Arithmetic Unit 36 7 \nor z, must have a 1?",
+      "answer": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10\u00b76 Decimal Arithmetic Unit 36 7 \nor z, must have a 1. The condition for a correction and an output-carry can be \nexpressed by the Boolean function \nC = K + Z8 Z4 + z, z, \nWhen C = 1, it is necessary to add 0110 to the binary sum and provide an \noutput-carry for the next stage. \nA BCD adder is a circuit that adds two BCD digits in parallel and produces \na sum digit also in BCD. A BCD adder must include the correction logic in its \ninternal construction. To add 0110 to the binary sum, we use a second 4-bit \nbinary adder as shown in Fig. 10-18. The two decimal digits, together with the \ninput-carry, are first added in the top 4-bit binary adder to produce the binary \nsum. When the output-carry is equal to 0, nothing is added to the binary sum. \nWhen it is equal to 1, binary 0110 is added to the binary sum through the \nbottom 4-bit binary adder. The output-carry generated from the bottom binary",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -159,7 +159,7 @@
     {
       "id": "qa_012",
       "question": "The condition for a correction and an output-carry can be \nexpressed by the Boolean function \nC = K + Z8 Z4 + z, z, \nWhen C = 1, it is necessary to add 0110 to the binary sum and provide an \noutput-carry for the next stage?",
-      "answer": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10·6 Decimal Arithmetic Unit 36 7 \nor z, must have a 1. The condition for a correction and an output-carry can be \nexpressed by the Boolean function \nC = K + Z8 Z4 + z, z, \nWhen C = 1, it is necessary to add 0110 to the binary sum and provide an \noutput-carry for the next stage. \nA BCD adder is a circuit that adds two BCD digits in parallel and produces \na sum digit also in BCD. A BCD adder must include the correction logic in its \ninternal construction. To add 0110 to the binary sum, we use a second 4-bit \nbinary adder as shown in Fig. 10-18. The two decimal digits, together with the \ninput-carry, are first added in the top 4-bit binary adder to produce the binary \nsum. When the output-carry is equal to 0, nothing is added to the binary sum. \nWhen it is equal to 1, binary 0110 is added to the binary sum through the \nbottom 4-bit binary adder. The output-carry generated from the bottom binary",
+      "answer": "and 1001 which also have a 1 in position z, we specify further that either z, \nSECTION 10\u00b76 Decimal Arithmetic Unit 36 7 \nor z, must have a 1. The condition for a correction and an output-carry can be \nexpressed by the Boolean function \nC = K + Z8 Z4 + z, z, \nWhen C = 1, it is necessary to add 0110 to the binary sum and provide an \noutput-carry for the next stage. \nA BCD adder is a circuit that adds two BCD digits in parallel and produces \na sum digit also in BCD. A BCD adder must include the correction logic in its \ninternal construction. To add 0110 to the binary sum, we use a second 4-bit \nbinary adder as shown in Fig. 10-18. The two decimal digits, together with the \ninput-carry, are first added in the top 4-bit binary adder to produce the binary \nsum. When the output-carry is equal to 0, nothing is added to the binary sum. \nWhen it is equal to 1, binary 0110 is added to the binary sum through the \nbottom 4-bit binary adder. The output-carry generated from the bottom binary",
       "source": "computer Architecture Book",
       "source_type": "Computer Architecture",
       "difficulty": "medium",
@@ -207,163 +207,163 @@
     {
       "id": "qa_016",
       "question": "DATA STRUCTURES\nUSING C++\nSECOND EDITION\nD?",
-      "answer": "DATA STRUCTURES\nUSING C++\nSECOND EDITION\nD.S. MALIK\nAustralia /C15Brazil /C15Japan /C15Korea /C15Mexico /C15Singapore /C15Spain /C15United Kingdom /C15United States\nData Structures Using C++, Second Edition\nD.S. Malik\nExecutive Editor:Marie Lee\nAcquisitions Editor:Amy Jollymore\nSenior Product Manager:Alyssa Pratt\nEditorial Assistant:Zina Kresin\nMarketing Manager:Bryant Chrzan\nContent Project Manager:Heather Furrow\nArt Director:Faith Brosnan\nImage credit:ª Fancy Photography/Veer\n(Royalty Free)\nCover Designer:Roycroft Design\nCompositor: Integra\nPrinted in the United States of America\n12345671 51 41 31 21 11 00 9\nª 2010 Course Technology, Cengage Learning\nALL RIGHTS RESERVED. No part of this work covered by the copyright\nherein may be reproduced, transmitted, stored or used in any form or\nby any means graphic, electronic, or mechanical, including but not\nlimited to photocopying, recording, scanning, digitizing, taping, Web\ndistribution, information networks, or information storage and",
-      "source": "Data structure Book",
+      "answer": "DATA STRUCTURES\nUSING C++\nSECOND EDITION\nD.S. MALIK\nAustralia /C15Brazil /C15Japan /C15Korea /C15Mexico /C15Singapore /C15Spain /C15United Kingdom /C15United States\nData Structures Using C++, Second Edition\nD.S. Malik\nExecutive Editor:Marie Lee\nAcquisitions Editor:Amy Jollymore\nSenior Product Manager:Alyssa Pratt\nEditorial Assistant:Zina Kresin\nMarketing Manager:Bryant Chrzan\nContent Project Manager:Heather Furrow\nArt Director:Faith Brosnan\nImage credit:\u00aa Fancy Photography/Veer\n(Royalty Free)\nCover Designer:Roycroft Design\nCompositor: Integra\nPrinted in the United States of America\n12345671 51 41 31 21 11 00 9\n\u00aa 2010 Course Technology, Cengage Learning\nALL RIGHTS RESERVED. No part of this work covered by the copyright\nherein may be reproduced, transmitted, stored or used in any form or\nby any means graphic, electronic, or mechanical, including but not\nlimited to photocopying, recording, scanning, digitizing, taping, Web\ndistribution, information networks, or information storage and",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_017",
       "question": "double boxType::volume() const\n{\nreturn rectangleType::area() * height;\n}\nIn the next section, we discuss how to specify a call to the constructor of the base class\nwhen writing the definition of a constructor of the derived class?",
       "answer": "double boxType::volume() const\n{\nreturn rectangleType::area() * height;\n}\nIn the next section, we discuss how to specify a call to the constructor of the base class\nwhen writing the definition of a constructor of the derived class.\nConstructors of Derived and Base Classes\nA derived class can have its ownprivate member variables, and so a derived class can\nexplicitly include its own constructors. A constructor typically serves to initialize\nthe member variables. When we declare a derived class object, this object inherits the\nmembers of the base class, but the derived class object cannot directly access theprivate\n(data) members of the base class. The same is true for the member functions of a derived\nclass. That is, the member functions of a derived class cannot directly access theprivate\nmembers of the base class.\nInheritance | 69\nAs a consequence, the constructors of a derived class can (directly) initialize only the",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_018",
       "question": "Constructors of Derived and Base Classes\nA derived class can have its ownprivate member variables, and so a derived class can\nexplicitly include its own constructors?",
       "answer": "double boxType::volume() const\n{\nreturn rectangleType::area() * height;\n}\nIn the next section, we discuss how to specify a call to the constructor of the base class\nwhen writing the definition of a constructor of the derived class.\nConstructors of Derived and Base Classes\nA derived class can have its ownprivate member variables, and so a derived class can\nexplicitly include its own constructors. A constructor typically serves to initialize\nthe member variables. When we declare a derived class object, this object inherits the\nmembers of the base class, but the derived class object cannot directly access theprivate\n(data) members of the base class. The same is true for the member functions of a derived\nclass. That is, the member functions of a derived class cannot directly access theprivate\nmembers of the base class.\nInheritance | 69\nAs a consequence, the constructors of a derived class can (directly) initialize only the",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_019",
       "question": "of another object leads to a shallow copying of the data, if the default\nmemberwise copying of data is allowed?",
-      "answer": "of another object leads to a shallow copying of the data, if the default\nmemberwise copying of data is allowed.\n• If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data.\nIn both cases, to force each object to have its own copy of the data, we must override the\ndefinition of the copy constructor provided by the compiler; that is, we must provide our\nown definition of the copy constructor. This is usually done by putting a statement that\nincludes the copy constructor in the definition of the class, and then writing the definition\nof the copy constructor. Then, whenever the copy constructor needs to be executed, the\nsystem would execute the definition provided by us, not the one provided by the compiler.\nTherefore, for the\nclass pointerDataClass, we can overcome this shallow copying\nproblem by including the copy constructor in theclass pointerDataClass.",
-      "source": "Data structure Book",
+      "answer": "of another object leads to a shallow copying of the data, if the default\nmemberwise copying of data is allowed.\n\u2022 If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data.\nIn both cases, to force each object to have its own copy of the data, we must override the\ndefinition of the copy constructor provided by the compiler; that is, we must provide our\nown definition of the copy constructor. This is usually done by putting a statement that\nincludes the copy constructor in the definition of the class, and then writing the definition\nof the copy constructor. Then, whenever the copy constructor needs to be executed, the\nsystem would execute the definition provided by us, not the one provided by the compiler.\nTherefore, for the\nclass pointerDataClass, we can overcome this shallow copying\nproblem by including the copy constructor in theclass pointerDataClass.",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_020",
-      "question": "• If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data?",
-      "answer": "of another object leads to a shallow copying of the data, if the default\nmemberwise copying of data is allowed.\n• If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data.\nIn both cases, to force each object to have its own copy of the data, we must override the\ndefinition of the copy constructor provided by the compiler; that is, we must provide our\nown definition of the copy constructor. This is usually done by putting a statement that\nincludes the copy constructor in the definition of the class, and then writing the definition\nof the copy constructor. Then, whenever the copy constructor needs to be executed, the\nsystem would execute the definition provided by us, not the one provided by the compiler.\nTherefore, for the\nclass pointerDataClass, we can overcome this shallow copying\nproblem by including the copy constructor in theclass pointerDataClass.",
-      "source": "Data structure Book",
+      "question": "\u2022 If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data?",
+      "answer": "of another object leads to a shallow copying of the data, if the default\nmemberwise copying of data is allowed.\n\u2022 If, as a parameter, an object is passed by value and the default member-\nwise copying of data is allowed, it leads to a shallow copying of the data.\nIn both cases, to force each object to have its own copy of the data, we must override the\ndefinition of the copy constructor provided by the compiler; that is, we must provide our\nown definition of the copy constructor. This is usually done by putting a statement that\nincludes the copy constructor in the definition of the class, and then writing the definition\nof the copy constructor. Then, whenever the copy constructor needs to be executed, the\nsystem would execute the definition provided by us, not the one provided by the compiler.\nTherefore, for the\nclass pointerDataClass, we can overcome this shallow copying\nproblem by including the copy constructor in theclass pointerDataClass.",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_021",
       "question": "following statement?\ncopy(vecList?",
       "answer": "following statement?\ncopy(vecList.begin(), vecList.end(), screen);\n7. What is the output of the following program segment?\nvector<int> vecList(5);\nfor (int j = 0; j < 5; j++)\nvecList[j] = 2 * j;\nfor (int j = 0; j < 5; j++)\ncout << vecList[j] << \" \";\ncout << endl;\n256 | Chapter 4: Standard Template Library (STL) I\n4\n8. What is the output of the following program segment? (Assume that\nscreen is anostream_iterator initialized to the standard output device\nto output elements of typeint.)\nint list[5] = {2,4,6,8,10};\nvector<int> vecList(5);\ncopy(list, list + 5, vecList.begin());\ncopy(vecList.begin(), vecList.end(), screen);\ncout << endl;\n9. What is the output of the following program segment? (Assume that\nscreen is anostream_iterator initialized to the standard output device\nto output elements of typeint.)\nvector<int> vecList;\nvector<int>::iterator vecIt;\nvecList.push_back(3);\nvecList.push_back(5);\nvecList.push_back(7);\nvecIt = vecList.begin();\n++vecIt;\nvecList.erase(vecIt);",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_022",
       "question": "Identify the base cases and provide a direct solution to each base case?",
       "answer": "3. Identify the base cases and provide a direct solution to each base case.\n4. Identify the general cases and provide a solution to each general case in terms of\nsmaller versions of itself.\nProblem Solving Using Recursion\nThe next few sections illustrate how recursive algorithms are developed and implemented\nin C++ using recursive functions.\n6\nProblem Solving Using Recursion | 359\nLargest Element in an Array\nIn this example, we use a recursive algorithm to find the largest element in an array.\nConsider the list given in Figure 6-2.\nThe largest element in the list in Figure 6-2 is10.\nSuppose list is the name of the array containing the list elements. Also, suppose that\nlist[a]...list[b] stands for the array elementslist[a], list[a + 1], ..., list[b].\nFor example, list[0]...list[5] represents the array elements list[0], list[1],\nlist[2], list[3], list[4],a n dlist[5]. Similarly, list[1]...list[5] represents\nthe array elements list[1], list[2], list[3], list[4],a n dlist[5]. To write a",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_023",
       "question": "array that stores the queue elements?",
       "answer": "array that stores the queue elements. The definition of the function to implement the\ndestructor is as follows:\ntemplate <class Type>\nqueueType<Type>::~queueType()\n{\ndelete [] list;\n}\nThe implementation of the copy constructor and overloading the assignment operator are\nleft as exercises for you, (see Programming Exercise 1 at the end of this chapter). (The\ndefinitions of these functions are similar to those discussed for array-based lists and stacks.)\nLinked Implementation of Queues\nBecause the size of the array to store the queue elements is fixed, only a finite number of\nqueue elements can be stored in the array. Also, the array implementation of the queue\nrequires the array to be treated in a special way together with the values of the indices\nqueueFront and queueRear. The linked implementation of a queue simplifies many of\nthe special cases of the array implementation and, because the memory to store a queue",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_024",
       "question": "has two outcomes, the comparison tree is a binary tree?",
       "answer": "has two outcomes, the comparison tree is a binary tree. While drawing this figure, we draw\neach comparison as a circle, called anode. The node is labeled asj:k, representing the\ncomparison ofL[j] withL[k]. IfL[j] < L[k], follow the left branch; otherwise, follow the\nright branch. Figure 10-20 shows the comparison tree for a list of length 3. (In Figure 10-20,\nthe rectangle, calledleaf, represents the final ordering of the nodes.)\nWe call the top node in the figure theroot node. The straight line that connects the two\nnodes is called abranch. A sequence of branches from a node,x, to another node,y,i s\ncalled a path from x to y.\nAssociated with each path from the root to a leaf is a unique permutation of the elements\nof L. This uniqueness follows because the sort algorithm only moves the data and makes\ncomparisons. Furthermore, the data movement on any path from the root to a leaf is the\nsame regardless of the initial inputs. For a list ofn elements, n > 0, there aren! different",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_025",
       "question": "While drawing this figure, we draw\neach comparison as a circle, called anode?",
       "answer": "has two outcomes, the comparison tree is a binary tree. While drawing this figure, we draw\neach comparison as a circle, called anode. The node is labeled asj:k, representing the\ncomparison ofL[j] withL[k]. IfL[j] < L[k], follow the left branch; otherwise, follow the\nright branch. Figure 10-20 shows the comparison tree for a list of length 3. (In Figure 10-20,\nthe rectangle, calledleaf, represents the final ordering of the nodes.)\nWe call the top node in the figure theroot node. The straight line that connects the two\nnodes is called abranch. A sequence of branches from a node,x, to another node,y,i s\ncalled a path from x to y.\nAssociated with each path from the root to a leaf is a unique permutation of the elements\nof L. This uniqueness follows because the sort algorithm only moves the data and makes\ncomparisons. Furthermore, the data movement on any path from the root to a leaf is the\nsame regardless of the initial inputs. For a list ofn elements, n > 0, there aren! different",
-      "source": "Data structure Book",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_026",
       "question": "member functions of the class implementing the container)?",
-      "answer": "member functions of the class implementing the container). However, several operations—\nsuch as\nfind, sort,a n dmerge—are common to all containers. These operations are\nprovided as generic algorithms and can be applied to all containers as well as the built-in\narray type. The algorithms are bound to a particular container through an iterator pair.\nThe generic algorithms are contained in the header file algorithm. This section\ndescribes several of these algorithms and shows how to use them in a program. Because\nalgorithms are implemented with the help of functions, in the following sections, the\nterms function and algorithm mean the same thing.\nSTL Algorithm Classification\nIn earlier sections, you applied various operations on the sequence container, such as\nclear, sort, merge, and so on. However, those algorithms were tied to a specific\ncontainer as members of a specific class. All those algorithms and a few more are also",
-      "source": "Data structure Book",
+      "answer": "member functions of the class implementing the container). However, several operations\u2014\nsuch as\nfind, sort,a n dmerge\u2014are common to all containers. These operations are\nprovided as generic algorithms and can be applied to all containers as well as the built-in\narray type. The algorithms are bound to a particular container through an iterator pair.\nThe generic algorithms are contained in the header file algorithm. This section\ndescribes several of these algorithms and shows how to use them in a program. Because\nalgorithms are implemented with the help of functions, in the following sections, the\nterms function and algorithm mean the same thing.\nSTL Algorithm Classification\nIn earlier sections, you applied various operations on the sequence container, such as\nclear, sort, merge, and so on. However, those algorithms were tied to a specific\ncontainer as members of a specific class. All those algorithms and a few more are also",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_027",
-      "question": "However, several operations—\nsuch as\nfind, sort,a n dmerge—are common to all containers?",
-      "answer": "member functions of the class implementing the container). However, several operations—\nsuch as\nfind, sort,a n dmerge—are common to all containers. These operations are\nprovided as generic algorithms and can be applied to all containers as well as the built-in\narray type. The algorithms are bound to a particular container through an iterator pair.\nThe generic algorithms are contained in the header file algorithm. This section\ndescribes several of these algorithms and shows how to use them in a program. Because\nalgorithms are implemented with the help of functions, in the following sections, the\nterms function and algorithm mean the same thing.\nSTL Algorithm Classification\nIn earlier sections, you applied various operations on the sequence container, such as\nclear, sort, merge, and so on. However, those algorithms were tied to a specific\ncontainer as members of a specific class. All those algorithms and a few more are also",
-      "source": "Data structure Book",
+      "question": "However, several operations\u2014\nsuch as\nfind, sort,a n dmerge\u2014are common to all containers?",
+      "answer": "member functions of the class implementing the container). However, several operations\u2014\nsuch as\nfind, sort,a n dmerge\u2014are common to all containers. These operations are\nprovided as generic algorithms and can be applied to all containers as well as the built-in\narray type. The algorithms are bound to a particular container through an iterator pair.\nThe generic algorithms are contained in the header file algorithm. This section\ndescribes several of these algorithms and shows how to use them in a program. Because\nalgorithms are implemented with the help of functions, in the following sections, the\nterms function and algorithm mean the same thing.\nSTL Algorithm Classification\nIn earlier sections, you applied various operations on the sequence container, such as\nclear, sort, merge, and so on. However, those algorithms were tied to a specific\ncontainer as members of a specific class. All those algorithms and a few more are also",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_028",
-      "question": "848–849, 849n\nutility header file, 732, 734\nV\nvalidating input: withassert\nstatements, 6\nvalue parameters, 851, 851\nconstant reference parameters\nvs?",
-      "answer": "848–849, 849n\nutility header file, 732, 734\nV\nvalidating input: withassert\nstatements, 6\nvalue parameters, 851, 851\nconstant reference parameters\nvs., 20, 31\ndeclaring pointers as, 149\npassing class objects as, 30, 31,\n160–161; derived class\nobjects to base class\nparameters, 166–168\npassing pointers as, 149\nvalue_type typedef, 237t\nvalue-returning functions:\nactual parameter lists, 850\nassert function, 6, 817t\ncalls to, 850\ncharacter functions, 818–819t\nformal parameter lists, 849\n910 | Index\nmath functions, 820–821t\nreference parameters in, 852\nreturn values: pointers as, 150;\nreturning more than one,\n732, 852\nstring functions: C-string\nfunctions, 822t; string\ntype, 823, 823–824t\nsyntax, 849–850\nvoid functions as multiple\nvalue–returning functions,\n852\nvalues:\nboundary values, 8\nlogical. See logical values\nreturn. See return values\n(from value-returning\nfunctions)\nof variables. See undervariables\nSee alsodata; numbers\nvariables:\nfor array-based list processing,\n171",
-      "source": "Data structure Book",
+      "question": "848\u2013849, 849n\nutility header file, 732, 734\nV\nvalidating input: withassert\nstatements, 6\nvalue parameters, 851, 851\nconstant reference parameters\nvs?",
+      "answer": "848\u2013849, 849n\nutility header file, 732, 734\nV\nvalidating input: withassert\nstatements, 6\nvalue parameters, 851, 851\nconstant reference parameters\nvs., 20, 31\ndeclaring pointers as, 149\npassing class objects as, 30, 31,\n160\u2013161; derived class\nobjects to base class\nparameters, 166\u2013168\npassing pointers as, 149\nvalue_type typedef, 237t\nvalue-returning functions:\nactual parameter lists, 850\nassert function, 6, 817t\ncalls to, 850\ncharacter functions, 818\u2013819t\nformal parameter lists, 849\n910 | Index\nmath functions, 820\u2013821t\nreference parameters in, 852\nreturn values: pointers as, 150;\nreturning more than one,\n732, 852\nstring functions: C-string\nfunctions, 822t; string\ntype, 823, 823\u2013824t\nsyntax, 849\u2013850\nvoid functions as multiple\nvalue\u2013returning functions,\n852\nvalues:\nboundary values, 8\nlogical. See logical values\nreturn. See return values\n(from value-returning\nfunctions)\nof variables. See undervariables\nSee alsodata; numbers\nvariables:\nfor array-based list processing,\n171",
+      "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
       "category": "Data Structures & Algorithms",
       "ground_truth_docs": [
-        "Data structure Book"
+        "Data structures and Algorithm Book"
       ]
     },
     {
       "id": "qa_029",
       "question": "com\nMarketing Manager: Yez Alayan Media Project Manager: Renata Butera\nSenior Marketing Coordinator: Kathryn Ferranti Full-Service Project Management: Integra Software\nMarketing Assistant: Jon Bryant Services Pvt?",
-      "answer": "Fourth Edition\nData Structures\nand Algorithm\nAnalysis in\nC++\nThis page intentionally left blank \nFourth Edition\nData Structures\nand Algorithm\nAnalysis in\nC++\nMark Allen Weiss\nFlorida International University\nBoston Columbus Indianapolis New York San Francisco\nUpper Saddle River Amsterdam Cape Town Dubai London\nMadrid Milan Munich Paris Montreal Toronto Delhi\nMexico City Sao Paulo Sydney Hong Kong Seoul Singapore\nTaipei Tokyo\nEditorial Director, ECS: Marcia Horton Cover Designer: Bruce Kenselaar\nExecutive Editor: Tracy Johnson Permissions Supervisor: Michael Joyce\nEditorial Assistant: Jenah Blitz-Stoehr Permissions Administrator: Jenell Forschler\nDirector of Marketing: Christy Lesko Cover Image: c⃝ De-kay | Dreamstime.com\nMarketing Manager: Yez Alayan Media Project Manager: Renata Butera\nSenior Marketing Coordinator: Kathryn Ferranti Full-Service Project Management: Integra Software\nMarketing Assistant: Jon Bryant Services Pvt. Ltd.",
+      "answer": "Fourth Edition\nData Structures\nand Algorithm\nAnalysis in\nC++\nThis page intentionally left blank \nFourth Edition\nData Structures\nand Algorithm\nAnalysis in\nC++\nMark Allen Weiss\nFlorida International University\nBoston Columbus Indianapolis New York San Francisco\nUpper Saddle River Amsterdam Cape Town Dubai London\nMadrid Milan Munich Paris Montreal Toronto Delhi\nMexico City Sao Paulo Sydney Hong Kong Seoul Singapore\nTaipei Tokyo\nEditorial Director, ECS: Marcia Horton Cover Designer: Bruce Kenselaar\nExecutive Editor: Tracy Johnson Permissions Supervisor: Michael Joyce\nEditorial Assistant: Jenah Blitz-Stoehr Permissions Administrator: Jenell Forschler\nDirector of Marketing: Christy Lesko Cover Image: c\u20dd De-kay | Dreamstime.com\nMarketing Manager: Yez Alayan Media Project Manager: Renata Butera\nSenior Marketing Coordinator: Kathryn Ferranti Full-Service Project Management: Integra Software\nMarketing Assistant: Jon Bryant Services Pvt. Ltd.",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -375,7 +375,7 @@
     {
       "id": "qa_030",
       "question": "deletion is performed at the other end?",
-      "answer": "deletion is performed at the other end.\n3.7 The Queue ADT 113\n3.7 .1 Queue Model\nThe basic operations on a queue areenqueue, which inserts an element at the end of the list\n(called the rear), and dequeue, which deletes (and returns) the element at the start of the\nlist (known as the front). Figure 3.27 shows the abstract model of a queue.\n3.7 .2 Array Implementation of Queues\nAs with stacks, any list implementation is legal for queues. Like stacks, both the linked list\nand array implementations give fast O(1) running times for every operation. The linked\nlist implementation is straightforward and left as an exercise. We will now discuss an array\nimplementation of queues.\nFor each queue data structure, we keep an array ,theArray, and the positions front and\nback, which represent the ends of the queue. We also keep track of the number of elements\nthat are actually in the queue, currentSize. The following table shows a queue in some\nintermediate state.\nfront back\n1527\n↑↑",
+      "answer": "deletion is performed at the other end.\n3.7 The Queue ADT 113\n3.7 .1 Queue Model\nThe basic operations on a queue areenqueue, which inserts an element at the end of the list\n(called the rear), and dequeue, which deletes (and returns) the element at the start of the\nlist (known as the front). Figure 3.27 shows the abstract model of a queue.\n3.7 .2 Array Implementation of Queues\nAs with stacks, any list implementation is legal for queues. Like stacks, both the linked list\nand array implementations give fast O(1) running times for every operation. The linked\nlist implementation is straightforward and left as an exercise. We will now discuss an array\nimplementation of queues.\nFor each queue data structure, we keep an array ,theArray, and the positions front and\nback, which represent the ends of the queue. We also keep track of the number of elements\nthat are actually in the queue, currentSize. The following table shows a queue in some\nintermediate state.\nfront back\n1527\n\u2191\u2191",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -387,7 +387,7 @@
     {
       "id": "qa_031",
       "question": "19 Show the result of inserting 2, 1, 4, 5, 9, 3, 6, 7 into an initially empty AVL tree?",
-      "answer": "4.19 Show the result of inserting 2, 1, 4, 5, 9, 3, 6, 7 into an initially empty AVL tree.\n⋆ 4.20 Keys 1, 2,... ,2 k − 1 are inserted in order into an initially empty AVL tree. Prove\nthat the resulting tree is perfectly balanced.\n4.21 Write the remaining procedures to implement AVL single and double rotations.\n4.22 Design a linear-time algorithm that veriﬁes that the height information in an AVL\ntree is correctly maintained and that the balance property is in order.\n4.23 Write a nonrecursive function to insert into an AVL tree.\n4.24 Show that the deletion algorithm in Figure 4.47 is correct\n4.25 a. How many bits are required per node to store the height of a node in anN-node\nAVL tree?\nb. What is the smallest AVL tree that overﬂows an 8-bit height counter?\n4.26 Write the functions to perform the double rotation without the inefﬁciency of doing\ntwo single rotations.\n4.27 Show the result of accessing the keys 3, 9, 1, 5 in order in the splay tree in\nFigure 4.76.",
+      "answer": "4.19 Show the result of inserting 2, 1, 4, 5, 9, 3, 6, 7 into an initially empty AVL tree.\n\u22c6 4.20 Keys 1, 2,... ,2 k \u2212 1 are inserted in order into an initially empty AVL tree. Prove\nthat the resulting tree is perfectly balanced.\n4.21 Write the remaining procedures to implement AVL single and double rotations.\n4.22 Design a linear-time algorithm that veri\ufb01es that the height information in an AVL\ntree is correctly maintained and that the balance property is in order.\n4.23 Write a nonrecursive function to insert into an AVL tree.\n4.24 Show that the deletion algorithm in Figure 4.47 is correct\n4.25 a. How many bits are required per node to store the height of a node in anN-node\nAVL tree?\nb. What is the smallest AVL tree that over\ufb02ows an 8-bit height counter?\n4.26 Write the functions to perform the double rotation without the inef\ufb01ciency of doing\ntwo single rotations.\n4.27 Show the result of accessing the keys 3, 9, 1, 5 in order in the splay tree in\nFigure 4.76.",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -398,8 +398,8 @@
     },
     {
       "id": "qa_032",
-      "question": "is used without a qualiﬁer, it is generally assumed to be referring to this implementation\nof the data structure?",
-      "answer": "is used without a qualiﬁer, it is generally assumed to be referring to this implementation\nof the data structure. In this section, we will refer to binary heaps merely as heaps. Like\nbinary search trees, heaps have two properties, namely , a structure property and a heap-\norder property . As with AVL trees, an operation on a heap can destroy one of the properties,\nso a heap operation must not terminate until all heap properties are in order. This turns\nout to be simple to do.\n6.3.1 Structure Property\nA heap is a binary tree that is completely ﬁlled, with the possible exception of the bottom\nlevel, which is ﬁlled from left to right. Such a tree is known as a complete binary tree.\nFigure 6.2 shows an example.\nIt is easy to show that a complete binary tree of height h has between 2h and 2h+1 − 1\nnodes. This implies that the height of a complete binary tree is ⌊log N⌋, which is clearly\nO(log N).\nAn important observation is that because a complete binary tree is so regular, it can be",
+      "question": "is used without a quali\ufb01er, it is generally assumed to be referring to this implementation\nof the data structure?",
+      "answer": "is used without a quali\ufb01er, it is generally assumed to be referring to this implementation\nof the data structure. In this section, we will refer to binary heaps merely as heaps. Like\nbinary search trees, heaps have two properties, namely , a structure property and a heap-\norder property . As with AVL trees, an operation on a heap can destroy one of the properties,\nso a heap operation must not terminate until all heap properties are in order. This turns\nout to be simple to do.\n6.3.1 Structure Property\nA heap is a binary tree that is completely \ufb01lled, with the possible exception of the bottom\nlevel, which is \ufb01lled from left to right. Such a tree is known as a complete binary tree.\nFigure 6.2 shows an example.\nIt is easy to show that a complete binary tree of height h has between 2h and 2h+1 \u2212 1\nnodes. This implies that the height of a complete binary tree is \u230alog N\u230b, which is clearly\nO(log N).\nAn important observation is that because a complete binary tree is so regular, it can be",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -411,7 +411,7 @@
     {
       "id": "qa_033",
       "question": "In this section, we will refer to binary heaps merely as heaps?",
-      "answer": "is used without a qualiﬁer, it is generally assumed to be referring to this implementation\nof the data structure. In this section, we will refer to binary heaps merely as heaps. Like\nbinary search trees, heaps have two properties, namely , a structure property and a heap-\norder property . As with AVL trees, an operation on a heap can destroy one of the properties,\nso a heap operation must not terminate until all heap properties are in order. This turns\nout to be simple to do.\n6.3.1 Structure Property\nA heap is a binary tree that is completely ﬁlled, with the possible exception of the bottom\nlevel, which is ﬁlled from left to right. Such a tree is known as a complete binary tree.\nFigure 6.2 shows an example.\nIt is easy to show that a complete binary tree of height h has between 2h and 2h+1 − 1\nnodes. This implies that the height of a complete binary tree is ⌊log N⌋, which is clearly\nO(log N).\nAn important observation is that because a complete binary tree is so regular, it can be",
+      "answer": "is used without a quali\ufb01er, it is generally assumed to be referring to this implementation\nof the data structure. In this section, we will refer to binary heaps merely as heaps. Like\nbinary search trees, heaps have two properties, namely , a structure property and a heap-\norder property . As with AVL trees, an operation on a heap can destroy one of the properties,\nso a heap operation must not terminate until all heap properties are in order. This turns\nout to be simple to do.\n6.3.1 Structure Property\nA heap is a binary tree that is completely \ufb01lled, with the possible exception of the bottom\nlevel, which is \ufb01lled from left to right. Such a tree is known as a complete binary tree.\nFigure 6.2 shows an example.\nIt is easy to show that a complete binary tree of height h has between 2h and 2h+1 \u2212 1\nnodes. This implies that the height of a complete binary tree is \u230alog N\u230b, which is clearly\nO(log N).\nAn important observation is that because a complete binary tree is so regular, it can be",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -423,7 +423,7 @@
     {
       "id": "qa_034",
       "question": "known as either a weight or a cost?",
-      "answer": "known as either a weight or a cost.\nA path in a graph is a sequence of vertices w1, w2, w3, ... , wN such that (wi, wi+1) ∈ E\nfor 1 ≤ i < N.T h elength of such a path is the number of edges on the path, which is\nequal to N − 1. We allow a path from a vertex to itself; if this path contains no edges, then\nthe path length is 0. This is a convenient way to deﬁne an otherwise special case. If the\ngraph contains an edge (v, v) from a vertex to itself, then the pathv, v is sometimes referred\nto as a loop. The graphs we will consider will generally be loopless. A simple path is a\npath such that all vertices are distinct, except that the ﬁrst and last could be the same.\nA cycle in a directed graph is a path of length at least 1 such that w\n1 = wN; this cycle\nis simple if the path is simple. For undirected graphs, we require that the edges be distinct.\nThe logic of these requirements is that the path u, v, u in an undirected graph should not",
+      "answer": "known as either a weight or a cost.\nA path in a graph is a sequence of vertices w1, w2, w3, ... , wN such that (wi, wi+1) \u2208 E\nfor 1 \u2264 i < N.T h elength of such a path is the number of edges on the path, which is\nequal to N \u2212 1. We allow a path from a vertex to itself; if this path contains no edges, then\nthe path length is 0. This is a convenient way to de\ufb01ne an otherwise special case. If the\ngraph contains an edge (v, v) from a vertex to itself, then the pathv, v is sometimes referred\nto as a loop. The graphs we will consider will generally be loopless. A simple path is a\npath such that all vertices are distinct, except that the \ufb01rst and last could be the same.\nA cycle in a directed graph is a path of length at least 1 such that w\n1 = wN; this cycle\nis simple if the path is simple. For undirected graphs, we require that the edges be distinct.\nThe logic of these requirements is that the path u, v, u in an undirected graph should not",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -435,7 +435,7 @@
     {
       "id": "qa_035",
       "question": "A path in a graph is a sequence of vertices w1, w2, w3,?",
-      "answer": "known as either a weight or a cost.\nA path in a graph is a sequence of vertices w1, w2, w3, ... , wN such that (wi, wi+1) ∈ E\nfor 1 ≤ i < N.T h elength of such a path is the number of edges on the path, which is\nequal to N − 1. We allow a path from a vertex to itself; if this path contains no edges, then\nthe path length is 0. This is a convenient way to deﬁne an otherwise special case. If the\ngraph contains an edge (v, v) from a vertex to itself, then the pathv, v is sometimes referred\nto as a loop. The graphs we will consider will generally be loopless. A simple path is a\npath such that all vertices are distinct, except that the ﬁrst and last could be the same.\nA cycle in a directed graph is a path of length at least 1 such that w\n1 = wN; this cycle\nis simple if the path is simple. For undirected graphs, we require that the edges be distinct.\nThe logic of these requirements is that the path u, v, u in an undirected graph should not",
+      "answer": "known as either a weight or a cost.\nA path in a graph is a sequence of vertices w1, w2, w3, ... , wN such that (wi, wi+1) \u2208 E\nfor 1 \u2264 i < N.T h elength of such a path is the number of edges on the path, which is\nequal to N \u2212 1. We allow a path from a vertex to itself; if this path contains no edges, then\nthe path length is 0. This is a convenient way to de\ufb01ne an otherwise special case. If the\ngraph contains an edge (v, v) from a vertex to itself, then the pathv, v is sometimes referred\nto as a loop. The graphs we will consider will generally be loopless. A simple path is a\npath such that all vertices are distinct, except that the \ufb01rst and last could be the same.\nA cycle in a directed graph is a path of length at least 1 such that w\n1 = wN; this cycle\nis simple if the path is simple. For undirected graphs, we require that the edges be distinct.\nThe logic of these requirements is that the path u, v, u in an undirected graph should not",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -446,8 +446,8 @@
     },
     {
       "id": "qa_036",
-      "question": "Structures (1991), 400–411?",
-      "answer": "Structures (1991), 400–411.\n43. J. B. Orlin, “Max Flows in O(nm) Time, or Better,” Proceedings of the Forty-ﬁfth Annual ACM\nSymposium on Theory of Computing (2013).\n44. C. H. Papadimitriou and K. Steiglitz, Combinatorial Optimization: Algorithms and Complexity,\nPrentice Hall, Englewood Cliffs, N.J., 1982.\n45. R. C. Prim, “Shortest Connection Networks and Some Generalizations,”Bell System Technical\nJournal, 36 (1957), 1389–1401.\n46. M. Sharir, “A Strong-Connectivity Algorithm and Its Application in Data Flow Analysis,”\nComputers and Mathematics with Applications, 7 (1981), 67–72.\n47. R. E. Tarjan, “Depth First Search and Linear Graph Algorithms,”SIAM Journal on Computing,\n1 (1972), 146–160.\n448 Chapter 9 Graph Algorithms\n48. R. E. Tarjan, “Testing Flow Graph Reducibility ,” Journal of Computer and System Sciences, 9\n(1974), 355–365.\n49. R. E. Tarjan, “Finding Dominators in Directed Graphs,” SIAM Journal on Computing, 3\n(1974), 62–89.",
+      "question": "Structures (1991), 400\u2013411?",
+      "answer": "Structures (1991), 400\u2013411.\n43. J. B. Orlin, \u201cMax Flows in O(nm) Time, or Better,\u201d Proceedings of the Forty-\ufb01fth Annual ACM\nSymposium on Theory of Computing (2013).\n44. C. H. Papadimitriou and K. Steiglitz, Combinatorial Optimization: Algorithms and Complexity,\nPrentice Hall, Englewood Cliffs, N.J., 1982.\n45. R. C. Prim, \u201cShortest Connection Networks and Some Generalizations,\u201dBell System Technical\nJournal, 36 (1957), 1389\u20131401.\n46. M. Sharir, \u201cA Strong-Connectivity Algorithm and Its Application in Data Flow Analysis,\u201d\nComputers and Mathematics with Applications, 7 (1981), 67\u201372.\n47. R. E. Tarjan, \u201cDepth First Search and Linear Graph Algorithms,\u201dSIAM Journal on Computing,\n1 (1972), 146\u2013160.\n448 Chapter 9 Graph Algorithms\n48. R. E. Tarjan, \u201cTesting Flow Graph Reducibility ,\u201d Journal of Computer and System Sciences, 9\n(1974), 355\u2013365.\n49. R. E. Tarjan, \u201cFinding Dominators in Directed Graphs,\u201d SIAM Journal on Computing, 3\n(1974), 62\u201389.",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -459,7 +459,7 @@
     {
       "id": "qa_037",
       "question": "Tic-tac-toe is a draw if both sides play optimally?",
-      "answer": "Tic-tac-toe is a draw if both sides play optimally . By performing a careful case-by-case\nanalysis, it is not a difﬁcult matter to construct an algorithm that never loses and always\nwins when presented the opportunity . This can be done, because certain positions are\nknown traps and can be handled by a lookup table. Other strategies, such as taking the\ncenter square when it is available, make the analysis simpler. If this is done, then by using\na table we can always choose a move based only on the current position. Of course, this\nstrategy requires the programmer, and not the computer, to do most of the thinking.\nMinimax Strategy\nThe more general strategy is to use an evaluation function to quantify the “goodness” of a\nposition. A position that is a win for a computer might get the value of +1; a draw could\nget 0; and a position that the computer has lost would get a −1. A position for which this\nassignment can be determined by examining the board is known as a terminal position.",
+      "answer": "Tic-tac-toe is a draw if both sides play optimally . By performing a careful case-by-case\nanalysis, it is not a dif\ufb01cult matter to construct an algorithm that never loses and always\nwins when presented the opportunity . This can be done, because certain positions are\nknown traps and can be handled by a lookup table. Other strategies, such as taking the\ncenter square when it is available, make the analysis simpler. If this is done, then by using\na table we can always choose a move based only on the current position. Of course, this\nstrategy requires the programmer, and not the computer, to do most of the thinking.\nMinimax Strategy\nThe more general strategy is to use an evaluation function to quantify the \u201cgoodness\u201d of a\nposition. A position that is a win for a computer might get the value of +1; a draw could\nget 0; and a position that the computer has lost would get a \u22121. A position for which this\nassignment can be determined by examining the board is known as a terminal position.",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -470,8 +470,8 @@
     },
     {
       "id": "qa_038",
-      "question": "By performing a careful case-by-case\nanalysis, it is not a difﬁcult matter to construct an algorithm that never loses and always\nwins when presented the opportunity?",
-      "answer": "Tic-tac-toe is a draw if both sides play optimally . By performing a careful case-by-case\nanalysis, it is not a difﬁcult matter to construct an algorithm that never loses and always\nwins when presented the opportunity . This can be done, because certain positions are\nknown traps and can be handled by a lookup table. Other strategies, such as taking the\ncenter square when it is available, make the analysis simpler. If this is done, then by using\na table we can always choose a move based only on the current position. Of course, this\nstrategy requires the programmer, and not the computer, to do most of the thinking.\nMinimax Strategy\nThe more general strategy is to use an evaluation function to quantify the “goodness” of a\nposition. A position that is a win for a computer might get the value of +1; a draw could\nget 0; and a position that the computer has lost would get a −1. A position for which this\nassignment can be determined by examining the board is known as a terminal position.",
+      "question": "By performing a careful case-by-case\nanalysis, it is not a dif\ufb01cult matter to construct an algorithm that never loses and always\nwins when presented the opportunity?",
+      "answer": "Tic-tac-toe is a draw if both sides play optimally . By performing a careful case-by-case\nanalysis, it is not a dif\ufb01cult matter to construct an algorithm that never loses and always\nwins when presented the opportunity . This can be done, because certain positions are\nknown traps and can be handled by a lookup table. Other strategies, such as taking the\ncenter square when it is available, make the analysis simpler. If this is done, then by using\na table we can always choose a move based only on the current position. Of course, this\nstrategy requires the programmer, and not the computer, to do most of the thinking.\nMinimax Strategy\nThe more general strategy is to use an evaluation function to quantify the \u201cgoodness\u201d of a\nposition. A position that is a win for a computer might get the value of +1; a draw could\nget 0; and a position that the computer has lost would get a \u22121. A position for which this\nassignment can be determined by examining the board is known as a terminal position.",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -483,7 +483,7 @@
     {
       "id": "qa_039",
       "question": "37 : element{ std::move( e ) }, left{ lt }, right{ rt }, priority{ pr }\n38 {}\n39 };\n40\n41 TreapNode *root;\n42 TreapNode *nullNode;\n43 UniformRandom randomNums;\n44\n45 // Additional private member functions (not shown)\n46 };\nFigure 12?",
-      "answer": "37 : element{ std::move( e ) }, left{ lt }, right{ rt }, priority{ pr }\n38 {}\n39 };\n40\n41 TreapNode *root;\n42 TreapNode *nullNode;\n43 UniformRandom randomNums;\n44\n45 // Additional private member functions (not shown)\n46 };\nFigure 12.18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satisﬁes heap order. It can be shown that the expected number of\nrotations is less than 2. After the item to be deleted has been found, it can be deleted by\nincreasing its priority to ∞ and rotating it down through the path of low-priority chil-\ndren. Once it is a leaf, it can be removed. The routines in Figure 12.19 and Figure 12.20\nimplement these strategies using recursion. A nonrecursive implementation is left for the\nreader (Exercise 12.14). For deletion, note that when the node is logically a leaf, it still has",
+      "answer": "37 : element{ std::move( e ) }, left{ lt }, right{ rt }, priority{ pr }\n38 {}\n39 };\n40\n41 TreapNode *root;\n42 TreapNode *nullNode;\n43 UniformRandom randomNums;\n44\n45 // Additional private member functions (not shown)\n46 };\nFigure 12.18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satis\ufb01es heap order. It can be shown that the expected number of\nrotations is less than 2. After the item to be deleted has been found, it can be deleted by\nincreasing its priority to \u221e and rotating it down through the path of low-priority chil-\ndren. Once it is a leaf, it can be removed. The routines in Figure 12.19 and Figure 12.20\nimplement these strategies using recursion. A nonrecursive implementation is left for the\nreader (Exercise 12.14). For deletion, note that when the node is logically a leaf, it still has",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -494,8 +494,8 @@
     },
     {
       "id": "qa_040",
-      "question": "18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satisﬁes heap order?",
-      "answer": "37 : element{ std::move( e ) }, left{ lt }, right{ rt }, priority{ pr }\n38 {}\n39 };\n40\n41 TreapNode *root;\n42 TreapNode *nullNode;\n43 UniformRandom randomNums;\n44\n45 // Additional private member functions (not shown)\n46 };\nFigure 12.18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satisﬁes heap order. It can be shown that the expected number of\nrotations is less than 2. After the item to be deleted has been found, it can be deleted by\nincreasing its priority to ∞ and rotating it down through the path of low-priority chil-\ndren. Once it is a leaf, it can be removed. The routines in Figure 12.19 and Figure 12.20\nimplement these strategies using recursion. A nonrecursive implementation is left for the\nreader (Exercise 12.14). For deletion, note that when the node is logically a leaf, it still has",
+      "question": "18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satis\ufb01es heap order?",
+      "answer": "37 : element{ std::move( e ) }, left{ lt }, right{ rt }, priority{ pr }\n38 {}\n39 };\n40\n41 TreapNode *root;\n42 TreapNode *nullNode;\n43 UniformRandom randomNums;\n44\n45 // Additional private member functions (not shown)\n46 };\nFigure 12.18 Treap class interface and constructor\n578 Chapter 12 Advanced Data Structures and Implementation\nInsertion into the treap is simple: After an item is added as a leaf, we rotate it up the\ntreap until its priority satis\ufb01es heap order. It can be shown that the expected number of\nrotations is less than 2. After the item to be deleted has been found, it can be deleted by\nincreasing its priority to \u221e and rotating it down through the path of low-priority chil-\ndren. Once it is a leaf, it can be removed. The routines in Figure 12.19 and Figure 12.20\nimplement these strategies using recursion. A nonrecursive implementation is left for the\nreader (Exercise 12.14). For deletion, note that when the node is logically a leaf, it still has",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -507,7 +507,7 @@
     {
       "id": "qa_041",
       "question": "returning, 25\nvan Emde Boas, P?",
-      "answer": "returning, 25\nvan Emde Boas, P ., 290\nvan Kreveld, M. J., 378\nvan Leeuwen, J., 377, 614\nvan Vleit, A., 530\nVariables\nreference, 27\nstacks for, 110\nVassilevska-Williams, V ., 531\nvector class, 19–21, 36,\n87–90\nVectors\nfor adjacency lists, 381\nimplementation, 28, 86–91\niterators for, 75–79\nfor stacks, 104\nin STL, 80–86\nVertex class, 381, 398\nVertex cover problem, 444\nVertices\ngraph, 379–380\ntopological sorts for, 379–380\nVishkin, U., 530\nVisibility in classes, 12\nVitanyi, P ., 349\nVitter, J. S., 244, 614\nVöcking, B., 243\nVoronoi diagrams, 523\nVuillemin, J., 290, 558, 614\nW\nWagner, R. A., 531\nWayne, K., 614\nWeakly connected graphs, 380\nWegman, M. N., 242, 244\nWeidling, C., 243\nweight-balanced trees, 190, 613\nWeighted path lengths, 386\nweightedNegative function, 401\nWeights\ngraph edges, 379–381\nin Huffman algorithm, 455–456\nWein, J., 528, 614\nWeiner, P ., 614\nWeiss, M. A., 49, 289, 349, 613\nWestbrook, J., 378\nWieder, U., 243\nWilliams, J. W . J., 290, 349,\nWinograd, S., 529",
+      "answer": "returning, 25\nvan Emde Boas, P ., 290\nvan Kreveld, M. J., 378\nvan Leeuwen, J., 377, 614\nvan Vleit, A., 530\nVariables\nreference, 27\nstacks for, 110\nVassilevska-Williams, V ., 531\nvector class, 19\u201321, 36,\n87\u201390\nVectors\nfor adjacency lists, 381\nimplementation, 28, 86\u201391\niterators for, 75\u201379\nfor stacks, 104\nin STL, 80\u201386\nVertex class, 381, 398\nVertex cover problem, 444\nVertices\ngraph, 379\u2013380\ntopological sorts for, 379\u2013380\nVishkin, U., 530\nVisibility in classes, 12\nVitanyi, P ., 349\nVitter, J. S., 244, 614\nV\u00f6cking, B., 243\nVoronoi diagrams, 523\nVuillemin, J., 290, 558, 614\nW\nWagner, R. A., 531\nWayne, K., 614\nWeakly connected graphs, 380\nWegman, M. N., 242, 244\nWeidling, C., 243\nweight-balanced trees, 190, 613\nWeighted path lengths, 386\nweightedNegative function, 401\nWeights\ngraph edges, 379\u2013381\nin Huffman algorithm, 455\u2013456\nWein, J., 528, 614\nWeiner, P ., 614\nWeiss, M. A., 49, 289, 349, 613\nWestbrook, J., 378\nWieder, U., 243\nWilliams, J. W . J., 290, 349,\nWinograd, S., 529",
       "source": "Data structures and Algorithm Book",
       "source_type": "Data Structures & Algorithms",
       "difficulty": "medium",
@@ -519,7 +519,7 @@
     {
       "id": "qa_042",
       "question": "Lecture notes on Machine Learning\nfor Computer Science Department\nFirst Edition\n2\nContents\n1 Introduction 9\n1?",
-      "answer": "Lecture notes on Machine Learning\nfor Computer Science Department\nFirst Edition\n2\nContents\n1 Introduction 9\n1.1 What is Machine Learning? . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n1.1.1 Deﬁnition and Core Concepts . . . . . . . . . . . . . . . . . . . . . . 10\n1.1.2 Traditional Programming vs. Machine Learning . . . . . . . . . . . . 10\n1.2 The Evolution of Machine Learning . . . . . . . . . . . . . . . . . . . . . . . 11\n1.2.1 Early Foundations (1950s-1960s) . . . . . . . . . . . . . . . . . . . . 11\n1.2.2 Knowledge-Based Systems (1970s-1980s) . . . . . . . . . . . . . . . . 12\n1.2.3 Statistical Learning Era (1990s) . . . . . . . . . . . . . . . . . . . . . 12\n1.2.4 The Big Data Revolution (2000s-2010s) . . . . . . . . . . . . . . . . . 12\n1.2.5 Modern Era (2010s-Present) . . . . . . . . . . . . . . . . . . . . . . . 12\n1.3 Core Paradigms of Machine Learning . . . . . . . . . . . . . . . . . . . . . . 12",
+      "answer": "Lecture notes on Machine Learning\nfor Computer Science Department\nFirst Edition\n2\nContents\n1 Introduction 9\n1.1 What is Machine Learning? . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n1.1.1 De\ufb01nition and Core Concepts . . . . . . . . . . . . . . . . . . . . . . 10\n1.1.2 Traditional Programming vs. Machine Learning . . . . . . . . . . . . 10\n1.2 The Evolution of Machine Learning . . . . . . . . . . . . . . . . . . . . . . . 11\n1.2.1 Early Foundations (1950s-1960s) . . . . . . . . . . . . . . . . . . . . 11\n1.2.2 Knowledge-Based Systems (1970s-1980s) . . . . . . . . . . . . . . . . 12\n1.2.3 Statistical Learning Era (1990s) . . . . . . . . . . . . . . . . . . . . . 12\n1.2.4 The Big Data Revolution (2000s-2010s) . . . . . . . . . . . . . . . . . 12\n1.2.5 Modern Era (2010s-Present) . . . . . . . . . . . . . . . . . . . . . . . 12\n1.3 Core Paradigms of Machine Learning . . . . . . . . . . . . . . . . . . . . . . 12",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -531,7 +531,7 @@
     {
       "id": "qa_043",
       "question": "1 What is Machine Learning??",
-      "answer": "Lecture notes on Machine Learning\nfor Computer Science Department\nFirst Edition\n2\nContents\n1 Introduction 9\n1.1 What is Machine Learning? . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n1.1.1 Deﬁnition and Core Concepts . . . . . . . . . . . . . . . . . . . . . . 10\n1.1.2 Traditional Programming vs. Machine Learning . . . . . . . . . . . . 10\n1.2 The Evolution of Machine Learning . . . . . . . . . . . . . . . . . . . . . . . 11\n1.2.1 Early Foundations (1950s-1960s) . . . . . . . . . . . . . . . . . . . . 11\n1.2.2 Knowledge-Based Systems (1970s-1980s) . . . . . . . . . . . . . . . . 12\n1.2.3 Statistical Learning Era (1990s) . . . . . . . . . . . . . . . . . . . . . 12\n1.2.4 The Big Data Revolution (2000s-2010s) . . . . . . . . . . . . . . . . . 12\n1.2.5 Modern Era (2010s-Present) . . . . . . . . . . . . . . . . . . . . . . . 12\n1.3 Core Paradigms of Machine Learning . . . . . . . . . . . . . . . . . . . . . . 12",
+      "answer": "Lecture notes on Machine Learning\nfor Computer Science Department\nFirst Edition\n2\nContents\n1 Introduction 9\n1.1 What is Machine Learning? . . . . . . . . . . . . . . . . . . . . . . . . . . . 9\n1.1.1 De\ufb01nition and Core Concepts . . . . . . . . . . . . . . . . . . . . . . 10\n1.1.2 Traditional Programming vs. Machine Learning . . . . . . . . . . . . 10\n1.2 The Evolution of Machine Learning . . . . . . . . . . . . . . . . . . . . . . . 11\n1.2.1 Early Foundations (1950s-1960s) . . . . . . . . . . . . . . . . . . . . 11\n1.2.2 Knowledge-Based Systems (1970s-1980s) . . . . . . . . . . . . . . . . 12\n1.2.3 Statistical Learning Era (1990s) . . . . . . . . . . . . . . . . . . . . . 12\n1.2.4 The Big Data Revolution (2000s-2010s) . . . . . . . . . . . . . . . . . 12\n1.2.5 Modern Era (2010s-Present) . . . . . . . . . . . . . . . . . . . . . . . 12\n1.3 Core Paradigms of Machine Learning . . . . . . . . . . . . . . . . . . . . . . 12",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -543,7 +543,7 @@
     {
       "id": "qa_044",
       "question": "Unlike traditional programming, where explicit instructions dictate every action,\nmachine learning enables computers to learn patterns from data and make intelligent de-\ncisions without being explicitly programmed for every scenario?",
-      "answer": "tion. Unlike traditional programming, where explicit instructions dictate every action,\nmachine learning enables computers to learn patterns from data and make intelligent de-\ncisions without being explicitly programmed for every scenario.\nAt its core, machine learning is about teaching computers to recognize patterns, make pre-\ndictions, and improve their performance through experience. This paradigm shift has rev-\nolutionized countless industries, from healthcare diagnostics to autonomous vehicles, from\nﬁnancial fraud detection to personalized content recommendations. Understanding ma-\nchine learning is no longer optional for technology professionals—it has become essential\nknowledge in our increasingly data-driven world.\nThis chapter provides a comprehensive introduction to machine learning, exploring its fun-\ndamental concepts, evolution, and primary methodologies. We will examine the three main\nparadigms—supervised learning, unsupervised learning, and reinforcement learning—and",
+      "answer": "tion. Unlike traditional programming, where explicit instructions dictate every action,\nmachine learning enables computers to learn patterns from data and make intelligent de-\ncisions without being explicitly programmed for every scenario.\nAt its core, machine learning is about teaching computers to recognize patterns, make pre-\ndictions, and improve their performance through experience. This paradigm shift has rev-\nolutionized countless industries, from healthcare diagnostics to autonomous vehicles, from\n\ufb01nancial fraud detection to personalized content recommendations. Understanding ma-\nchine learning is no longer optional for technology professionals\u2014it has become essential\nknowledge in our increasingly data-driven world.\nThis chapter provides a comprehensive introduction to machine learning, exploring its fun-\ndamental concepts, evolution, and primary methodologies. We will examine the three main\nparadigms\u2014supervised learning, unsupervised learning, and reinforcement learning\u2014and",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -554,8 +554,8 @@
     },
     {
       "id": "qa_045",
-      "question": "19\nClassiﬁcation approach:Predict whether the application will be “approved” or “re-\njected” based on income, credit score, and employment history?",
-      "answer": "19\nClassiﬁcation approach:Predict whether the application will be “approved” or “re-\njected” based on income, credit score, and employment history. The output is a binary\ndecision.\nRegression approach:Predict the speciﬁc credit limit amount (e.g., $5,000 or $25,000)\nthat should be granted based on the same features. The output is a continuous dollar\namount.\nThis example illustrates how the same problem domain can be formulated as either classi-\nﬁcation or regression depending on what information is most valuable for the application.\n1.5 Unsupervised Learning Tasks: Clustering and Dimen-\nsionality Reduction\n1.5.1 Clustering: Discovering Natural Groupings\nClustering\nClustering is the task of grouping a set of objects in such a way that objects in the\nsame group are more similar to each other than to those in other groups.\nClustering is the primary technique in unsupervised learning, focused on discovering nat-",
+      "question": "19\nClassi\ufb01cation approach:Predict whether the application will be \u201capproved\u201d or \u201cre-\njected\u201d based on income, credit score, and employment history?",
+      "answer": "19\nClassi\ufb01cation approach:Predict whether the application will be \u201capproved\u201d or \u201cre-\njected\u201d based on income, credit score, and employment history. The output is a binary\ndecision.\nRegression approach:Predict the speci\ufb01c credit limit amount (e.g., $5,000 or $25,000)\nthat should be granted based on the same features. The output is a continuous dollar\namount.\nThis example illustrates how the same problem domain can be formulated as either classi-\n\ufb01cation or regression depending on what information is most valuable for the application.\n1.5 Unsupervised Learning Tasks: Clustering and Dimen-\nsionality Reduction\n1.5.1 Clustering: Discovering Natural Groupings\nClustering\nClustering is the task of grouping a set of objects in such a way that objects in the\nsame group are more similar to each other than to those in other groups.\nClustering is the primary technique in unsupervised learning, focused on discovering nat-",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -567,7 +567,7 @@
     {
       "id": "qa_046",
       "question": "The output is a binary\ndecision?",
-      "answer": "19\nClassiﬁcation approach:Predict whether the application will be “approved” or “re-\njected” based on income, credit score, and employment history. The output is a binary\ndecision.\nRegression approach:Predict the speciﬁc credit limit amount (e.g., $5,000 or $25,000)\nthat should be granted based on the same features. The output is a continuous dollar\namount.\nThis example illustrates how the same problem domain can be formulated as either classi-\nﬁcation or regression depending on what information is most valuable for the application.\n1.5 Unsupervised Learning Tasks: Clustering and Dimen-\nsionality Reduction\n1.5.1 Clustering: Discovering Natural Groupings\nClustering\nClustering is the task of grouping a set of objects in such a way that objects in the\nsame group are more similar to each other than to those in other groups.\nClustering is the primary technique in unsupervised learning, focused on discovering nat-",
+      "answer": "19\nClassi\ufb01cation approach:Predict whether the application will be \u201capproved\u201d or \u201cre-\njected\u201d based on income, credit score, and employment history. The output is a binary\ndecision.\nRegression approach:Predict the speci\ufb01c credit limit amount (e.g., $5,000 or $25,000)\nthat should be granted based on the same features. The output is a continuous dollar\namount.\nThis example illustrates how the same problem domain can be formulated as either classi-\n\ufb01cation or regression depending on what information is most valuable for the application.\n1.5 Unsupervised Learning Tasks: Clustering and Dimen-\nsionality Reduction\n1.5.1 Clustering: Discovering Natural Groupings\nClustering\nClustering is the task of grouping a set of objects in such a way that objects in the\nsame group are more similar to each other than to those in other groups.\nClustering is the primary technique in unsupervised learning, focused on discovering nat-",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -579,7 +579,7 @@
     {
       "id": "qa_047",
       "question": "1 Problem Formulation\nIn the unsupervised learning setting, we are given a datasetD= {x1,x2,?",
-      "answer": "2.1 Problem Formulation\nIn the unsupervised learning setting, we are given a datasetD= {x1,x2,...,x n}consist-\ning ofn observations, where each observationxi ∈Rd is ad-dimensional feature vector.\nCrucially, unlike supervised learning, there are no corresponding labels or target values.\nThe goal is to learn a function or model that captures the underlying structure of the\ndata. This can take various forms:\n•A clustering functionf : Rd →{1,2,...,k }that assigns each data point to one ofk\nclusters\n•A dimensionality reduction mappingg: Rd →Rm where m≪d\n•A probability distributionp(x) that models the data generation process\n•A representation functionh: Rd →Rl that maps data to a learned feature space\nThe absence of labels means we cannot directly evaluate performance using traditional\nmetrics like accuracy or mean squared error. Instead, evaluation relies on intrinsic mea-\nsures of data organization, domain expertise, or performance on downstream tasks.",
+      "answer": "2.1 Problem Formulation\nIn the unsupervised learning setting, we are given a datasetD= {x1,x2,...,x n}consist-\ning ofn observations, where each observationxi \u2208Rd is ad-dimensional feature vector.\nCrucially, unlike supervised learning, there are no corresponding labels or target values.\nThe goal is to learn a function or model that captures the underlying structure of the\ndata. This can take various forms:\n\u2022A clustering functionf : Rd \u2192{1,2,...,k }that assigns each data point to one ofk\nclusters\n\u2022A dimensionality reduction mappingg: Rd \u2192Rm where m\u226ad\n\u2022A probability distributionp(x) that models the data generation process\n\u2022A representation functionh: Rd \u2192Rl that maps data to a learned feature space\nThe absence of labels means we cannot directly evaluate performance using traditional\nmetrics like accuracy or mean squared error. Instead, evaluation relies on intrinsic mea-\nsures of data organization, domain expertise, or performance on downstream tasks.",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -591,7 +591,7 @@
     {
       "id": "qa_048",
       "question": "mization decomposes intom independent problems?",
-      "answer": "mization decomposes intom independent problems. The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj′\n∥xi −µj′∥2, (2.28)\nand 0 otherwise.\nStage 2 Keep ther ﬁxed and determineµ. Since ther’s are ﬁxed,J is an quadratic\nfunction ofµ. It can be minimized by setting the derivative with respect toµj to be 0:\nm∑\ni=1\nrij(xi −µj) = 0 for allj. (2.29)\nRearranging obtains\nµj =\n∑\nirijxi∑\nirij\n. (2.30)\nSince ∑\nirij counts the number of points assigned to clusterj, we are essentially settingµj\nto be the sample mean of the points assigned to clusterj.\nThe algorithm stops when the cluster assignments do not change signiﬁcantly. Detailed\npseudo-code can be found in Algorithm 1.\nTwo issues with K-Means are worth noting. First, it is sensitive to the choice of the initial\ncluster centersµ. A number of practical heuristics have been developed. For instance, one\ncould randomly choosek points from the given dataset as cluster centers. Other methods",
+      "answer": "mization decomposes intom independent problems. The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj\u2032\n\u2225xi \u2212\u00b5j\u2032\u22252, (2.28)\nand 0 otherwise.\nStage 2 Keep ther \ufb01xed and determine\u00b5. Since ther\u2019s are \ufb01xed,J is an quadratic\nfunction of\u00b5. It can be minimized by setting the derivative with respect to\u00b5j to be 0:\nm\u2211\ni=1\nrij(xi \u2212\u00b5j) = 0 for allj. (2.29)\nRearranging obtains\n\u00b5j =\n\u2211\nirijxi\u2211\nirij\n. (2.30)\nSince \u2211\nirij counts the number of points assigned to clusterj, we are essentially setting\u00b5j\nto be the sample mean of the points assigned to clusterj.\nThe algorithm stops when the cluster assignments do not change signi\ufb01cantly. Detailed\npseudo-code can be found in Algorithm 1.\nTwo issues with K-Means are worth noting. First, it is sensitive to the choice of the initial\ncluster centers\u00b5. A number of practical heuristics have been developed. For instance, one\ncould randomly choosek points from the given dataset as cluster centers. Other methods",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -602,8 +602,8 @@
     },
     {
       "id": "qa_049",
-      "question": "The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj′\n∥xi −µj′∥2, (2?",
-      "answer": "mization decomposes intom independent problems. The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj′\n∥xi −µj′∥2, (2.28)\nand 0 otherwise.\nStage 2 Keep ther ﬁxed and determineµ. Since ther’s are ﬁxed,J is an quadratic\nfunction ofµ. It can be minimized by setting the derivative with respect toµj to be 0:\nm∑\ni=1\nrij(xi −µj) = 0 for allj. (2.29)\nRearranging obtains\nµj =\n∑\nirijxi∑\nirij\n. (2.30)\nSince ∑\nirij counts the number of points assigned to clusterj, we are essentially settingµj\nto be the sample mean of the points assigned to clusterj.\nThe algorithm stops when the cluster assignments do not change signiﬁcantly. Detailed\npseudo-code can be found in Algorithm 1.\nTwo issues with K-Means are worth noting. First, it is sensitive to the choice of the initial\ncluster centersµ. A number of practical heuristics have been developed. For instance, one\ncould randomly choosek points from the given dataset as cluster centers. Other methods",
+      "question": "The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj\u2032\n\u2225xi \u2212\u00b5j\u2032\u22252, (2?",
+      "answer": "mization decomposes intom independent problems. The solution for thei-th data pointxi\ncan be found by setting:\nrij = 1 if j = arg min\nj\u2032\n\u2225xi \u2212\u00b5j\u2032\u22252, (2.28)\nand 0 otherwise.\nStage 2 Keep ther \ufb01xed and determine\u00b5. Since ther\u2019s are \ufb01xed,J is an quadratic\nfunction of\u00b5. It can be minimized by setting the derivative with respect to\u00b5j to be 0:\nm\u2211\ni=1\nrij(xi \u2212\u00b5j) = 0 for allj. (2.29)\nRearranging obtains\n\u00b5j =\n\u2211\nirijxi\u2211\nirij\n. (2.30)\nSince \u2211\nirij counts the number of points assigned to clusterj, we are essentially setting\u00b5j\nto be the sample mean of the points assigned to clusterj.\nThe algorithm stops when the cluster assignments do not change signi\ufb01cantly. Detailed\npseudo-code can be found in Algorithm 1.\nTwo issues with K-Means are worth noting. First, it is sensitive to the choice of the initial\ncluster centers\u00b5. A number of practical heuristics have been developed. For instance, one\ncould randomly choosek points from the given dataset as cluster centers. Other methods",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -614,8 +614,8 @@
     },
     {
       "id": "qa_050",
-      "question": "zj = wT\nj (x −¯x) =\nd∑\nk=1\nwjk(xk −¯xk) (2?",
-      "answer": "zj = wT\nj (x −¯x) =\nd∑\nk=1\nwjk(xk −¯xk) (2.68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\nˆx = ¯x + Wmz = ¯x +\nm∑\nj=1\nzjwj (2.69)\nThe reconstruction error for a single point is:\n∥x −ˆx∥2 =\nd∑\nj=m+1\nz2\nj =\nd∑\nj=m+1\n(wT\nj (x −¯x))2 (2.70)\nThe total reconstruction error across all data points is:\nEm =\nn∑\ni=1\nd∑\nj=m+1\n(wT\nj ˜xi)2 = (n−1)\nd∑\nj=m+1\nλj (2.71)\n2.8.5 Singular Value Decomposition (SVD) Approach\nAn alternative and often more numerically stable method for computing PCA uses Singu-\nlar Value Decomposition (SVD) directly on the data matrix without explicitly forming the\ncovariance matrix.\nThe SVD of the centered data matrix˜X ∈Rn×d is:\n53\n˜X = USVT (2.72)\nwhere:\n•U ∈Rn×n is an orthogonal matrix of left singular vectors\n•S ∈ Rn×d is a rectangular diagonal matrix of singular valuess1 ≥ s2 ≥ ··· ≥\nsmin(n,d) ≥0\n•V ∈Rd×d is an orthogonal matrix of right singular vectors",
+      "question": "zj = wT\nj (x \u2212\u00afx) =\nd\u2211\nk=1\nwjk(xk \u2212\u00afxk) (2?",
+      "answer": "zj = wT\nj (x \u2212\u00afx) =\nd\u2211\nk=1\nwjk(xk \u2212\u00afxk) (2.68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\n\u02c6x = \u00afx + Wmz = \u00afx +\nm\u2211\nj=1\nzjwj (2.69)\nThe reconstruction error for a single point is:\n\u2225x \u2212\u02c6x\u22252 =\nd\u2211\nj=m+1\nz2\nj =\nd\u2211\nj=m+1\n(wT\nj (x \u2212\u00afx))2 (2.70)\nThe total reconstruction error across all data points is:\nEm =\nn\u2211\ni=1\nd\u2211\nj=m+1\n(wT\nj \u02dcxi)2 = (n\u22121)\nd\u2211\nj=m+1\n\u03bbj (2.71)\n2.8.5 Singular Value Decomposition (SVD) Approach\nAn alternative and often more numerically stable method for computing PCA uses Singu-\nlar Value Decomposition (SVD) directly on the data matrix without explicitly forming the\ncovariance matrix.\nThe SVD of the centered data matrix\u02dcX \u2208Rn\u00d7d is:\n53\n\u02dcX = USVT (2.72)\nwhere:\n\u2022U \u2208Rn\u00d7n is an orthogonal matrix of left singular vectors\n\u2022S \u2208 Rn\u00d7d is a rectangular diagonal matrix of singular valuess1 \u2265 s2 \u2265 \u00b7\u00b7\u00b7 \u2265\nsmin(n,d) \u22650\n\u2022V \u2208Rd\u00d7d is an orthogonal matrix of right singular vectors",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -626,8 +626,8 @@
     },
     {
       "id": "qa_051",
-      "question": "68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\nˆx = ¯x + Wmz = ¯x +\nm∑\nj=1\nzjwj (2?",
-      "answer": "zj = wT\nj (x −¯x) =\nd∑\nk=1\nwjk(xk −¯xk) (2.68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\nˆx = ¯x + Wmz = ¯x +\nm∑\nj=1\nzjwj (2.69)\nThe reconstruction error for a single point is:\n∥x −ˆx∥2 =\nd∑\nj=m+1\nz2\nj =\nd∑\nj=m+1\n(wT\nj (x −¯x))2 (2.70)\nThe total reconstruction error across all data points is:\nEm =\nn∑\ni=1\nd∑\nj=m+1\n(wT\nj ˜xi)2 = (n−1)\nd∑\nj=m+1\nλj (2.71)\n2.8.5 Singular Value Decomposition (SVD) Approach\nAn alternative and often more numerically stable method for computing PCA uses Singu-\nlar Value Decomposition (SVD) directly on the data matrix without explicitly forming the\ncovariance matrix.\nThe SVD of the centered data matrix˜X ∈Rn×d is:\n53\n˜X = USVT (2.72)\nwhere:\n•U ∈Rn×n is an orthogonal matrix of left singular vectors\n•S ∈ Rn×d is a rectangular diagonal matrix of singular valuess1 ≥ s2 ≥ ··· ≥\nsmin(n,d) ≥0\n•V ∈Rd×d is an orthogonal matrix of right singular vectors",
+      "question": "68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\n\u02c6x = \u00afx + Wmz = \u00afx +\nm\u2211\nj=1\nzjwj (2?",
+      "answer": "zj = wT\nj (x \u2212\u00afx) =\nd\u2211\nk=1\nwjk(xk \u2212\u00afxk) (2.68)\nReconstruction\nWe can reconstruct an approximation of the original data from the reduced representation:\n\u02c6x = \u00afx + Wmz = \u00afx +\nm\u2211\nj=1\nzjwj (2.69)\nThe reconstruction error for a single point is:\n\u2225x \u2212\u02c6x\u22252 =\nd\u2211\nj=m+1\nz2\nj =\nd\u2211\nj=m+1\n(wT\nj (x \u2212\u00afx))2 (2.70)\nThe total reconstruction error across all data points is:\nEm =\nn\u2211\ni=1\nd\u2211\nj=m+1\n(wT\nj \u02dcxi)2 = (n\u22121)\nd\u2211\nj=m+1\n\u03bbj (2.71)\n2.8.5 Singular Value Decomposition (SVD) Approach\nAn alternative and often more numerically stable method for computing PCA uses Singu-\nlar Value Decomposition (SVD) directly on the data matrix without explicitly forming the\ncovariance matrix.\nThe SVD of the centered data matrix\u02dcX \u2208Rn\u00d7d is:\n53\n\u02dcX = USVT (2.72)\nwhere:\n\u2022U \u2208Rn\u00d7n is an orthogonal matrix of left singular vectors\n\u2022S \u2208 Rn\u00d7d is a rectangular diagonal matrix of singular valuess1 \u2265 s2 \u2265 \u00b7\u00b7\u00b7 \u2265\nsmin(n,d) \u22650\n\u2022V \u2208Rd\u00d7d is an orthogonal matrix of right singular vectors",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -639,7 +639,7 @@
     {
       "id": "qa_052",
       "question": "The transition from equation (3?",
-      "answer": "The transition from equation (3.4) to (3.5) applies the chain rule of probability, a gen-\neral property that holds universally. The key step is from (3.5) to (3.6), where we ap-\nply our conditional independence assumption: givenY, X1 does not depend onX2, so\nP(X1|X2,Y ) = P(X1|Y).\nGeneralizing ton features under the conditional independence assumption:\nP(X1,...,X n|Y) =\nn∏\ni=1\nP(Xi|Y) (3.7)\nThis factorization achieves our goal of tractability. For boolean variablesY and Xi, we\nneed only2n parameters to deﬁneP(Xi = xik|Y = yj) across all necessary combinations\nof i, j, andk. This represents an exponential reduction from the2(2n −1) parameters\nrequired without independence assumptions.\n3.2.4 Classiﬁcation Rule and Algorithm\nTo classify a new instanceX = x, we seek the classy that maximizes the posterior proba-\nbility P(Y = y|X = x). Using Bayes rule and our independence assumption:\n66\nYNB = arg max\ny∈{0,1}\nP(Y = y|X = x) (3.8)\n= arg max\ny∈{0,1}\nP(X = x|Y = y)P(Y = y)\nP(X = x) (3.9)",
+      "answer": "The transition from equation (3.4) to (3.5) applies the chain rule of probability, a gen-\neral property that holds universally. The key step is from (3.5) to (3.6), where we ap-\nply our conditional independence assumption: givenY, X1 does not depend onX2, so\nP(X1|X2,Y ) = P(X1|Y).\nGeneralizing ton features under the conditional independence assumption:\nP(X1,...,X n|Y) =\nn\u220f\ni=1\nP(Xi|Y) (3.7)\nThis factorization achieves our goal of tractability. For boolean variablesY and Xi, we\nneed only2n parameters to de\ufb01neP(Xi = xik|Y = yj) across all necessary combinations\nof i, j, andk. This represents an exponential reduction from the2(2n \u22121) parameters\nrequired without independence assumptions.\n3.2.4 Classi\ufb01cation Rule and Algorithm\nTo classify a new instanceX = x, we seek the classy that maximizes the posterior proba-\nbility P(Y = y|X = x). Using Bayes rule and our independence assumption:\n66\nYNB = arg max\ny\u2208{0,1}\nP(Y = y|X = x) (3.8)\n= arg max\ny\u2208{0,1}\nP(X = x|Y = y)P(Y = y)\nP(X = x) (3.9)",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -650,8 +650,8 @@
     },
     {
       "id": "qa_053",
-      "question": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an eﬃcient method for ﬁnding optimal model parameters?",
-      "answer": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an eﬃcient method for ﬁnding optimal model parameters.\nThe beauty of linear regression lies in its interpretability and mathematical tractability.\nDespite its simplicity, it serves as the foundation for many advanced machine learning al-\ngorithms and provides crucial insights into the principles of supervised learning. The linear\nrelationship assumption, while restrictive, is often a reasonable approximation for many\nreal-world phenomena, especially when the goal is to understand the average behavior of a\nsystem rather than capture every nuance.\nUnderstanding how to optimize linear regression models using gradient descent is essential\nfor anyone working in data science, machine learning, or statistical modeling. Gradient\ndescent is not only applicable to linear regression but forms the backbone of training deep",
+      "question": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an e\ufb03cient method for \ufb01nding optimal model parameters?",
+      "answer": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an e\ufb03cient method for \ufb01nding optimal model parameters.\nThe beauty of linear regression lies in its interpretability and mathematical tractability.\nDespite its simplicity, it serves as the foundation for many advanced machine learning al-\ngorithms and provides crucial insights into the principles of supervised learning. The linear\nrelationship assumption, while restrictive, is often a reasonable approximation for many\nreal-world phenomena, especially when the goal is to understand the average behavior of a\nsystem rather than capture every nuance.\nUnderstanding how to optimize linear regression models using gradient descent is essential\nfor anyone working in data science, machine learning, or statistical modeling. Gradient\ndescent is not only applicable to linear regression but forms the backbone of training deep",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -663,7 +663,7 @@
     {
       "id": "qa_054",
       "question": "The beauty of linear regression lies in its interpretability and mathematical tractability?",
-      "answer": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an eﬃcient method for ﬁnding optimal model parameters.\nThe beauty of linear regression lies in its interpretability and mathematical tractability.\nDespite its simplicity, it serves as the foundation for many advanced machine learning al-\ngorithms and provides crucial insights into the principles of supervised learning. The linear\nrelationship assumption, while restrictive, is often a reasonable approximation for many\nreal-world phenomena, especially when the goal is to understand the average behavior of a\nsystem rather than capture every nuance.\nUnderstanding how to optimize linear regression models using gradient descent is essential\nfor anyone working in data science, machine learning, or statistical modeling. Gradient\ndescent is not only applicable to linear regression but forms the backbone of training deep",
+      "answer": "gression from both statistical and optimization perspectives, with particular emphasis on\ngradient descent as an e\ufb03cient method for \ufb01nding optimal model parameters.\nThe beauty of linear regression lies in its interpretability and mathematical tractability.\nDespite its simplicity, it serves as the foundation for many advanced machine learning al-\ngorithms and provides crucial insights into the principles of supervised learning. The linear\nrelationship assumption, while restrictive, is often a reasonable approximation for many\nreal-world phenomena, especially when the goal is to understand the average behavior of a\nsystem rather than capture every nuance.\nUnderstanding how to optimize linear regression models using gradient descent is essential\nfor anyone working in data science, machine learning, or statistical modeling. Gradient\ndescent is not only applicable to linear regression but forms the backbone of training deep",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -675,7 +675,7 @@
     {
       "id": "qa_055",
       "question": "5 Detailed Worked Example with Three Iterations\nLet us work through a complete example to illustrate the gradient descent process in de-\ntail?",
-      "answer": "ture scaling)\n4.5 Detailed Worked Example with Three Iterations\nLet us work through a complete example to illustrate the gradient descent process in de-\ntail. We will perform three full iterations to see how the parameters evolve and the cost\nfunction decreases.\n88\n4.5.1 The Dataset\nConsider the following dataset with 10 observations representing the relationship between\nan independent variablex and a dependent variabley:\nx y\n5 11\n3 7\n4 9\n2 5\n6 13\n1 3\n8 17\n7 9\n9 19\n10 21\nTable 4.1: Training dataset for linear regression example\nLooking at this data, we can observe thaty generally increases asx increases, suggesting\na positive linear relationship. Our goal is to ﬁnd the best-ﬁtting liney = θ0 + θ1x using\ngradient descent.\n4.5.2 Initial Setup\nHyperparameters:\n•Initial parameters: θ(0)\n0 = 1 and θ(0)\n1 = 0.5\n•Learning rate: α= 0.01 (we’ll use a small value for stability)\n•Number of observations:n= 10\n4.5.3 Iteration 1\nStep 1.1: Compute Predictions and Errors",
+      "answer": "ture scaling)\n4.5 Detailed Worked Example with Three Iterations\nLet us work through a complete example to illustrate the gradient descent process in de-\ntail. We will perform three full iterations to see how the parameters evolve and the cost\nfunction decreases.\n88\n4.5.1 The Dataset\nConsider the following dataset with 10 observations representing the relationship between\nan independent variablex and a dependent variabley:\nx y\n5 11\n3 7\n4 9\n2 5\n6 13\n1 3\n8 17\n7 9\n9 19\n10 21\nTable 4.1: Training dataset for linear regression example\nLooking at this data, we can observe thaty generally increases asx increases, suggesting\na positive linear relationship. Our goal is to \ufb01nd the best-\ufb01tting liney = \u03b80 + \u03b81x using\ngradient descent.\n4.5.2 Initial Setup\nHyperparameters:\n\u2022Initial parameters: \u03b8(0)\n0 = 1 and \u03b8(0)\n1 = 0.5\n\u2022Learning rate: \u03b1= 0.01 (we\u2019ll use a small value for stability)\n\u2022Number of observations:n= 10\n4.5.3 Iteration 1\nStep 1.1: Compute Predictions and Errors",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -686,8 +686,8 @@
     },
     {
       "id": "qa_056",
-      "question": "•But it fails completely at the actual task (detecting fraud)\n5?",
-      "answer": "•But it fails completely at the actual task (detecting fraud)\n5.5.2 Evaluation Strategies\n1. Use appropriate metrics:\n•Avoid accuracy; prefer precision, recall, F1-score\n•Use ROC-AUC or Precision-Recall AUC\n•Consider Matthews Correlation Coeﬃcient\n2. Stratiﬁed sampling:\n•Use stratiﬁed k-fold cross-validation\n•Ensures each fold maintains class distribution\n3. Class-speciﬁc metrics:\n•Report precision and recall for each class\n•Use confusion matrix to identify speciﬁc weaknesses\n5.5.3 Data-Level Solutions\nRandom Oversampling\nRandomly duplicate minority class examples:\nPros: Simple, no information loss\nCons: Risk of overﬁtting, no new information added\n119\nOriginal Dataset\nRatio 10:2\nAfter Oversampling\nRatio 10:10\nMajority\nMinority\nFigure 5.10: Random oversampling of minority class\nRandom Undersampling\nRandomly remove majority class examples:\nPros: Reduces training time, balanced dataset\nCons: Loss of potentially useful information\nSMOTE (Synthetic Minority Oversampling Technique)",
+      "question": "\u2022But it fails completely at the actual task (detecting fraud)\n5?",
+      "answer": "\u2022But it fails completely at the actual task (detecting fraud)\n5.5.2 Evaluation Strategies\n1. Use appropriate metrics:\n\u2022Avoid accuracy; prefer precision, recall, F1-score\n\u2022Use ROC-AUC or Precision-Recall AUC\n\u2022Consider Matthews Correlation Coe\ufb03cient\n2. Strati\ufb01ed sampling:\n\u2022Use strati\ufb01ed k-fold cross-validation\n\u2022Ensures each fold maintains class distribution\n3. Class-speci\ufb01c metrics:\n\u2022Report precision and recall for each class\n\u2022Use confusion matrix to identify speci\ufb01c weaknesses\n5.5.3 Data-Level Solutions\nRandom Oversampling\nRandomly duplicate minority class examples:\nPros: Simple, no information loss\nCons: Risk of over\ufb01tting, no new information added\n119\nOriginal Dataset\nRatio 10:2\nAfter Oversampling\nRatio 10:10\nMajority\nMinority\nFigure 5.10: Random oversampling of minority class\nRandom Undersampling\nRandomly remove majority class examples:\nPros: Reduces training time, balanced dataset\nCons: Loss of potentially useful information\nSMOTE (Synthetic Minority Oversampling Technique)",
       "source": "ML-Book-FCI",
       "source_type": "Machine Learning",
       "difficulty": "medium",
@@ -699,7 +699,7 @@
     {
       "id": "qa_057",
       "question": "Robert Lafore\n800 East 96th St?",
-      "answer": "Robert Lafore\n800 East 96th St.,Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright  2002 by Sams Publishing\nAll rights reserved. No part of this book shall be reproduced, stored in a\nretrieval system, or transmitted by any means, electronic, mechanical, photo-\ncopying, recording, or otherwise, without written permission from the pub-\nlisher. No patent liability is assumed with respect to the use of the information\ncontained herein. Although every precaution has been taken in the preparation\nof this book, the publisher and author assume no responsibility for errors or\nomissions. Nor is any liability assumed for damages resulting from the use of\nthe information contained herein.\nInternational Standard Book Number: 0-672-32308-7\nLibrary of Congress Catalog Card Number: 2001094813\nPrinted in the United States of America\nFirst Printing: December 2001\n04 03 02 01 4321\nTrademarks",
+      "answer": "Robert Lafore\n800 East 96th St.,Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright \uf8e9 2002 by Sams Publishing\nAll rights reserved. No part of this book shall be reproduced, stored in a\nretrieval system, or transmitted by any means, electronic, mechanical, photo-\ncopying, recording, or otherwise, without written permission from the pub-\nlisher. No patent liability is assumed with respect to the use of the information\ncontained herein. Although every precaution has been taken in the preparation\nof this book, the publisher and author assume no responsibility for errors or\nomissions. Nor is any liability assumed for damages resulting from the use of\nthe information contained herein.\nInternational Standard Book Number: 0-672-32308-7\nLibrary of Congress Catalog Card Number: 2001094813\nPrinted in the United States of America\nFirst Printing: December 2001\n04 03 02 01 4321\nTrademarks",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -710,8 +710,8 @@
     },
     {
       "id": "qa_058",
-      "question": ",Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright  2002 by Sams Publishing\nAll rights reserved?",
-      "answer": "Robert Lafore\n800 East 96th St.,Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright  2002 by Sams Publishing\nAll rights reserved. No part of this book shall be reproduced, stored in a\nretrieval system, or transmitted by any means, electronic, mechanical, photo-\ncopying, recording, or otherwise, without written permission from the pub-\nlisher. No patent liability is assumed with respect to the use of the information\ncontained herein. Although every precaution has been taken in the preparation\nof this book, the publisher and author assume no responsibility for errors or\nomissions. Nor is any liability assumed for damages resulting from the use of\nthe information contained herein.\nInternational Standard Book Number: 0-672-32308-7\nLibrary of Congress Catalog Card Number: 2001094813\nPrinted in the United States of America\nFirst Printing: December 2001\n04 03 02 01 4321\nTrademarks",
+      "question": ",Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright \uf8e9 2002 by Sams Publishing\nAll rights reserved?",
+      "answer": "Robert Lafore\n800 East 96th St.,Indianapolis,Indiana 4624 0 USA\nObject-Oriented Programming in C++,\nFourth Edition\n00 3087 FM  11/29/01  2:15 PM  Page i\nCopyright \uf8e9 2002 by Sams Publishing\nAll rights reserved. No part of this book shall be reproduced, stored in a\nretrieval system, or transmitted by any means, electronic, mechanical, photo-\ncopying, recording, or otherwise, without written permission from the pub-\nlisher. No patent liability is assumed with respect to the use of the information\ncontained herein. Although every precaution has been taken in the preparation\nof this book, the publisher and author assume no responsibility for errors or\nomissions. Nor is any liability assumed for damages resulting from the use of\nthe information contained herein.\nInternational Standard Book Number: 0-672-32308-7\nLibrary of Congress Catalog Card Number: 2001094813\nPrinted in the United States of America\nFirst Printing: December 2001\n04 03 02 01 4321\nTrademarks",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -723,7 +723,7 @@
     {
       "id": "qa_059",
       "question": "This result is then divided by 10 and assigned to the normal int variable intVar?",
-      "answer": "the result fits. This result is then divided by 10 and assigned to the normal int variable intVar.\nHere’s the program’s output:\nintVar = 211509811\nintVar = 1500000000\nThe first answer, without the cast, is wrong; but in the second answer, the cast produces the\ncorrect result.\nBefore Standard C++, casts were handled using quite a different format. Instead of\naCharVar = static_cast<char>(anIntVar);\nyou could say\naCharVar = (char)anIntVar;\nor alternatively\naCharVar = char(anIntVar);\nOne problem with these approaches is that they are hard to see; the syntax blends into the rest\nof the listing. They are also hard to search for using a Find operation with your source code\neditor. The new format solves this problem:\nstatic_cast is easy to see and easy to search for.\nThese old casts still work, but their use is discouraged (or deprecated,t o use the technical\nterm).\nCasts should be used only when absolutely necessary. They are a controlled way of evading",
+      "answer": "the result fits. This result is then divided by 10 and assigned to the normal int variable intVar.\nHere\u2019s the program\u2019s output:\nintVar = 211509811\nintVar = 1500000000\nThe first answer, without the cast, is wrong; but in the second answer, the cast produces the\ncorrect result.\nBefore Standard C++, casts were handled using quite a different format. Instead of\naCharVar = static_cast<char>(anIntVar);\nyou could say\naCharVar = (char)anIntVar;\nor alternatively\naCharVar = char(anIntVar);\nOne problem with these approaches is that they are hard to see; the syntax blends into the rest\nof the listing. They are also hard to search for using a Find operation with your source code\neditor. The new format solves this problem:\nstatic_cast is easy to see and easy to search for.\nThese old casts still work, but their use is discouraged (or deprecated,t o use the technical\nterm).\nCasts should be used only when absolutely necessary. They are a controlled way of evading",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -735,7 +735,7 @@
     {
       "id": "qa_060",
       "question": "listing for CIRCSTRC:\n// circstrc?",
-      "answer": "listing for CIRCSTRC:\n// circstrc.cpp\n// circles as graphics objects\n#include “msoftcon.h”         // for graphics functions\n////////////////////////////////////////////////////////////////\nstruct circle                 //graphics circle\n{\nint xCo, yCo;              //coordinates of center\nint radius;\ncolor fillcolor;           //color\nfstyle fillstyle;          //fill pattern\n};\n////////////////////////////////////////////////////////////////\nvoid circ_draw(circle c)\n{\nset_color(c.fillcolor);               //set color\nset_fill_style(c.fillstyle);          //set fill pattern\ndraw_circle(c.xCo, c.yCo, c.radius);  //draw solid circle\n}\n//--------------------------------------------------------------\nint main()\n{\ninit_graphics();           //initialize graphics system\n//create circles\nChapter 5174\n06 3087 CH05  11/29/01  2:23 PM  Page 174\ncircle c1 = { 15, 7, 5, cBLUE, X_FILL };\ncircle c2 = { 41, 12, 7, cRED, O_FILL };\ncircle c3 = { 65, 18, 4, cGREEN, MEDIUM_FILL };",
+      "answer": "listing for CIRCSTRC:\n// circstrc.cpp\n// circles as graphics objects\n#include \u201cmsoftcon.h\u201d         // for graphics functions\n////////////////////////////////////////////////////////////////\nstruct circle                 //graphics circle\n{\nint xCo, yCo;              //coordinates of center\nint radius;\ncolor fillcolor;           //color\nfstyle fillstyle;          //fill pattern\n};\n////////////////////////////////////////////////////////////////\nvoid circ_draw(circle c)\n{\nset_color(c.fillcolor);               //set color\nset_fill_style(c.fillstyle);          //set fill pattern\ndraw_circle(c.xCo, c.yCo, c.radius);  //draw solid circle\n}\n//--------------------------------------------------------------\nint main()\n{\ninit_graphics();           //initialize graphics system\n//create circles\nChapter 5174\n06 3087 CH05  11/29/01  2:23 PM  Page 174\ncircle c1 = { 15, 7, 5, cBLUE, X_FILL };\ncircle c2 = { 41, 12, 7, cRED, O_FILL };\ncircle c3 = { 65, 18, 4, cGREEN, MEDIUM_FILL };",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -746,8 +746,8 @@
     },
     {
       "id": "qa_061",
-      "question": "cpp\n// circles as graphics objects\n#include “msoftcon?",
-      "answer": "listing for CIRCSTRC:\n// circstrc.cpp\n// circles as graphics objects\n#include “msoftcon.h”         // for graphics functions\n////////////////////////////////////////////////////////////////\nstruct circle                 //graphics circle\n{\nint xCo, yCo;              //coordinates of center\nint radius;\ncolor fillcolor;           //color\nfstyle fillstyle;          //fill pattern\n};\n////////////////////////////////////////////////////////////////\nvoid circ_draw(circle c)\n{\nset_color(c.fillcolor);               //set color\nset_fill_style(c.fillstyle);          //set fill pattern\ndraw_circle(c.xCo, c.yCo, c.radius);  //draw solid circle\n}\n//--------------------------------------------------------------\nint main()\n{\ninit_graphics();           //initialize graphics system\n//create circles\nChapter 5174\n06 3087 CH05  11/29/01  2:23 PM  Page 174\ncircle c1 = { 15, 7, 5, cBLUE, X_FILL };\ncircle c2 = { 41, 12, 7, cRED, O_FILL };\ncircle c3 = { 65, 18, 4, cGREEN, MEDIUM_FILL };",
+      "question": "cpp\n// circles as graphics objects\n#include \u201cmsoftcon?",
+      "answer": "listing for CIRCSTRC:\n// circstrc.cpp\n// circles as graphics objects\n#include \u201cmsoftcon.h\u201d         // for graphics functions\n////////////////////////////////////////////////////////////////\nstruct circle                 //graphics circle\n{\nint xCo, yCo;              //coordinates of center\nint radius;\ncolor fillcolor;           //color\nfstyle fillstyle;          //fill pattern\n};\n////////////////////////////////////////////////////////////////\nvoid circ_draw(circle c)\n{\nset_color(c.fillcolor);               //set color\nset_fill_style(c.fillstyle);          //set fill pattern\ndraw_circle(c.xCo, c.yCo, c.radius);  //draw solid circle\n}\n//--------------------------------------------------------------\nint main()\n{\ninit_graphics();           //initialize graphics system\n//create circles\nChapter 5174\n06 3087 CH05  11/29/01  2:23 PM  Page 174\ncircle c1 = { 15, 7, 5, cBLUE, X_FILL };\ncircle c2 = { 41, 12, 7, cRED, O_FILL };\ncircle c3 = { 65, 18, 4, cGREEN, MEDIUM_FILL };",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -758,8 +758,8 @@
     },
     {
       "id": "qa_062",
-      "question": "clear—the flags at some later point in your program, you can use the resetiosflags\nmanipulator?",
-      "answer": "clear—the flags at some later point in your program, you can use the resetiosflags\nmanipulator.) The fixed flag prevents numbers from being printed in exponential format, such\nas 3.45e3. The showpoint flag specifies that there will always be a decimal point, even if the\nnumber has no fractional part: 123.00 instead of 123.\nTo set the precision to two digits to the right of the decimal place, use the\nsetprecision\nmanipulator, with the number of digits as an argument. We’ve already seen how to set the field\nwidth by using the setw manipulator. Once all these manipulators have been sent to cout, you\ncan send the number itself; it will be displayed in the desired format.\nWe’ll talk more about the ios formatting flags in Chapter 12, “Streams and Files.”\nInitializing Multidimensional Arrays\nAs you might expect, you can initialize multidimensional arrays. The only prerequisite is a\nwillingness to type a lot of braces and commas. Here’s a variation of the SALEMON program",
+      "question": "clear\u2014the flags at some later point in your program, you can use the resetiosflags\nmanipulator?",
+      "answer": "clear\u2014the flags at some later point in your program, you can use the resetiosflags\nmanipulator.) The fixed flag prevents numbers from being printed in exponential format, such\nas 3.45e3. The showpoint flag specifies that there will always be a decimal point, even if the\nnumber has no fractional part: 123.00 instead of 123.\nTo set the precision to two digits to the right of the decimal place, use the\nsetprecision\nmanipulator, with the number of digits as an argument. We\u2019ve already seen how to set the field\nwidth by using the setw manipulator. Once all these manipulators have been sent to cout, you\ncan send the number itself; it will be displayed in the desired format.\nWe\u2019ll talk more about the ios formatting flags in Chapter 12, \u201cStreams and Files.\u201d\nInitializing Multidimensional Arrays\nAs you might expect, you can initialize multidimensional arrays. The only prerequisite is a\nwillingness to type a lot of braces and commas. Here\u2019s a variation of the SALEMON program",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -771,7 +771,7 @@
     {
       "id": "qa_063",
       "question": ") The fixed flag prevents numbers from being printed in exponential format, such\nas 3?",
-      "answer": "clear—the flags at some later point in your program, you can use the resetiosflags\nmanipulator.) The fixed flag prevents numbers from being printed in exponential format, such\nas 3.45e3. The showpoint flag specifies that there will always be a decimal point, even if the\nnumber has no fractional part: 123.00 instead of 123.\nTo set the precision to two digits to the right of the decimal place, use the\nsetprecision\nmanipulator, with the number of digits as an argument. We’ve already seen how to set the field\nwidth by using the setw manipulator. Once all these manipulators have been sent to cout, you\ncan send the number itself; it will be displayed in the desired format.\nWe’ll talk more about the ios formatting flags in Chapter 12, “Streams and Files.”\nInitializing Multidimensional Arrays\nAs you might expect, you can initialize multidimensional arrays. The only prerequisite is a\nwillingness to type a lot of braces and commas. Here’s a variation of the SALEMON program",
+      "answer": "clear\u2014the flags at some later point in your program, you can use the resetiosflags\nmanipulator.) The fixed flag prevents numbers from being printed in exponential format, such\nas 3.45e3. The showpoint flag specifies that there will always be a decimal point, even if the\nnumber has no fractional part: 123.00 instead of 123.\nTo set the precision to two digits to the right of the decimal place, use the\nsetprecision\nmanipulator, with the number of digits as an argument. We\u2019ve already seen how to set the field\nwidth by using the setw manipulator. Once all these manipulators have been sent to cout, you\ncan send the number itself; it will be displayed in the desired format.\nWe\u2019ll talk more about the ios formatting flags in Chapter 12, \u201cStreams and Files.\u201d\nInitializing Multidimensional Arrays\nAs you might expect, you can initialize multidimensional arrays. The only prerequisite is a\nwillingness to type a lot of braces and commas. Here\u2019s a variation of the SALEMON program",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -783,7 +783,7 @@
     {
       "id": "qa_064",
       "question": "the count when they come in and decrement it when they go out, so that the count represents\nthe number of people in the bank at any moment?",
-      "answer": "the count when they come in and decrement it when they go out, so that the count represents\nthe number of people in the bank at any moment.\nWe could insert a decrement routine directly into the source code of the Counterclass. However,\nthere are several reasons that we might not want to do this. First, the Counter class works very\nwell and has undergone many hours of testing and debugging. (Of course that’s an exaggeration\nin this case, but it would be true in a larger and more complex class.) If we start fooling around\nwith the source code for Counter,t he testing process will need to be carried out again, and of\ncourse we may foul something up and spend hours debugging code that worked fine before we\nmodified it.\nIn some situations there might be another reason for not modifying the \nCounter class: We\nmight not have access to its source code, especially if it was distributed as part of a class\nlibrary. (We’ll discuss this issue further in Chapter 13, “Multifile Programs.”)",
+      "answer": "the count when they come in and decrement it when they go out, so that the count represents\nthe number of people in the bank at any moment.\nWe could insert a decrement routine directly into the source code of the Counterclass. However,\nthere are several reasons that we might not want to do this. First, the Counter class works very\nwell and has undergone many hours of testing and debugging. (Of course that\u2019s an exaggeration\nin this case, but it would be true in a larger and more complex class.) If we start fooling around\nwith the source code for Counter,t he testing process will need to be carried out again, and of\ncourse we may foul something up and spend hours debugging code that worked fine before we\nmodified it.\nIn some situations there might be another reason for not modifying the \nCounter class: We\nmight not have access to its source code, especially if it was distributed as part of a class\nlibrary. (We\u2019ll discuss this issue further in Chapter 13, \u201cMultifile Programs.\u201d)",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -795,7 +795,7 @@
     {
       "id": "qa_065",
       "question": "We could insert a decrement routine directly into the source code of the Counterclass?",
-      "answer": "the count when they come in and decrement it when they go out, so that the count represents\nthe number of people in the bank at any moment.\nWe could insert a decrement routine directly into the source code of the Counterclass. However,\nthere are several reasons that we might not want to do this. First, the Counter class works very\nwell and has undergone many hours of testing and debugging. (Of course that’s an exaggeration\nin this case, but it would be true in a larger and more complex class.) If we start fooling around\nwith the source code for Counter,t he testing process will need to be carried out again, and of\ncourse we may foul something up and spend hours debugging code that worked fine before we\nmodified it.\nIn some situations there might be another reason for not modifying the \nCounter class: We\nmight not have access to its source code, especially if it was distributed as part of a class\nlibrary. (We’ll discuss this issue further in Chapter 13, “Multifile Programs.”)",
+      "answer": "the count when they come in and decrement it when they go out, so that the count represents\nthe number of people in the bank at any moment.\nWe could insert a decrement routine directly into the source code of the Counterclass. However,\nthere are several reasons that we might not want to do this. First, the Counter class works very\nwell and has undergone many hours of testing and debugging. (Of course that\u2019s an exaggeration\nin this case, but it would be true in a larger and more complex class.) If we start fooling around\nwith the source code for Counter,t he testing process will need to be carried out again, and of\ncourse we may foul something up and spend hours debugging code that worked fine before we\nmodified it.\nIn some situations there might be another reason for not modifying the \nCounter class: We\nmight not have access to its source code, especially if it was distributed as part of a class\nlibrary. (We\u2019ll discuss this issue further in Chapter 13, \u201cMultifile Programs.\u201d)",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -806,8 +806,8 @@
     },
     {
       "id": "qa_066",
-      "question": "When our program, HORSE, is started, it asks the user to supply the race’s distance and the\nnumber of horses that will run in it?",
-      "answer": "When our program, HORSE, is started, it asks the user to supply the race’s distance and the\nnumber of horses that will run in it. The classic unit of distance for horse racing (at least in\nEnglish-speaking countries) is the furlong, which is 1/8 of a mile. Typical races are 6, 8, 10, or\n12 furlongs. You can enter from 1 to 7 horses. The program draws vertical lines corresponding\nto each furlong, along with start and finish lines. Each horse is represented by a rectangle with\na number in the middle. Figure 10.19 shows the screen with a race in progress.\nChapter 10484\nFIGURE 10.19\nOutput of the HORSE program.\n11 3087 CH10  11/29/01  2:21 PM  Page 484\nDesigning the Horse Race\nHow do we approach an OOP design for our horse race? Our first question might be, is there a\ngroup of similar entities that we’re trying to model? The answer is yes, the horses. So it seems\nreasonable to make each horse an object. There will be a class called \nhorse, which will contain",
+      "question": "When our program, HORSE, is started, it asks the user to supply the race\u2019s distance and the\nnumber of horses that will run in it?",
+      "answer": "When our program, HORSE, is started, it asks the user to supply the race\u2019s distance and the\nnumber of horses that will run in it. The classic unit of distance for horse racing (at least in\nEnglish-speaking countries) is the furlong, which is 1/8 of a mile. Typical races are 6, 8, 10, or\n12 furlongs. You can enter from 1 to 7 horses. The program draws vertical lines corresponding\nto each furlong, along with start and finish lines. Each horse is represented by a rectangle with\na number in the middle. Figure 10.19 shows the screen with a race in progress.\nChapter 10484\nFIGURE 10.19\nOutput of the HORSE program.\n11 3087 CH10  11/29/01  2:21 PM  Page 484\nDesigning the Horse Race\nHow do we approach an OOP design for our horse race? Our first question might be, is there a\ngroup of similar entities that we\u2019re trying to model? The answer is yes, the horses. So it seems\nreasonable to make each horse an object. There will be a class called \nhorse, which will contain",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -819,7 +819,7 @@
     {
       "id": "qa_067",
       "question": "The classic unit of distance for horse racing (at least in\nEnglish-speaking countries) is the furlong, which is 1/8 of a mile?",
-      "answer": "When our program, HORSE, is started, it asks the user to supply the race’s distance and the\nnumber of horses that will run in it. The classic unit of distance for horse racing (at least in\nEnglish-speaking countries) is the furlong, which is 1/8 of a mile. Typical races are 6, 8, 10, or\n12 furlongs. You can enter from 1 to 7 horses. The program draws vertical lines corresponding\nto each furlong, along with start and finish lines. Each horse is represented by a rectangle with\na number in the middle. Figure 10.19 shows the screen with a race in progress.\nChapter 10484\nFIGURE 10.19\nOutput of the HORSE program.\n11 3087 CH10  11/29/01  2:21 PM  Page 484\nDesigning the Horse Race\nHow do we approach an OOP design for our horse race? Our first question might be, is there a\ngroup of similar entities that we’re trying to model? The answer is yes, the horses. So it seems\nreasonable to make each horse an object. There will be a class called \nhorse, which will contain",
+      "answer": "When our program, HORSE, is started, it asks the user to supply the race\u2019s distance and the\nnumber of horses that will run in it. The classic unit of distance for horse racing (at least in\nEnglish-speaking countries) is the furlong, which is 1/8 of a mile. Typical races are 6, 8, 10, or\n12 furlongs. You can enter from 1 to 7 horses. The program draws vertical lines corresponding\nto each furlong, along with start and finish lines. Each horse is represented by a rectangle with\na number in the middle. Figure 10.19 shows the screen with a race in progress.\nChapter 10484\nFIGURE 10.19\nOutput of the HORSE program.\n11 3087 CH10  11/29/01  2:21 PM  Page 484\nDesigning the Horse Race\nHow do we approach an OOP design for our horse race? Our first question might be, is there a\ngroup of similar entities that we\u2019re trying to model? The answer is yes, the horses. So it seems\nreasonable to make each horse an object. There will be a class called \nhorse, which will contain",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -831,7 +831,7 @@
     {
       "id": "qa_068",
       "question": "return 0;                   //if so, not correct feet\nreturn 1;                      //it is correct feet\n}\n////////////////////////////////////////////////////////////////\nint main()\n{\nDistance d;                    //make a Distance object\nchar ans;\ndo\n{\nd?",
-      "answer": "return 0;                   //if so, not correct feet\nreturn 1;                      //it is correct feet\n}\n////////////////////////////////////////////////////////////////\nint main()\n{\nDistance d;                    //make a Distance object\nchar ans;\ndo\n{\nd.getdist();                //get its value from user\ncout << “\\nDistance = “;\nd.showdist();               //display it\ncout << “\\nDo another (y/n)? “;\ncin >> ans;\nChapter 12582\n13 3087 CH12  11/29/01  2:24 PM  Page 582\ncin.ignore(10, ‘\\n’);       //eat chars, including newline\n} while(ans != ‘n’);        //cycle until ‘n’\nreturn 0;\n}\nWe’ve used another dodge here: setting an error-state flag manually. We do this because we\nwant to ensure that the inches value is greater than 0 but less than 12.0. If it isn’t, we turn on\nthe failbit with the statement\ncin.clear(ios::failbit);  // set failbit\nWhen the program checks for errors with cin.good(), it will find the failbit set and signal\nthat the input is incorrect.",
+      "answer": "return 0;                   //if so, not correct feet\nreturn 1;                      //it is correct feet\n}\n////////////////////////////////////////////////////////////////\nint main()\n{\nDistance d;                    //make a Distance object\nchar ans;\ndo\n{\nd.getdist();                //get its value from user\ncout << \u201c\\nDistance = \u201c;\nd.showdist();               //display it\ncout << \u201c\\nDo another (y/n)? \u201c;\ncin >> ans;\nChapter 12582\n13 3087 CH12  11/29/01  2:24 PM  Page 582\ncin.ignore(10, \u2018\\n\u2019);       //eat chars, including newline\n} while(ans != \u2018n\u2019);        //cycle until \u2018n\u2019\nreturn 0;\n}\nWe\u2019ve used another dodge here: setting an error-state flag manually. We do this because we\nwant to ensure that the inches value is greater than 0 but less than 12.0. If it isn\u2019t, we turn on\nthe failbit with the statement\ncin.clear(ios::failbit);  // set failbit\nWhen the program checks for errors with cin.good(), it will find the failbit set and signal\nthat the input is incorrect.",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -842,8 +842,8 @@
     },
     {
       "id": "qa_069",
-      "question": "getdist();                //get its value from user\ncout << “\\nDistance = “;\nd?",
-      "answer": "return 0;                   //if so, not correct feet\nreturn 1;                      //it is correct feet\n}\n////////////////////////////////////////////////////////////////\nint main()\n{\nDistance d;                    //make a Distance object\nchar ans;\ndo\n{\nd.getdist();                //get its value from user\ncout << “\\nDistance = “;\nd.showdist();               //display it\ncout << “\\nDo another (y/n)? “;\ncin >> ans;\nChapter 12582\n13 3087 CH12  11/29/01  2:24 PM  Page 582\ncin.ignore(10, ‘\\n’);       //eat chars, including newline\n} while(ans != ‘n’);        //cycle until ‘n’\nreturn 0;\n}\nWe’ve used another dodge here: setting an error-state flag manually. We do this because we\nwant to ensure that the inches value is greater than 0 but less than 12.0. If it isn’t, we turn on\nthe failbit with the statement\ncin.clear(ios::failbit);  // set failbit\nWhen the program checks for errors with cin.good(), it will find the failbit set and signal\nthat the input is incorrect.",
+      "question": "getdist();                //get its value from user\ncout << \u201c\\nDistance = \u201c;\nd?",
+      "answer": "return 0;                   //if so, not correct feet\nreturn 1;                      //it is correct feet\n}\n////////////////////////////////////////////////////////////////\nint main()\n{\nDistance d;                    //make a Distance object\nchar ans;\ndo\n{\nd.getdist();                //get its value from user\ncout << \u201c\\nDistance = \u201c;\nd.showdist();               //display it\ncout << \u201c\\nDo another (y/n)? \u201c;\ncin >> ans;\nChapter 12582\n13 3087 CH12  11/29/01  2:24 PM  Page 582\ncin.ignore(10, \u2018\\n\u2019);       //eat chars, including newline\n} while(ans != \u2018n\u2019);        //cycle until \u2018n\u2019\nreturn 0;\n}\nWe\u2019ve used another dodge here: setting an error-state flag manually. We do this because we\nwant to ensure that the inches value is greater than 0 but less than 12.0. If it isn\u2019t, we turn on\nthe failbit with the statement\ncin.clear(ios::failbit);  // set failbit\nWhen the program checks for errors with cin.good(), it will find the failbit set and signal\nthat the input is incorrect.",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -855,7 +855,7 @@
     {
       "id": "qa_070",
       "question": "verylong can be negative as well as positive?",
-      "answer": "verylong can be negative as well as positive. This complicates the addition and multipli-\ncation routines, which must do different things depending on the signs of the numbers.\nTo see one way to perform division, do a long-division example by hand and write down\nevery step. Then incorporate these steps into a division member function. You’ll find that\nyou need some comparisons, so you’ll need to write a comparison routine, among other\nthings.\n2. Rewrite the ELEV program so that it handles only one elevator. This will simplify things a\ngreat deal. Remove those parts of the program that aren’t necessary. Or you can assume\nthere is only one elevator and also only one rider, as is done in the state diagram.\n3. Modify the ELEV program to be more efficient in the way it handles requests. As an\nexample of its current non-optimal behavior, start the program and make a down request\non floor 20. Then make a down request on floor 10. Car 1 will immediately head up to",
+      "answer": "verylong can be negative as well as positive. This complicates the addition and multipli-\ncation routines, which must do different things depending on the signs of the numbers.\nTo see one way to perform division, do a long-division example by hand and write down\nevery step. Then incorporate these steps into a division member function. You\u2019ll find that\nyou need some comparisons, so you\u2019ll need to write a comparison routine, among other\nthings.\n2. Rewrite the ELEV program so that it handles only one elevator. This will simplify things a\ngreat deal. Remove those parts of the program that aren\u2019t necessary. Or you can assume\nthere is only one elevator and also only one rider, as is done in the state diagram.\n3. Modify the ELEV program to be more efficient in the way it handles requests. As an\nexample of its current non-optimal behavior, start the program and make a down request\non floor 20. Then make a down request on floor 10. Car 1 will immediately head up to",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -867,7 +867,7 @@
     {
       "id": "qa_071",
       "question": "This complicates the addition and multipli-\ncation routines, which must do different things depending on the signs of the numbers?",
-      "answer": "verylong can be negative as well as positive. This complicates the addition and multipli-\ncation routines, which must do different things depending on the signs of the numbers.\nTo see one way to perform division, do a long-division example by hand and write down\nevery step. Then incorporate these steps into a division member function. You’ll find that\nyou need some comparisons, so you’ll need to write a comparison routine, among other\nthings.\n2. Rewrite the ELEV program so that it handles only one elevator. This will simplify things a\ngreat deal. Remove those parts of the program that aren’t necessary. Or you can assume\nthere is only one elevator and also only one rider, as is done in the state diagram.\n3. Modify the ELEV program to be more efficient in the way it handles requests. As an\nexample of its current non-optimal behavior, start the program and make a down request\non floor 20. Then make a down request on floor 10. Car 1 will immediately head up to",
+      "answer": "verylong can be negative as well as positive. This complicates the addition and multipli-\ncation routines, which must do different things depending on the signs of the numbers.\nTo see one way to perform division, do a long-division example by hand and write down\nevery step. Then incorporate these steps into a division member function. You\u2019ll find that\nyou need some comparisons, so you\u2019ll need to write a comparison routine, among other\nthings.\n2. Rewrite the ELEV program so that it handles only one elevator. This will simplify things a\ngreat deal. Remove those parts of the program that aren\u2019t necessary. Or you can assume\nthere is only one elevator and also only one rider, as is done in the state diagram.\n3. Modify the ELEV program to be more efficient in the way it handles requests. As an\nexample of its current non-optimal behavior, start the program and make a down request\non floor 20. Then make a down request on floor 10. Car 1 will immediately head up to",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -879,7 +879,7 @@
     {
       "id": "qa_072",
       "question": "begin(); iter != mapStates?",
-      "answer": "pop = pops[j];\nmapStates[name] = pop;            //put it in map\n}\ncout << “Enter state: “;             //get state from user\ncin >> name;\npop = mapStates[name];               //find population\ncout << “Population: “ << pop << “,000\\n”;\ncout << endl;                        //display entire map\nfor(iter = mapStates.begin(); iter != mapStates.end(); iter++)\ncout << (*iter).first << ‘ ‘ << (*iter).second << “,000\\n”;\nreturn 0;\n}\nWhen the program runs, the user is prompted to type the name of a state. The program then\nlooks in the map, using the state name as an index, and returns the population of the state.\nFinally, it displays all the name-population pairs in the map. Here’s some sample output:\nEnter state: Wyoming\nPopulation: 470,000\nArizona 2718,000\nColorado 2890,000\nIdaho 944,000\nMontana 787,000\nNevada 800,000\nWyoming 470,000\nSearch speed is where sets and maps excel. Here the program quickly finds the appropriate",
+      "answer": "pop = pops[j];\nmapStates[name] = pop;            //put it in map\n}\ncout << \u201cEnter state: \u201c;             //get state from user\ncin >> name;\npop = mapStates[name];               //find population\ncout << \u201cPopulation: \u201c << pop << \u201c,000\\n\u201d;\ncout << endl;                        //display entire map\nfor(iter = mapStates.begin(); iter != mapStates.end(); iter++)\ncout << (*iter).first << \u2018 \u2018 << (*iter).second << \u201c,000\\n\u201d;\nreturn 0;\n}\nWhen the program runs, the user is prompted to type the name of a state. The program then\nlooks in the map, using the state name as an index, and returns the population of the state.\nFinally, it displays all the name-population pairs in the map. Here\u2019s some sample output:\nEnter state: Wyoming\nPopulation: 470,000\nArizona 2718,000\nColorado 2890,000\nIdaho 944,000\nMontana 787,000\nNevada 800,000\nWyoming 470,000\nSearch speed is where sets and maps excel. Here the program quickly finds the appropriate",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
@@ -891,157 +891,13 @@
     {
       "id": "qa_073",
       "question": "X = x - 1;          //Windows starts at (0, 0)\ncursor_pos?",
-      "answer": "(WORD)((background << 4) | foreground) );\n}  //end setcolor()\n/* 0  Black          8  Dark gray\n1  Dark blue      9  Blue\n2  Dark green     10 Green\n3  Dark cyan      11 Cyan\n4  Dark red       12 Red\n5  Dark magenta   13 Magenta\n6  Brown          14 Yellow\n7  Light gray     15 White\n*/\n//--------------------------------------------------------------\nvoid set_cursor_pos(int x, int y)\n{\nCOORD cursor_pos;              //origin in upper left corner\ncursor_pos.X = x - 1;          //Windows starts at (0, 0)\ncursor_pos.Y = y - 1;          //we start at (1, 1)\nSetConsoleCursorPosition(hConsole, cursor_pos);\n}\n//--------------------------------------------------------------\nvoid clear_screen()\n{\nset_cursor_pos(1, 25);\nfor(int j=0; j<25; j++)\nputch(‘\\n’);\nset_cursor_pos(1, 1);\n}\nConsole Graphics Lite\nE\nCONSOLE\nGRAPHICSLITE\n887\n22 3087 App E  11/29/01  2:21 PM  Page 887\n//--------------------------------------------------------------\nvoid wait(int milliseconds)\n{\nSleep(milliseconds);\n}",
+      "answer": "(WORD)((background << 4) | foreground) );\n}  //end setcolor()\n/* 0  Black          8  Dark gray\n1  Dark blue      9  Blue\n2  Dark green     10 Green\n3  Dark cyan      11 Cyan\n4  Dark red       12 Red\n5  Dark magenta   13 Magenta\n6  Brown          14 Yellow\n7  Light gray     15 White\n*/\n//--------------------------------------------------------------\nvoid set_cursor_pos(int x, int y)\n{\nCOORD cursor_pos;              //origin in upper left corner\ncursor_pos.X = x - 1;          //Windows starts at (0, 0)\ncursor_pos.Y = y - 1;          //we start at (1, 1)\nSetConsoleCursorPosition(hConsole, cursor_pos);\n}\n//--------------------------------------------------------------\nvoid clear_screen()\n{\nset_cursor_pos(1, 25);\nfor(int j=0; j<25; j++)\nputch(\u2018\\n\u2019);\nset_cursor_pos(1, 1);\n}\nConsole Graphics Lite\nE\nCONSOLE\nGRAPHICSLITE\n887\n22 3087 App E  11/29/01  2:21 PM  Page 887\n//--------------------------------------------------------------\nvoid wait(int milliseconds)\n{\nSleep(milliseconds);\n}",
       "source": "OOP Book",
       "source_type": "Object-Oriented Programming",
       "difficulty": "medium",
       "category": "Object-Oriented Programming",
       "ground_truth_docs": [
         "OOP Book"
-      ]
-    },
-    {
-      "id": "qa_074",
-      "question": "Fayoum University Faculty of Computers & Artificial Intelligence          Introduction  to  Operating System                3rd Level Students 2024 - 2025?",
-      "answer": "Fayoum University Faculty of Computers & Artificial Intelligence          Introduction  to  Operating System                3rd Level Students 2024 - 2025",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_075",
-      "question": "such as the arithmetic logic unit (ALU) and the floating point unit (FPU)?",
-      "answer": "such as the arithmetic logic unit (ALU) and the floating point unit (FPU). The ALU performs arithmetic operations such as addition and subtraction and also multiplication via repeated addition and division via repeated subtraction. It also performs logic operations such as AND, OR, NOT, and binary shifts as well. The FPU is reserved for performing floating-point operations.  Each computer's CPU can have different cycles based on different instruction sets, but will be similar to the following cycle:  1. Fetch Stage: The next instruction is fetched from the memory address that is currently stored in the program counter and stored into the instruction register. At the end of the fetch operation, the PC points to the next instruction that will be read at the next cycle.  2. Decode Stage: During this stage, the encoded instruction presented in the instruction register is interpreted by the decoder.",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_076",
-      "question": "The ALU performs arithmetic operations such as addition and subtraction and also multiplication via repeated addition and division via repeated subtraction?",
-      "answer": "such as the arithmetic logic unit (ALU) and the floating point unit (FPU). The ALU performs arithmetic operations such as addition and subtraction and also multiplication via repeated addition and division via repeated subtraction. It also performs logic operations such as AND, OR, NOT, and binary shifts as well. The FPU is reserved for performing floating-point operations.  Each computer's CPU can have different cycles based on different instruction sets, but will be similar to the following cycle:  1. Fetch Stage: The next instruction is fetched from the memory address that is currently stored in the program counter and stored into the instruction register. At the end of the fetch operation, the PC points to the next instruction that will be read at the next cycle.  2. Decode Stage: During this stage, the encoded instruction presented in the instruction register is interpreted by the decoder.",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_077",
-      "question": "22  \nA few processors have an interrupt controller that supports \"round robin scheduling\", which can be used to prevent a different kind of \"starvation\" of low-priority interrupt handlers?",
-      "answer": "22  \nA few processors have an interrupt controller that supports \"round robin scheduling\", which can be used to prevent a different kind of \"starvation\" of low-priority interrupt handlers.  Processors priority is encoded in a few bits of PS (Process Status register). It can be changed by program instructions that write into the PS. Processor is in supervised mode only while executing OS routines. It switches to user mode before executing application programs.                                 \n  \n 23",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_078",
-      "question": "Processors priority is encoded in a few bits of PS (Process Status register)?",
-      "answer": "22  \nA few processors have an interrupt controller that supports \"round robin scheduling\", which can be used to prevent a different kind of \"starvation\" of low-priority interrupt handlers.  Processors priority is encoded in a few bits of PS (Process Status register). It can be changed by program instructions that write into the PS. Processor is in supervised mode only while executing OS routines. It switches to user mode before executing application programs.                                 \n  \n 23",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_079",
-      "question": "of running many different programs or processes at the same time?",
-      "answer": "of running many different programs or processes at the same time. However, the CPU is only capable of handling one process at a time. Processes that are ready for the CPU are kept in a queue for \"ready\" processes. Other processes that are waiting for an event to occur, such as loading information from a hard drive or waiting on an internet connection, are not in the ready queue.  Running  A process moves into the running state when it is chosen for execution. The process's instructions are executed by one of the CPUs (or cores) of the system. There is at most one running process per CPU or core. A process can run in either of the two modes, namely kernel mode or user mode.  Blocked  A process transitions to a blocked state when it is waiting for some event, such as a resource becoming available or the completion of an I/O operation. In a multitasking computer system,",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_080",
-      "question": "However, the CPU is only capable of handling one process at a time?",
-      "answer": "of running many different programs or processes at the same time. However, the CPU is only capable of handling one process at a time. Processes that are ready for the CPU are kept in a queue for \"ready\" processes. Other processes that are waiting for an event to occur, such as loading information from a hard drive or waiting on an internet connection, are not in the ready queue.  Running  A process moves into the running state when it is chosen for execution. The process's instructions are executed by one of the CPUs (or cores) of the system. There is at most one running process per CPU or core. A process can run in either of the two modes, namely kernel mode or user mode.  Blocked  A process transitions to a blocked state when it is waiting for some event, such as a resource becoming available or the completion of an I/O operation. In a multitasking computer system,",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_081",
-      "question": "– amount of CPU used for process execution, time limits, execution ID etc?",
-      "answer": "– amount of CPU used for process execution, time limits, execution ID etc.  I/O Status Information – list of I/O devices allocated to the process.  3.6  kernel & System Call The kernel is a computer program at the core of a computer's operating system that has complete control over everything in the system. It is the \"portion of the operating system code that is always resident in memory\", and facilitates interactions between hardware and software components. On most systems, the kernel is one of the first programs loaded on startup (after the bootloader). It handles the rest of startup as well as memory, peripherals, and input/output (I/O) requests from software, translating them into data-processing instructions for the central processing unit.  In computing, a system call when a program program requests a service from the kernel of the operating system it is executed on. A system call is a way for programs to interact with the operating system. Application programs are NOT allowed",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_082",
-      "question": "I/O Status Information – list of I/O devices allocated to the process?",
-      "answer": "– amount of CPU used for process execution, time limits, execution ID etc.  I/O Status Information – list of I/O devices allocated to the process.  3.6  kernel & System Call The kernel is a computer program at the core of a computer's operating system that has complete control over everything in the system. It is the \"portion of the operating system code that is always resident in memory\", and facilitates interactions between hardware and software components. On most systems, the kernel is one of the first programs loaded on startup (after the bootloader). It handles the rest of startup as well as memory, peripherals, and input/output (I/O) requests from software, translating them into data-processing instructions for the central processing unit.  In computing, a system call when a program program requests a service from the kernel of the operating system it is executed on. A system call is a way for programs to interact with the operating system. Application programs are NOT allowed",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_083",
-      "question": "A more elegant method for achieving mutual exclusion is the busy-wait?",
-      "answer": "system. A more elegant method for achieving mutual exclusion is the busy-wait.  Busy-waiting is effective for both single-processor and multiprocessor systems. The use of shared memory and an atomic (remember - we talked about atomic) test-and-set instruction provide the mutual exclusion. A process can test-and-set on a variable in a section of shared memory, and since the operation is atomic, only one process can set the flag at a time. Any process that is unsuccessful in setting the flag (it is unsuccessful because the process can NOT gain access to the variable until the other process releases it) can either go on to do other tasks and try again later, release the processor to another process and try again later, or continue to loop while checking the flag until it is successful in acquiring it. Preemption is still possible, so this method allows the system to continue to function—even if a process halts while holding the lock.  Software solutions  In addition to hardware-supported",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_084",
-      "question": "When Allocation [i, j] = K, it means that process P[i] is currently allocated K instances of Resources type R[j] in the system?",
-      "answer": "When Allocation [i, j] = K, it means that process P[i] is currently allocated K instances of Resources type R[j] in the system. 4. Need: It is an M x N matrix sequence representing the number of remaining resources for each process. When the Need[i] [j] = k, then process P[i] may require K more instances of resources type Rj to complete the assigned work. Nedd[i][j] = Max[i][j] - Allocation[i][j]. 5. Finish: It is the vector of the order m. It includes a Boolean value (true/false) indicating whether the process has been allocated to the requested resources, and all resources have been released after finishing its task.  The Banker's Algorithm is the combination of the safety algorithm and the resource request algorithm to control the processes and avoid deadlock in a system: Safety Algorithm It is a safety algorithm used to check whether or not a system is in a safe state or follows the safe sequence in a banker's algorithm: 1. There are two vectors Wok and Finish of length m and n in",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
-      ]
-    },
-    {
-      "id": "qa_085",
-      "question": "Consider a fixed partitioning scheme with equal size partitions of 216 bytes and a total main memory size of 224 bytes?",
-      "answer": "EXERCISES 1. Consider a fixed partitioning scheme with equal size partitions of 216 bytes and a total main memory size of 224 bytes. A process table is maintained that includes a pointer to a partition for each resident process. How many bits are required for the pointer? 2. Given six memory partitions of 300 KB, 600 KB, 350 KB, 200 KB, 750 KB, and 125 KB (in order), how would the first-fit, best-fit, and next-fit algorithms place processes of size 115 KB, 500 KB, 358 KB, 200 KB, and 375 KB (in order)? For each algorithm, draw a horizontal segment under the memory strip and label it clearly 3. The following diagram shows an example of memory configuration under dynamic partitioning, after a number of placement and swapping-out operations have been carried out. Addresses go from left to right; gray areas indicate blocks occupied by processes; white areas indicate free memory blocks. The last process placed is 2-Mbyte and is marked with an X. only one process was swapped out after that.",
-      "source": "Operating Systems Lecture Notes",
-      "source_type": "Operating Systems",
-      "difficulty": "medium",
-      "category": "Operating Systems",
-      "ground_truth_docs": [
-        "Operating Systems Lecture Notes"
       ]
     }
   ]

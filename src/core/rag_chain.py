@@ -95,6 +95,7 @@ Below is the conversation history, followed by relevant course materials and the
 Student: {question}
 
 IMPORTANT: Use only information from the provided materials. If not available, say so clearly.
+Answer the question directly, factually, and concisely. Do NOT include any conversational filler, preambles, or introductory phrases (such as "That's correct", "According to the provided materials", "Based on the text", "Sure, here is..."). Start answering the question immediately.
 
 Answer:"""
         )
@@ -151,14 +152,32 @@ Answer:"""
             timings_ms["translation_to_english"] = 0.0
         
         chat_history = external_chat_history if external_chat_history is not None else memory.buffer
-        is_general_question = self._is_general_question(question)
-        
-        if is_general_question:
-            print("   General question detected - skipping document retrieval")
+
+        # Greeting bypass: return a static intro without retrieval/LLM.
+        is_greeting = self._is_greeting_message(question)
+        is_general_question = False
+
+        if is_greeting:
+            print("   Greeting detected - skipping document retrieval and LLM")
             retrieved_docs = []
             context = ""
+            answer = self._get_greeting_intro()
+            timings_ms["retrieval"] = 0.0
+            timings_ms["prompt_build"] = 0.0
+            timings_ms["generation"] = 0.0
+            timings_ms["translation_to_english"] = 0.0
+            timings_ms["translation_from_english"] = 0.0
         else:
-            print("   Retrieving relevant documents...")
+            is_general_question = self._is_general_question(question)
+            
+            if is_general_question:
+                print("   General question detected - skipping document retrieval")
+                retrieved_docs = []
+                context = ""
+            else:
+                print("   Retrieving relevant documents...")
+
+
             stage_start = time.perf_counter()
             # Retrieve more documents initially to allow reranking and optimization
             initial_k = max(num_context_docs * 3, 10)
@@ -187,74 +206,79 @@ Answer:"""
         if is_general_question:
             timings_ms["retrieval"] = 0.0
         
-        if config.MOCK_LLM:
-            print("   [MOCK LLM] Skipping Groq call and generating placeholder answer...")
-            class MockResponse:
-                content = "This is a mock answer for offline retrieval evaluation."
-            response = MockResponse()
-            timings_ms["prompt_build"] = 0.0
-            timings_ms["generation"] = 0.0
-        else:
-            print("   Generating answer with Groq...")
-            stage_start = time.perf_counter()
-            prompt_input = self.prompt_template.format(
-                context=context,
-                question=question,
-                chat_history=chat_history
-            )
-            timings_ms["prompt_build"] = round((time.perf_counter() - stage_start) * 1000, 2)
+        # If greeting was detected above, `answer` is already set and we bypass
+        # retrieval + LLM.
+        if "answer" not in locals():
+            if config.MOCK_LLM:
 
-            try:
+                print("   [MOCK LLM] Skipping Groq call and generating placeholder answer...")
+                class MockResponse:
+                    content = "This is a mock answer for offline retrieval evaluation."
+                response = MockResponse()
+                timings_ms["prompt_build"] = 0.0
+                timings_ms["generation"] = 0.0
+            else:
+                print("   Generating answer with Groq...")
                 stage_start = time.perf_counter()
-                response = self.llm.invoke(prompt_input)
-                timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
-            except Exception as e:
-                msg = str(e).lower()
+                prompt_input = self.prompt_template.format(
+                    context=context,
+                    question=question,
+                    chat_history=chat_history
+                )
+                timings_ms["prompt_build"] = round((time.perf_counter() - stage_start) * 1000, 2)
 
-                # ── Rate limit ──────────────────────────────────────────────────────
-                # Groq returns 429 / "rate_limit_exceeded" when a key is exhausted.
-                # If a second API key is configured (GROQ_API_KEY_2), rotate to it
-                # transparently before giving up.
-                if "rate_limit_exceeded" in msg or "429" in msg:
-                    if config.GROQ_API_KEY_2:
-                        print("   Primary Groq key rate-limited — rotating to GROQ_API_KEY_2...")
-                        try:
-                            backup_llm = ChatGroq(
-                                api_key=config.GROQ_API_KEY_2,
-                                model_name=config.GROQ_MODEL,
-                                temperature=0.7,
-                                max_tokens=1000,
-                            )
-                            stage_start = time.perf_counter()
-                            response = backup_llm.invoke(prompt_input)
-                            timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
-                            print("   Successfully answered using GROQ_API_KEY_2.")
-                        except Exception as e2:
-                            # Second key also failed — surface the original error.
-                            raise RuntimeError(f"GROQ_RATE_LIMIT: both keys exhausted. key1={e} key2={e2}")
-                    else:
-                        # No backup key configured — fail immediately.
-                        raise RuntimeError(f"GROQ_RATE_LIMIT: {e}")
-
-                # ── Decommissioned model ─────────────────────────────────────────────
-                # If the configured model is no longer available, retry with the
-                # safe fallback model (same key).
-                elif "decommissioned" in msg or "model" in msg:
-                    fallback_llm = ChatGroq(
-                        api_key=config.GROQ_API_KEY,
-                        model_name=config.GROQ_FALLBACK_MODEL,
-                        temperature=0.7,
-                        max_tokens=1000,
-                    )
-                    print(f"   Groq model rejected, retrying with fallback model: {config.GROQ_FALLBACK_MODEL}")
+                try:
                     stage_start = time.perf_counter()
-                    response = fallback_llm.invoke(prompt_input)
+                    response = self.llm.invoke(prompt_input)
                     timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
-                else:
-                    raise
+                except Exception as e:
+                    msg = str(e).lower()
+
+                    # ── Rate limit ──────────────────────────────────────────────────────
+                    # Groq returns 429 / "rate_limit_exceeded" when a key is exhausted.
+                    # If a second API key is configured (GROQ_API_KEY_2), rotate to it
+                    # transparently before giving up.
+                    if "rate_limit_exceeded" in msg or "429" in msg:
+                        if config.GROQ_API_KEY_2:
+                            print("   Primary Groq key rate-limited — rotating to GROQ_API_KEY_2...")
+                            try:
+                                backup_llm = ChatGroq(
+                                    api_key=config.GROQ_API_KEY_2,
+                                    model_name=config.GROQ_MODEL,
+                                    temperature=0.7,
+                                    max_tokens=1000,
+                                )
+                                stage_start = time.perf_counter()
+                                response = backup_llm.invoke(prompt_input)
+                                timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
+                                print("   Successfully answered using GROQ_API_KEY_2.")
+                            except Exception as e2:
+                                # Second key also failed — surface the original error.
+                                raise RuntimeError(f"GROQ_RATE_LIMIT: both keys exhausted. key1={e} key2={e2}")
+                        else:
+                            # No backup key configured — fail immediately.
+                            raise RuntimeError(f"GROQ_RATE_LIMIT: {e}")
+
+                    # ── Decommissioned model ─────────────────────────────────────────────
+                    # If the configured model is no longer available, retry with the
+                    # safe fallback model (same key).
+                    elif "decommissioned" in msg or "model" in msg:
+                        fallback_llm = ChatGroq(
+                            api_key=config.GROQ_API_KEY,
+                            model_name=config.GROQ_FALLBACK_MODEL,
+                            temperature=0.7,
+                            max_tokens=1000,
+                        )
+                        print(f"   Groq model rejected, retrying with fallback model: {config.GROQ_FALLBACK_MODEL}")
+                        stage_start = time.perf_counter()
+                        response = fallback_llm.invoke(prompt_input)
+                        timings_ms["generation"] = round((time.perf_counter() - stage_start) * 1000, 2)
+                    else:
+                        raise
 
 
-        answer = response.content.strip() if hasattr(response, 'content') else str(response).strip()
+            answer = response.content.strip() if hasattr(response, 'content') else str(response).strip()
+
 
         if detected_lang != 'en':
             stage_start = time.perf_counter()
@@ -272,6 +296,9 @@ Answer:"""
             conversation_turn = chat_history.count('Student:') + 1
         
         stage_start = time.perf_counter()
+        sources = [doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else []
+        unique_sources = list(dict.fromkeys(sources))
+
         if persist_conversation and update_memory:
             if not current_conversation_id and conversation_turn == 1:
                 current_conversation_id = conversation_manager.create_conversation("Auto-generated Conversation", session_token=token)
@@ -282,7 +309,7 @@ Answer:"""
                 conversation_manager.add_query_result(
                     question=question,
                     answer=answer,
-                    sources=[doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else [],
+                    sources=unique_sources,
                     num_context_docs=len(retrieved_docs),
                     conversation_id=current_conversation_id,
                     session_token=token
@@ -294,7 +321,15 @@ Answer:"""
         result = {
             "question": question,
             "answer": answer,
-            "sources": [doc['metadata']['source'] for doc in retrieved_docs] if retrieved_docs else [],
+            "sources": unique_sources,
+            "context_chunks": [
+                {
+                    "source": doc.get("metadata", {}).get("source", "unknown"),
+                    "content": doc.get("content", ""),
+                    "similarity": float(doc.get("similarity", doc.get("score", 0.0)) or 0.0),
+                }
+                for doc in retrieved_docs
+            ] if retrieved_docs else [],
             "num_context_docs": len(retrieved_docs),
             "conversation_turn": conversation_turn,
             "conversation_id": current_conversation_id,
@@ -339,21 +374,50 @@ Answer:"""
                 lines.append("")
         return "\n".join(lines).strip()
 
+    def _is_greeting_message(self, message: str) -> bool:
+        """Detect if a user message is a greeting.
+
+        This is intentionally stricter than general-question detection to avoid
+        hijacking normal course questions.
+        """
+        msg = (message or "").lower().strip()
+        if not msg:
+            return False
+
+        greeting_tokens = ["hello", "hi", "hey", "greetings", "howdy"]
+        # Match: exact token, token at start, or token + punctuation/space
+        for tok in greeting_tokens:
+            if msg == tok:
+                return True
+            if msg.startswith(tok + " ") or msg.startswith(tok + "\n"):
+                return True
+            if msg.startswith(tok + "!") or msg.startswith(tok + ",") or msg.startswith(tok + "."):
+                return True
+        return False
+
+    def _get_greeting_intro(self) -> str:
+        """Static intro response for greetings."""
+        return (
+            "Hello. I am EduMate, your academic assistant for the course materials in this system. "
+            "I can help you find definitions, explain concepts, summarize sections, and answer questions based on the PDFs available here. "
+            "Ask me anything about the course content and I will retrieve relevant material and respond with the best information I can find."
+        )
+
     def _is_general_question(self, question: str) -> bool:
-        """Detect if a question is general"""
+        """Detect if a question is general (not requiring document retrieval)."""
         question_lower = question.lower().strip()
         general_patterns = [
-            'hello', 'hi ', 'hey ', 'greetings', 'howdy',
             'who are you', "what's your name", 'your name',
             'how are you', "how're you",
             'thank you', 'thanks',
         ]
-        
+
         for pattern in general_patterns:
             if pattern in question_lower:
                 return True
-        
+
         return False
+
     
     def get_conversation_history(self, session_token: str = None) -> List[Dict]:
         """Get conversation history"""

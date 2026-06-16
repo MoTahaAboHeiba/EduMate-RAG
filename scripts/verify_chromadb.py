@@ -4,10 +4,13 @@ Verify ChromaDB has actual data from PDFs
 import sys
 from pathlib import Path
 
+import os
+os.environ["VECTOR_STORE_BACKEND"] = "chroma"
+
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.vector_store import vector_store
+from src.document_processing.vector_store import vector_store
 
 print("="* 60)
 print("ChromaDB VERIFICATION REPORT")
@@ -18,7 +21,7 @@ info = vector_store.get_collection_info()
 print(f"\nCollection Info:")
 print(f"   Name: {info['collection_name']}")
 print(f"   Total Documents: {info['count']}")
-print(f"   Metadata: {info['metadata']}")
+print(f"   Metadata: {vector_store.collection.metadata}")
 
 if info['count'] == 0:
     print("\nNO DATA IN CHROMADB!")

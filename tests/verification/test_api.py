@@ -98,8 +98,7 @@ def test_integration_query_success(mock_query_with_history):
         "message": "What is the CPU?",
         "messages": [
             {"question": "What is architecture?", "answer": "Computer organization topic."}
-        ],
-        "numContextDocs": 3
+        ]
     }
 
     response = client.post("/api/integrations/query", json=payload)
@@ -136,8 +135,7 @@ def test_integration_query_caps_history_to_latest_five(mock_query_with_history):
         "messages": [
             {"question": f"Q{i}", "answer": f"A{i}"}
             for i in range(7)
-        ],
-        "numContextDocs": 3
+        ]
     }
 
     response = client.post("/api/integrations/query", json=payload)
@@ -156,8 +154,7 @@ def test_integration_query_validation_empty_user_id():
         "userId": " ",
         "conversationId": "conv-456",
         "message": "What is the CPU?",
-        "messages": [],
-        "numContextDocs": 3
+        "messages": []
     }
 
     response = client.post("/api/integrations/query", json=payload)

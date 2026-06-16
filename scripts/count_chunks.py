@@ -7,7 +7,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.vector_store import vector_store
+from src.document_processing.vector_store import vector_store
 
 # Get count
 count = vector_store.collection.count()

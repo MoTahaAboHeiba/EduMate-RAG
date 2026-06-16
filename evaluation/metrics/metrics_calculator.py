@@ -29,6 +29,16 @@ class RetrievalMetrics:
     recall_at_5: float
     mrr: float  # Mean Reciprocal Rank
     ndcg_at_10: float
+    precision_at_1: float = 0.0
+    precision_at_10: float = 0.0
+    recall_at_1: float = 0.0
+    recall_at_3: float = 0.0
+    recall_at_10: float = 0.0
+    ndcg_at_5: float = 0.0
+    hit_rate_at_1: float = 0.0
+    hit_rate_at_3: float = 0.0
+    hit_rate_at_5: float = 0.0
+    hit_rate_at_10: float = 0.0
     
     def to_dict(self) -> Dict:
         return asdict(self)
@@ -118,13 +128,14 @@ class PrecisionRecallCalculator(MetricsCalculator):
         """
         Recall@K: % of all relevant docs found in top-K.
         
-        Formula: |{Retrieved} ∩ {Ground Truth}| / |{Ground Truth}|
+        Formula: |unique(Retrieved) ∩ {Ground Truth}| / |{Ground Truth}|
         """
         if len(ground_truth_docs) == 0:
-            return 1.0
+            return 0.0
         
         top_k = retrieved_docs[:k]
-        relevant = sum(1 for doc in top_k if doc in ground_truth_docs)
+        unique_retrieved = set(top_k)
+        relevant = sum(1 for doc in unique_retrieved if doc in ground_truth_docs)
         return relevant / len(ground_truth_docs)
     
     def calculate(self, retrieved_docs: List[str], 
@@ -171,8 +182,13 @@ class NDCGCalculator(MetricsCalculator):
         Formula: Σ (relevance_i / log2(i+1))
         """
         dcg = 0.0
+        seen = set()
         for i, doc in enumerate(retrieved_docs[:k], 1):
-            relevance = 1.0 if doc in ground_truth_docs else 0.0
+            if doc in ground_truth_docs and doc not in seen:
+                relevance = 1.0
+                seen.add(doc)
+            else:
+                relevance = 0.0
             dcg += relevance / np.log2(i + 1)
         return dcg
     
@@ -205,6 +221,19 @@ class NDCGCalculator(MetricsCalculator):
         return self.ndcg_at_k(retrieved_docs, ground_truth_docs, k)
 
 
+class HitRateCalculator(MetricsCalculator):
+    """Calculates Hit Rate metrics."""
+    
+    @staticmethod
+    def hit_rate_at_k(retrieved_docs: List[str], ground_truth_docs: List[str], k: int) -> float:
+        """1.0 if any of top-K retrieved docs is in ground truth, else 0.0"""
+        top_k = retrieved_docs[:k]
+        return 1.0 if any(doc in ground_truth_docs for doc in top_k) else 0.0
+    
+    def calculate(self, retrieved_docs: List[str], ground_truth_docs: List[str], k: int) -> float:
+        return self.hit_rate_at_k(retrieved_docs, ground_truth_docs, k)
+
+
 class RAGEvaluator:
     """Main RAG evaluation engine."""
     
@@ -213,6 +242,7 @@ class RAGEvaluator:
         self.pr_calc = PrecisionRecallCalculator()
         self.mrr_calc = MeanReciprocalRankCalculator()
         self.ndcg_calc = NDCGCalculator()
+        self.hr_calc = HitRateCalculator()
         self.results: List[EvaluationResult] = []
     
     def evaluate_retrieval(self, 
@@ -220,18 +250,44 @@ class RAGEvaluator:
                           ground_truth_docs: List[str]) -> RetrievalMetrics:
         """Evaluate retrieval performance."""
         
-        p_3, _ = self.pr_calc.calculate(retrieved_docs, ground_truth_docs, 3)
+        p_1, r_1 = self.pr_calc.calculate(retrieved_docs, ground_truth_docs, 1)
+        p_3, r_3 = self.pr_calc.calculate(retrieved_docs, ground_truth_docs, 3)
         p_5, r_5 = self.pr_calc.calculate(retrieved_docs, ground_truth_docs, 5)
-        mrr = self.mrr_calc.calculate(retrieved_docs, ground_truth_docs)
-        ndcg = self.ndcg_calc.calculate(retrieved_docs, ground_truth_docs, 10)
+        p_10, r_10 = self.pr_calc.calculate(retrieved_docs, ground_truth_docs, 10)
         
-        return RetrievalMetrics(
+        mrr = self.mrr_calc.calculate(retrieved_docs, ground_truth_docs)
+        
+        ndcg_5 = self.ndcg_calc.calculate(retrieved_docs, ground_truth_docs, 5)
+        ndcg_10 = self.ndcg_calc.calculate(retrieved_docs, ground_truth_docs, 10)
+        
+        hr_1 = self.hr_calc.calculate(retrieved_docs, ground_truth_docs, 1)
+        hr_3 = self.hr_calc.calculate(retrieved_docs, ground_truth_docs, 3)
+        hr_5 = self.hr_calc.calculate(retrieved_docs, ground_truth_docs, 5)
+        hr_10 = self.hr_calc.calculate(retrieved_docs, ground_truth_docs, 10)
+        
+        metrics = RetrievalMetrics(
             precision_at_3=p_3,
             precision_at_5=p_5,
             recall_at_5=r_5,
             mrr=mrr,
-            ndcg_at_10=ndcg
+            ndcg_at_10=ndcg_10,
+            precision_at_1=p_1,
+            precision_at_10=p_10,
+            recall_at_1=r_1,
+            recall_at_3=r_3,
+            recall_at_10=r_10,
+            ndcg_at_5=ndcg_5,
+            hit_rate_at_1=hr_1,
+            hit_rate_at_3=hr_3,
+            hit_rate_at_5=hr_5,
+            hit_rate_at_10=hr_10
         )
+        
+        # Post-compute bounds assertion: all values must be ∈ [0.0, 1.0]
+        for name, value in metrics.to_dict().items():
+            assert 0.0 <= value <= 1.0, f"Metric {name} value {value} is out of bounds [0.0, 1.0]!"
+            
+        return metrics
     
     def evaluate_generation(self,
                            answer: str,
@@ -292,11 +348,21 @@ class RAGEvaluator:
         generation_metrics_list = [r.generation_metrics for r in self.results]
         
         avg_retrieval = {
+            "avg_precision_at_1": np.mean([m.precision_at_1 for m in retrieval_metrics_list]),
             "avg_precision_at_3": np.mean([m.precision_at_3 for m in retrieval_metrics_list]),
             "avg_precision_at_5": np.mean([m.precision_at_5 for m in retrieval_metrics_list]),
+            "avg_precision_at_10": np.mean([m.precision_at_10 for m in retrieval_metrics_list]),
+            "avg_recall_at_1": np.mean([m.recall_at_1 for m in retrieval_metrics_list]),
+            "avg_recall_at_3": np.mean([m.recall_at_3 for m in retrieval_metrics_list]),
             "avg_recall_at_5": np.mean([m.recall_at_5 for m in retrieval_metrics_list]),
+            "avg_recall_at_10": np.mean([m.recall_at_10 for m in retrieval_metrics_list]),
             "avg_mrr": np.mean([m.mrr for m in retrieval_metrics_list]),
+            "avg_ndcg_at_5": np.mean([m.ndcg_at_5 for m in retrieval_metrics_list]),
             "avg_ndcg_at_10": np.mean([m.ndcg_at_10 for m in retrieval_metrics_list]),
+            "avg_hit_rate_at_1": np.mean([m.hit_rate_at_1 for m in retrieval_metrics_list]),
+            "avg_hit_rate_at_3": np.mean([m.hit_rate_at_3 for m in retrieval_metrics_list]),
+            "avg_hit_rate_at_5": np.mean([m.hit_rate_at_5 for m in retrieval_metrics_list]),
+            "avg_hit_rate_at_10": np.mean([m.hit_rate_at_10 for m in retrieval_metrics_list]),
         }
         
         avg_generation = {

@@ -5,10 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduMate RAG - AI Course Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lightweight inline SVG favicon (EduMate) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23667eea%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23764ba2%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2722%27%20fill%3D%27url(%23g)%27/%3E%3Ctext%20x%3D%2750%27%20y%3D%2770%27%20text-anchor%3D%27middle%27%20font-family%3D%27Arial%2Csans-serif%27%20font-size%3D%2758%27%20font-weight%3D%27600%27%20fill%3D%27white%27%3E%20E%3C/text%3E%3C/svg%3E" />
+
     <style>
         * {
             scrollbar-width: thin;
             scrollbar-color: rgba(100, 116, 139, 0.5) transparent;
+        }
+
+        /* Sidebar collapse (icon rail) */
+        .sidebar {
+            transition: width 200ms ease;
+            width: 16rem; /* 256px */
+        }
+
+        .sidebar.collapsed {
+            width: 5rem; /* 80px */
+        }
+
+        .sidebar [data-collapsible="text"] {
+            transition: opacity 120ms ease, transform 120ms ease;
+        }
+
+        .sidebar.collapsed [data-collapsible="text"] {
+            display: none;
+        }
+
+        .sidebar .sidebar-section {
+            transition: padding 200ms ease;
+        }
+
+        .sidebar.collapsed .sidebar-section {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        .icon-only {
+            display: none;
+        }
+
+        .sidebar.collapsed .icon-only {
+            display: inline-flex;
+        }
+
+        .sidebar.collapsed button {
+            justify-content: center !important;
+        }
+
+        .sidebar.collapsed button .icon-only {
+            margin-left: 0 !important;
+        }
+
+        .sidebar:not(.collapsed) .icon-only {
+            display: none;
+        }
+
+        .sidebar-toggle {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: background 150ms ease, transform 150ms ease;
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Keep toggle icon perfectly centered across expand/collapse */
+        #sidebar-toggle-icon {
+            display: block;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255,255,255,0.10);
+        }
+
+        /* Smooth layout */
+        .layout-main {
+            transition: margin-left 200ms ease;
         }
         
         *::-webkit-scrollbar {
@@ -195,31 +272,47 @@
 
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <div class="w-64 bg-slate-800 border-r border-slate-700 flex flex-col shadow-xl">
+        <div id="sidebar" class="sidebar bg-slate-800 border-r border-slate-700 flex flex-col shadow-xl">
             <!-- Header -->
             <div class="p-4 border-b border-slate-700">
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">E</span>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">E</span>
+                        </div>
+                        <div data-collapsible="text">
+                            <h1 class="text-white font-bold text-sm">EduMate</h1>
+                            <p class="text-slate-400 text-xs">AI Assistant</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="text-white font-bold text-sm">EduMate</h1>
-                        <p class="text-slate-400 text-xs">AI Assistant</p>
-                    </div>
+
+                    <button
+                        id="sidebar-toggle-btn"
+                        onclick="toggleSidebar()"
+                        class="sidebar-toggle w-9 h-9 rounded-lg flex items-center justify-center text-slate-200 hover:text-white"
+                        aria-label="Toggle sidebar"
+                        title="Toggle sidebar"
+                    >
+                        <svg id="sidebar-toggle-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 
             <!-- Conversation Info -->
-            <div class="p-4 border-b border-slate-700">
+            <div class="p-4 border-b border-slate-700 sidebar-section">
                 <div class="bg-slate-700 rounded-lg p-3 space-y-2 mb-3">
                     <div class="flex justify-between items-center">
-                        <span class="text-slate-300 text-xs font-medium">CURRENT</span>
+                        <span data-collapsible="text" class="text-slate-300 text-xs font-medium">CURRENT</span>
                         <span id="turn-count" class="bg-gradient-bg text-white text-xs font-bold px-2 py-1 rounded">0</span>
                     </div>
-                    <div id="current-conv-title" class="text-white text-xs truncate">New Conversation</div>
+
+                    <div id="current-conv-title" data-collapsible="text" class="text-white text-xs truncate">New Conversation</div>
+
                     <div class="flex items-center gap-2">
                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span id="status-text" class="text-slate-300 text-xs">Ready</span>
+                        <span id="status-text" data-collapsible="text" class="text-slate-300 text-xs">Ready</span>
                     </div>
                 </div>
 
@@ -227,44 +320,49 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                     </svg>
-                    New Chat
+                    <span data-collapsible="text">New Chat</span>
+                    <span class="icon-only">+</span>
                 </button>
 
                 <button onclick="openConversationModal()" class="w-full bg-slate-600 hover:bg-slate-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2 mb-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                     </svg>
-                    History
+                    <span data-collapsible="text">History</span>
+                    <span class="icon-only">H</span>
                 </button>
 
                 <button onclick="openSourcesModal()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747S17.5 6.253 12 6.253z"></path>
                     </svg>
-                    Sources
+                    <span data-collapsible="text">Sources</span>
+                    <span class="icon-only">S</span>
                 </button>
             </div>
 
             <!-- Action Buttons -->
-            <div class="p-4 border-b border-slate-700 space-y-2">
+            <div class="p-4 border-b border-slate-700 space-y-2 sidebar-section">
                 <button onclick="reindexPDFs()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                     </svg>
-                    Index PDFs
+                    <span data-collapsible="text">Index PDFs</span>
+                    <span class="icon-only">⟳</span>
                 </button>
                 <button onclick="clearConversation()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition duration-200 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                     </svg>
-                    Clear Chat
+                    <span data-collapsible="text">Clear Chat</span>
+                    <span class="icon-only">×</span>
                 </button>
             </div>
 
             <!-- Tips -->
-            <div class="p-4 flex-1 text-slate-400 text-xs space-y-2">
-                <p class="font-semibold text-slate-300">💡 Tips:</p>
-                <ul class="space-y-1">
+            <div class="p-4 flex-1 text-slate-400 text-xs space-y-2 sidebar-section">
+                <p data-collapsible="text" class="font-semibold text-slate-300">Tips:</p>
+                <ul data-collapsible="text" class="space-y-1">
                     <li>• Ask follow-up questions naturally</li>
                     <li>• System remembers context</li>
                     <li>• View sources on the right</li>
@@ -338,6 +436,7 @@
     <script>
         const API_BASE = window.location.origin;
         const SESSION_TOKEN_KEY = 'edumate_session_token';
+        const SIDEBAR_COLLAPSE_KEY = 'edumate_sidebar_collapsed';
         let isLoading = false;
         let currentConversationTitle = 'New Conversation';
         let currentSources = [];
@@ -670,8 +769,13 @@
                     }
                 }
                 
-                // Update turn count
-                updateTurnCount(Math.ceil(turnCount));
+                // Prefer backend-provided conversation turn if available
+                const backendTurn = data.conversation_turn ?? data.conversationTurn ?? null;
+                if (typeof backendTurn === 'number') {
+                    updateTurnCount(backendTurn);
+                } else {
+                    updateTurnCount(Math.ceil(turnCount));
+                }
                 
                 addMessage('assistant', '✅ Conversation loaded! You can continue asking questions.');
                 
@@ -794,9 +898,34 @@
             textarea.style.height = Math.min(textarea.scrollHeight, 128) + 'px'; // Max 128px height
         }
 
+        function applySidebarState() {
+            const sidebar = document.getElementById('sidebar');
+            const icon = document.getElementById('sidebar-toggle-icon');
+            const collapsed = localStorage.getItem(SIDEBAR_COLLAPSE_KEY) === '1';
+
+            if (!sidebar || !icon) return;
+
+            sidebar.classList.toggle('collapsed', collapsed);
+
+            // If collapsed show "expand" chevron, else show "collapse" chevron
+            icon.innerHTML = collapsed
+                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />'
+                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />';
+        }
+
+        function toggleSidebar() {
+            const collapsed = localStorage.getItem(SIDEBAR_COLLAPSE_KEY) === '1';
+            const next = collapsed ? '0' : '1';
+            localStorage.setItem(SIDEBAR_COLLAPSE_KEY, next);
+            applySidebarState();
+        }
+
+
         // Load initial data
         window.addEventListener('load', async () => {
             try {
+                applySidebarState();
+
                 const response = await fetch(`${API_BASE}/health`);
                 if (response.ok) {
                     const data = await response.json();

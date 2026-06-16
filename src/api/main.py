@@ -9,13 +9,15 @@ from pydantic import BaseModel, Field
 import sys
 import time
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from src.config.config import config
 from src.document_processing.vector_store import vector_store
+from src.document_processing.embedding_cache import embedding_cache
+from src.document_processing.file_tracker import file_tracker
 from src.core.rag_chain import rag_chain
 from src.conversation.conversation_manager import conversation_manager
 
@@ -58,6 +60,11 @@ class QueryRequest(BaseModel):
     question: str
     num_context_docs: int = 3
 
+class ContextChunk(BaseModel):
+    source: str
+    content: str
+    similarity: float = 0.0
+
 class QueryResponse(BaseModel):
     question: str
     answer: str
@@ -67,6 +74,7 @@ class QueryResponse(BaseModel):
     is_general: bool = False
     latency_ms: float = 0.0
     timings_ms: Dict[str, float] = {}
+    context_chunks: Optional[List[ContextChunk]] = None
 
 class IntegrationMessage(BaseModel):
     question: str
@@ -79,16 +87,17 @@ class IntegrationQueryRequest(BaseModel):
     messages: List[IntegrationMessage] = Field(default_factory=list)
     num_context_docs: int = Field(default=3, alias="numContextDocs")
 
+
 class IntegrationQueryResponse(BaseModel):
     user_id: str = Field(alias="userId")
     conversation_id: str = Field(alias="conversationId")
     question: str
     answer: str
     sources: List[str]
-    num_context_docs: int = Field(alias="numContextDocs")
     is_general: bool = Field(default=False, alias="isGeneral")
     latency_ms: float = Field(default=0.0, alias="latencyMs")
     timings_ms: Dict[str, float] = Field(default_factory=dict, alias="timingsMs")
+
 
 class ConversationMessage(BaseModel):
     role: str  # "student" or "assistant"
@@ -168,7 +177,24 @@ def query(
     if not request.question.strip():
         raise HTTPException(status_code=400, detail="Question cannot be empty")
 
+    # Greeting bypass: return EduMate intro without triggering retrieval/LLM.
+    if rag_chain._is_greeting_message(request.question):
+        intro = rag_chain._get_greeting_intro()
+        return QueryResponse(
+            question=request.question,
+            answer=intro,
+            sources=[],
+            num_context_docs=0,
+            conversation_turn=0,
+            is_general=False,
+            latency_ms=0.0,
+            timings_ms={"greeting": 1.0},
+            context_chunks=[],
+        )
+
+
     if request.num_context_docs < 1 or request.num_context_docs > 10:
+
         raise HTTPException(status_code=400, detail="num_context_docs must be between 1 and 10")
     
     try:
@@ -192,6 +218,12 @@ def query(
             raise RuntimeError("RAG chain returned an empty answer")
 
         
+        eval_chunks = None
+        if not persist_conversation:
+            eval_chunks = [
+                ContextChunk(**chunk) for chunk in result.get("context_chunks", [])
+            ]
+
         return QueryResponse(
             question=result["question"],
             answer=result["answer"],
@@ -201,6 +233,7 @@ def query(
             is_general=result.get("is_general", False),
             latency_ms=latency_ms,
             timings_ms=result.get("timings_ms", {}),
+            context_chunks=eval_chunks,
         )
     
     except HTTPException:
@@ -245,17 +278,19 @@ def integration_query(request: IntegrationQueryRequest) -> IntegrationQueryRespo
         if not result.get("answer", "").strip():
             raise RuntimeError("RAG chain returned an empty answer")
 
+        unique_sources = list(dict.fromkeys(result.get("sources", [])))
+
         return IntegrationQueryResponse(
             userId=request.user_id,
             conversationId=request.conversation_id,
             question=result["question"],
             answer=result["answer"],
-            sources=result["sources"],
-            numContextDocs=result["num_context_docs"],
+            sources=unique_sources,
             isGeneral=result.get("is_general", False),
             latencyMs=latency_ms,
             timingsMs=result.get("timings_ms", {}),
         )
+
     except HTTPException:
         raise
     except Exception as e:
@@ -263,9 +298,18 @@ def integration_query(request: IntegrationQueryRequest) -> IntegrationQueryRespo
         raise HTTPException(status_code=500, detail=f"Error processing integration query: {str(e)}")
 
 @app.post("/api/index")
-async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):
+async def index(
+    x_admin_key: str = Header(None, alias="X-Admin-Key"),
+    incremental: bool = True,
+    force_full: bool = False
+):
     """
-    Re-index all PDFs in the database
+    Re-index all PDFs in the database.
+    
+    Args:
+        x_admin_key: Admin authentication key
+        incremental: Use incremental indexing for changed files (default True)
+        force_full: Force full re-indexing ignoring change tracking (default False)
     
     Returns:
         Success status and document count
@@ -277,16 +321,16 @@ async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):
     if x_admin_key != config.ADMIN_KEY:
         raise HTTPException(status_code=403, detail="Forbidden")
 
-
     try:
-        success = vector_store.index_pdfs()
+        success = vector_store.index_pdfs(incremental=incremental, force_full=force_full)
         
         if success:
             collection_info = vector_store.get_collection_info()
             return {
                 "status": "success",
                 "message": "PDFs indexed successfully",
-                "documents_indexed": collection_info["count"]
+                "documents_indexed": collection_info["count"],
+                "indexing_mode": "full" if force_full else ("incremental" if incremental else "sequential")
             }
         else:
             raise HTTPException(status_code=400, detail="Indexing failed")
@@ -294,6 +338,73 @@ async def index(x_admin_key: str = Header(None, alias="X-Admin-Key")):
     except Exception as e:
         print(f"Indexing Error: {e}")
         raise HTTPException(status_code=500, detail=f"Error indexing PDFs: {str(e)}")
+
+@app.get("/api/cache/stats")
+async def get_cache_stats(x_admin_key: str = Header(None, alias="X-Admin-Key")):
+    """
+    Get embedding cache and file tracking statistics.
+    
+    Returns:
+        Cache statistics including total cached embeddings and file tracking info
+    """
+    if not config.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Admin not configured")
+    
+    if x_admin_key != config.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    
+    try:
+        cache_stats = embedding_cache.get_stats()
+        file_tracking_count = len(file_tracker.file_metadata)
+        
+        return {
+            "status": "success",
+            "embedding_cache": cache_stats,
+            "file_tracking": {
+                "tracked_files": file_tracking_count,
+                "tracker_file": str(file_tracker.tracker_file)
+            }
+        }
+    except Exception as e:
+        print(f"Cache stats error: {e}")
+        raise HTTPException(status_code=500, detail=f"Error retrieving cache stats: {str(e)}")
+
+@app.post("/api/cache/clear")
+async def clear_cache(x_admin_key: str = Header(None, alias="X-Admin-Key"), clear_embeddings: bool = True, clear_tracking: bool = False):
+    """
+    Clear caches to force re-computation.
+    
+    Args:
+        x_admin_key: Admin authentication key
+        clear_embeddings: Clear embedding cache (default True)
+        clear_tracking: Clear file modification tracking (default False)
+    
+    Returns:
+        Success status
+    """
+    if not config.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Admin not configured")
+    
+    if x_admin_key != config.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    
+    try:
+        cleared = []
+        if clear_embeddings:
+            embedding_cache.clear()
+            cleared.append("embedding_cache")
+        if clear_tracking:
+            file_tracker.clear_tracking()
+            cleared.append("file_tracking")
+        
+        return {
+            "status": "success",
+            "message": "Cache cleared successfully",
+            "cleared": cleared
+        }
+    except Exception as e:
+        print(f"Cache clear error: {e}")
+        raise HTTPException(status_code=500, detail=f"Error clearing cache: {str(e)}")
 
 @app.get("/api/conversation/history")
 async def get_conversation_history(request_obj: Request) -> ConversationHistoryResponse:

@@ -51,3 +51,19 @@ logs/
 # Cache
 .cache/
 .pytest_cache/
+
+# Internal review notes and old artifacts
+phase1_brutal_review.md
+phase2_architecture_attack.md
+MASTER_PRESENTATION.md
+HUGGING_FACE_DEPLOYMENT.md
+EduMate APP full documentation.md
+implementation_plan.md
+gen_eval_output.log
+
+# Evaluation results (generated artifacts)
+evaluation/results/
+
+# Fresh/test ChromaDB instances (auto-generated)
+assets/fresh_chroma_db/
+assets/test_chroma_db/

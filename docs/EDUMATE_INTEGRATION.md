@@ -51,8 +51,7 @@ Request body:
       "question": "What is CPU architecture?",
       "answer": "CPU architecture describes the structure and behavior of the processor."
     }
-  ],
-  "numContextDocs": 3
+  ]
 }
 ```
 
@@ -62,7 +61,7 @@ Rules:
 - `messages` contains previous Q&A pairs only, ordered oldest to newest.
 - `.NET` should send only the latest 5 previous Q&A pairs.
 - EduMate-RAG also caps the received history to the latest 5 pairs as a defensive guard.
-- `numContextDocs` must be between 1 and 10.
+- `numContextDocs` is optional in the integration request and defaults to `3` when omitted.
 
 Response body:
 
@@ -73,7 +72,6 @@ Response body:
   "question": "Explain instruction pipelining",
   "answer": "...",
   "sources": ["computer Architecture Book.pdf"],
-  "numContextDocs": 3,
   "isGeneral": false,
   "latencyMs": 2410.7,
   "timingsMs": {

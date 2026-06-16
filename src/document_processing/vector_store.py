@@ -3,23 +3,25 @@ Vector store backends for EduMate RAG.
 """
 from pathlib import Path
 import time
-from typing import List
+from typing import List, Tuple
 from uuid import uuid5, NAMESPACE_URL
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import chromadb
 from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
 
 from src.config.config import config
 from src.document_processing.pdf_loader import pdf_loader
+from src.document_processing.embedding_cache import embedding_cache
 
 
 COLLECTION_NAME = "course_materials"
 
 
 class ChromaVectorStore:
-    """Local ChromaDB vector store for development."""
+    """Local ChromaDB vector store for development with incremental indexing."""
 
-    def __init__(self):
+    def __init__(self, max_workers: int = 4):
         Path(config.CHROMA_DB_PATH).mkdir(parents=True, exist_ok=True)
 
         self.client = chromadb.PersistentClient(path=config.CHROMA_DB_PATH)
@@ -29,11 +31,19 @@ class ChromaVectorStore:
             name=self.collection_name,
             metadata={"hnsw:space": "cosine"},
         )
+        self.max_workers = max_workers
 
-    def index_pdfs(self):
+    def index_pdfs(self, incremental: bool = True, force_full: bool = False):
+        """
+        Index PDFs with optional incremental mode and embedding cache.
+        
+        Args:
+            incremental: Use incremental indexing for changed files
+            force_full: Force full re-indexing regardless of changes
+        """
         print("Starting PDF indexing...")
 
-        documents = pdf_loader.load_all_pdfs()
+        documents = pdf_loader.load_all_pdfs(incremental=incremental and not force_full)
 
         if not documents:
             print("No documents to index")
@@ -46,10 +56,12 @@ class ChromaVectorStore:
             batch = documents[start:start + batch_size]
             try:
                 texts = [doc["content"] for doc in batch]
+                embeddings = self._embed_texts_with_cache(texts)
+                
                 self.collection.add(
                     ids=[self._document_id(doc, start + offset) for offset, doc in enumerate(batch)],
                     documents=texts,
-                    embeddings=self._embed_texts(texts),
+                    embeddings=embeddings,
                     metadatas=[doc["metadata"] for doc in batch],
                 )
 
@@ -65,7 +77,7 @@ class ChromaVectorStore:
     def similarity_search(self, query: str, k: int = 3) -> List[dict]:
         try:
             results = self.collection.query(
-                query_embeddings=[self._embed_texts([query])[0]],
+                query_embeddings=[self._embed_texts_with_cache([query])[0]],
                 n_results=k,
             )
 
@@ -75,7 +87,8 @@ class ChromaVectorStore:
                     documents.append({
                         "content": doc,
                         "metadata": results["metadatas"][0][i],
-                        "distance": results["distances"][0][i] if results["distances"] else 0,
+                        "distance": results["distances"][0][i] if results["distances"] else 0.0,
+                        "similarity": 1.0 - (results["distances"][0][i] / 2.0) if results["distances"] and results["distances"][0][i] <= 2.0 else 0.0,
                     })
 
             return documents
@@ -97,15 +110,38 @@ class ChromaVectorStore:
         metadata = doc["metadata"]
         return f"{metadata['source']}_{metadata['chunk_index']}_{idx}"
 
+    def _embed_texts_with_cache(self, texts: List[str]) -> List[List[float]]:
+        """
+        Get embeddings using cache when possible.
+        
+        Args:
+            texts: List of texts to embed
+            
+        Returns:
+            List of embedding vectors
+        """
+        cached_embeddings, missing_indices, missing_texts = embedding_cache.get_batch(texts)
+        
+        if missing_texts:
+            # Compute missing embeddings
+            missing_embeddings = self._embed_texts(missing_texts)
+            embedding_cache.set_batch(missing_texts, missing_embeddings)
+            
+            # Reconstruct full embeddings list
+            for idx, embedding in zip(missing_indices, missing_embeddings):
+                cached_embeddings[idx] = embedding
+        
+        return cached_embeddings
+
     def _embed_texts(self, texts: List[str]) -> List[List[float]]:
         embeddings = self.embedding_function(texts)
         return [[float(value) for value in embedding] for embedding in embeddings]
 
 
 class QdrantVectorStore:
-    """Qdrant Cloud vector store for production."""
+    """Qdrant Cloud vector store for production with incremental indexing."""
 
-    def __init__(self):
+    def __init__(self, max_workers: int = 4):
         try:
             from qdrant_client import QdrantClient
             from qdrant_client.models import Distance, VectorParams
@@ -121,6 +157,7 @@ class QdrantVectorStore:
         )
         self.collection_name = COLLECTION_NAME
         self.embedding_function = DefaultEmbeddingFunction()
+        self.max_workers = max_workers
         self.vector_size = len(self._embed_texts(["dimension probe"])[0])
 
         if not self._collection_exists():
@@ -132,7 +169,14 @@ class QdrantVectorStore:
                 ),
             )
 
-    def index_pdfs(self):
+    def index_pdfs(self, incremental: bool = True, force_full: bool = False):
+        """
+        Index PDFs with optional incremental mode and embedding cache.
+        
+        Args:
+            incremental: Use incremental indexing for changed files
+            force_full: Force full re-indexing regardless of changes
+        """
         try:
             from qdrant_client.models import PointStruct
         except ImportError as exc:
@@ -142,7 +186,7 @@ class QdrantVectorStore:
 
         print("Starting PDF indexing...")
 
-        documents = pdf_loader.load_all_pdfs()
+        documents = pdf_loader.load_all_pdfs(incremental=incremental and not force_full)
 
         if not documents:
             print("No documents to index")
@@ -152,9 +196,10 @@ class QdrantVectorStore:
 
         batch_size = 32
         failed_batches = []
+        
         for start in range(0, len(documents), batch_size):
             batch = documents[start:start + batch_size]
-            vectors = self._embed_texts([doc["content"] for doc in batch])
+            embeddings = self._embed_texts_with_cache([doc["content"] for doc in batch])
             points = []
 
             for offset, doc in enumerate(batch):
@@ -163,7 +208,7 @@ class QdrantVectorStore:
                 points.append(
                     PointStruct(
                         id=point_id,
-                        vector=vectors[offset],
+                        vector=embeddings[offset],
                         payload={
                             "content": doc["content"],
                             "metadata": doc["metadata"],
@@ -185,7 +230,7 @@ class QdrantVectorStore:
 
     def similarity_search(self, query: str, k: int = 3) -> List[dict]:
         try:
-            query_vector = self._embed_texts([query])[0]
+            query_vector = self._embed_texts_with_cache([query])[0]
             results = self.client.search(
                 collection_name=self.collection_name,
                 query_vector=query_vector,
@@ -200,6 +245,7 @@ class QdrantVectorStore:
                     "content": payload.get("content", ""),
                     "metadata": payload.get("metadata", {}),
                     "distance": result.score,
+                    "similarity": result.score,
                 })
 
             return documents
@@ -228,6 +274,29 @@ class QdrantVectorStore:
             return True
         except Exception:
             return False
+
+    def _embed_texts_with_cache(self, texts: List[str]) -> List[List[float]]:
+        """
+        Get embeddings using cache when possible.
+        
+        Args:
+            texts: List of texts to embed
+            
+        Returns:
+            List of embedding vectors
+        """
+        cached_embeddings, missing_indices, missing_texts = embedding_cache.get_batch(texts)
+        
+        if missing_texts:
+            # Compute missing embeddings
+            missing_embeddings = self._embed_texts(missing_texts)
+            embedding_cache.set_batch(missing_texts, missing_embeddings)
+            
+            # Reconstruct full embeddings list
+            for idx, embedding in zip(missing_indices, missing_embeddings):
+                cached_embeddings[idx] = embedding
+        
+        return cached_embeddings
 
     def _embed_texts(self, texts: List[str]) -> List[List[float]]:
         embeddings = self.embedding_function(texts)
@@ -264,8 +333,18 @@ class VectorStore:
         else:
             self.backend = ChromaVectorStore()
 
-    def index_pdfs(self):
-        return self.backend.index_pdfs()
+    def index_pdfs(self, incremental: bool = True, force_full: bool = False):
+        """
+        Index PDFs with optional incremental and caching support.
+        
+        Args:
+            incremental: Use incremental indexing for changed files
+            force_full: Force full re-indexing regardless of changes
+            
+        Returns:
+            True if indexing succeeded, False otherwise
+        """
+        return self.backend.index_pdfs(incremental=incremental, force_full=force_full)
 
     def similarity_search(self, query: str, k: int = 3) -> List[dict]:
         return self.backend.similarity_search(query, k=k)

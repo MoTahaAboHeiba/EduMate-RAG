@@ -2,56 +2,109 @@
 PDF Loader - Extract and process course PDFs
 """
 from pathlib import Path
-from typing import List
+from typing import List, Tuple, Dict
 from pypdf import PdfReader
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 try:
     from langchain_text_splitters import RecursiveCharacterTextSplitter
 except ImportError:
     from langchain.text_splitter import RecursiveCharacterTextSplitter
 from src.config.config import config
+from src.document_processing.file_tracker import file_tracker
 
 class PDFLoader:
-    """Load and process PDF files"""
+    """Load and process PDF files with incremental and parallel processing."""
     
-    def __init__(self):
-        """Initialize PDF loader"""
+    def __init__(self, max_workers: int = 4):
+        """
+        Initialize PDF loader.
+        
+        Args:
+            max_workers: Maximum number of concurrent PDF processing threads
+        """
         self.pdf_folder = Path(config.PDF_FOLDER_PATH)
         self.chunk_size = 1000  # Characters per chunk
         self.chunk_overlap = 200  # Overlap between chunks
+        self.max_workers = max_workers
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=self.chunk_size,
             chunk_overlap=self.chunk_overlap,
             separators=["\n\n", "\n", " ", ""]
         )
+        self._lock = threading.Lock()
     
-    def load_all_pdfs(self) -> List[dict]:
+    def load_all_pdfs(self, incremental: bool = True) -> List[dict]:
         """
-        Load all PDFs from the PDF folder
+        Load all PDFs from the PDF folder.
         
+        Args:
+            incremental: If True, only load changed files. If False, reload all.
+            
         Returns:
             List of documents with metadata
         """
-        documents = []
-        
         # Get all PDF files
         pdf_files = list(self.pdf_folder.glob("*.pdf"))
         
         if not pdf_files:
             print(f"No PDFs found in {self.pdf_folder}")
-            return documents
+            return []
         
         print(f"Found {len(pdf_files)} PDF(s)")
         
-        for pdf_path in pdf_files:
-            print(f"Processing: {pdf_path.name}")
-            try:
-                docs = self._load_pdf(pdf_path)
-                documents.extend(docs)
-                print(f"   Extracted {len(docs)} chunks")
-            except Exception as e:
-                print(f"   Error processing {pdf_path.name}: {e}")
+        # Partition files into changed and unchanged
+        if incremental:
+            changed_files, unchanged_files = file_tracker.get_changed_files(pdf_files)
+            print(f"Incremental mode: {len(changed_files)} changed, {len(unchanged_files)} unchanged")
+            pdf_files_to_process = changed_files
+        else:
+            pdf_files_to_process = pdf_files
         
-        print(f"\nTotal chunks created: {len(documents)}")
+        if not pdf_files_to_process:
+            print("No PDFs to process. Using existing index.")
+            return []
+        
+        # Process PDFs in parallel
+        documents = self._load_pdfs_parallel(pdf_files_to_process)
+        
+        # Mark processed files
+        for pdf_path in pdf_files_to_process:
+            file_tracker.mark_processed(pdf_path)
+        
+        print(f"Total chunks created: {len(documents)}")
+        return documents
+    
+    def _load_pdfs_parallel(self, pdf_files: List[Path]) -> List[dict]:
+        """
+        Load PDFs in parallel using ThreadPoolExecutor.
+        
+        Args:
+            pdf_files: List of PDF file paths to process
+            
+        Returns:
+            Combined list of documents from all PDFs
+        """
+        documents = []
+        
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            # Submit all tasks
+            future_to_pdf = {
+                executor.submit(self._load_pdf, pdf_path): pdf_path
+                for pdf_path in pdf_files
+            }
+            
+            # Process completed tasks
+            for future in as_completed(future_to_pdf):
+                pdf_path = future_to_pdf[future]
+                try:
+                    docs = future.result()
+                    with self._lock:
+                        documents.extend(docs)
+                    print(f"   Extracted {len(docs)} chunks from {pdf_path.name}")
+                except Exception as e:
+                    print(f"   Error processing {pdf_path.name}: {e}")
+        
         return documents
     
     def _load_pdf(self, pdf_path: Path) -> List[dict]:

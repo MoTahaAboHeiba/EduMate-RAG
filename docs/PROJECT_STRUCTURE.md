@@ -15,22 +15,35 @@ EduMate-RAG/
   requirements-test.txt            # Test dependencies
   pytest.ini                       # Pytest configuration
 
+  .cache/                          # Runtime caches for incremental indexing
+    embeddings/
+      embeddings.json              # Cached text embeddings
+    file_tracking/
+      file_metadata.json           # PDF modification metadata
+
   docs/                            #  Documentation
     README.md                       # Main documentation
     QUICKSTART_UI.md               # Quick start guide
-    UI_SETUP.md                    # UI setup instructions
+    UI_SETUP.md                    # Frontend integration and setup
     TESTING.md                     # Testing guide
     EDUMATE_INTEGRATION.md         # Flutter integration guide
     EDUMATE_USERS_AND_CONVERSATIONS.md  # Multi-user documentation
     PROJECT_STRUCTURE.md           # This file
+    QDRANT_MIGRATION.md           # Qdrant migration guide
+    OPTIMIZATION_IMPLEMENTATION.md  # Incremental indexing and optimization implementation
+    OPTIMIZATION_SUMMARY.md         # Optimization summary and performance highlights
 
   src/                            #  Source Code
     __init__.py
     config.py                      # Configuration management
     conversation_manager.py        # Conversation persistence
-    pdf_loader.py                  # PDF processing
+    document_processing/           # PDF ingestion and vector indexing
+        __init__.py
+        embedding_cache.py         # Embedding cache for chunk embeddings
+        file_tracker.py            # PDF file change tracking for incremental updates
+        pdf_loader.py              # PDF loading, page splitting, parallel processing
+        vector_store.py            # Vector DB adapters for ChromaDB/Qdrant
     rag_chain.py                   # RAG pipeline & LLM calls
-    vector_store.py                # ChromaDB wrapper
     api/                           # FastAPI server
         __init__.py
         main.py                    # API endpoints

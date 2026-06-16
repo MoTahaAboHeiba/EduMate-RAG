@@ -90,6 +90,7 @@ EduMate-RAG can also run by itself. In this mode clients use `X-Session-Token` a
 - ** App Integration Endpoint** - Dedicated `.NET -> RAG` endpoint for the EduMate app flow
 - ** Standalone Demo Mode** - Direct FastAPI endpoints for local testing and demos
 - ** Intelligent Caching** - Efficient indexing with vector embeddings for fast retrieval
+- ** Incremental Indexing** - File change detection, embedding cache, and parallel PDF processing for fast re-indexing
 - ** Context-Aware** - Understands references to previous questions
 
 ---
@@ -150,24 +151,26 @@ In the EduMate app flow, Flutter talks to the .NET backend. The .NET backend own
 
 For detailed information about specific topics, refer to our organized documentation:
 
-### 🚀 Getting Started
+###  Getting Started
 - **[Quick Start Guide](./docs/QUICKSTART_UI.md)** - Get EduMate running in minutes
 - **[UI Setup](./docs/UI_SETUP.md)** - Frontend integration and setup
 
-### 🏗️ Architecture & Structure  
+###  Architecture & Structure  
 - **[Project Structure](./docs/PROJECT_STRUCTURE.md)** - Feature-based organization and module layout
-- **[Technical Guide](./TECHNICAL_GUIDE.md)** - Deep dive into implementation details
-- **[Vector Store Migration](./afterQDRANT.md)** - Qdrant integration and persistence strategy
+- **[Optimization Implementation](./OPTIMIZATION_IMPLEMENTATION.md)** - Incremental indexing, embedding cache, and parallel PDF processing
+- **[Optimization Summary](./OPTIMIZATION_SUMMARY.md)** - Quick reference for the latest performance improvements
+- **[Qdrant Migration](./docs/QDRANT_MIGRATION.md)** - Qdrant integration and persistence strategy
 
-### 🔌 Integration
+###  Integration
 - **[Flutter Integration](./docs/EDUMATE_INTEGRATION.md)** - How to integrate with Flutter apps
 - **[Users & Conversations](./docs/EDUMATE_USERS_AND_CONVERSATIONS.md)** - Session and conversation management
 
-### 📊 Optimization
-- **[Optimization Guide](./OPTIMIZATION_GUIDE.md)** - Performance tuning and best practices
-- **[Phase 5 Improvements](./PHASE5_OPTIMIZATION_SUMMARY.md)** - Latest optimizations and enhancements
+###  Optimization
+- **[Optimization Implementation](./OPTIMIZATION_IMPLEMENTATION.md)** - Performance tuning and implementation details
+- **[Optimization Summary](./OPTIMIZATION_SUMMARY.md)** - High-level optimization summary
+- **[Phase 5 Evaluation](./docs/PHASE5_EVALUATION_REPORT.md)** - Latest evaluation outcomes and phase review
 
-### ✅ Testing
+###  Testing
 - **[Testing Guide](./docs/TESTING.md)** - How to run tests and verify functionality
 
 ---
@@ -436,8 +439,7 @@ curl -X POST http://localhost:8000/api/integrations/query \
         "question": "What is CPU architecture?",
         "answer": "CPU architecture describes the structure and behavior of the processor."
       }
-    ],
-    "numContextDocs": 3
+    ]
   }'
 ```
 
@@ -449,7 +451,6 @@ curl -X POST http://localhost:8000/api/integrations/query \
   "question": "Explain instruction pipelining",
   "answer": "...",
   "sources": ["computer Architecture Book.pdf"],
-  "numContextDocs": 3,
   "isGeneral": false,
   "latencyMs": 2410.7,
   "timingsMs": {}
@@ -500,11 +501,15 @@ curl -X POST http://localhost:8000/api/query \
 ---
 
 #### 5. POST `/api/index` - Index PDFs
-**Purpose:** Load and index all PDFs into vector database
+**Purpose:** Load and index all PDFs into the vector database
+
+**Query Parameters:**
+- `incremental` (bool, default: `true`) - Use file change detection to index only changed PDFs.
+- `force_full` (bool, default: `false`) - Ignore file tracking and re-index everything.
 
 **Request:**
 ```bash
-curl -X POST http://localhost:8000/api/index
+curl -X POST "http://localhost:8000/api/index?incremental=true&force_full=false"
 ```
 
 **Response:**
@@ -512,7 +517,57 @@ curl -X POST http://localhost:8000/api/index
 {
   "status": "success",
   "message": "PDFs indexed successfully",
-  "documents_indexed": 13096
+  "documents_indexed": 13096,
+  "indexing_mode": "incremental"
+}
+```
+
+---
+#### 6. GET `/api/cache/stats` - View Cache Statistics
+**Purpose:** Inspect embedding and file tracking cache state
+
+**Request:**
+```bash
+curl -X GET http://localhost:8000/api/cache/stats \
+  -H "X-Admin-Key: graduation-demo-key"
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "embedding_cache": {
+    "total_cached": 1250,
+    "cache_file": ".cache/embeddings/embeddings.json",
+    "cache_size_bytes": 45000
+  },
+  "file_tracking": {
+    "tracked_files": 5,
+    "tracker_file": ".cache/file_tracking/file_metadata.json"
+  }
+}
+```
+
+---
+#### 7. POST `/api/cache/clear` - Clear Cache
+**Purpose:** Reset the embedding cache and/or file tracking state
+
+**Query Parameters:**
+- `clear_embeddings` (bool, default: `true`) - Clear the embedding cache.
+- `clear_tracking` (bool, default: `false`) - Clear file modification tracking.
+
+**Request:**
+```bash
+curl -X POST "http://localhost:8000/api/cache/clear?clear_embeddings=true&clear_tracking=false" \
+  -H "X-Admin-Key: graduation-demo-key"
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Cache cleared successfully",
+  "cleared": ["embedding_cache"]
 }
 ```
 
@@ -619,8 +674,7 @@ Request:
       "question": "What is CPU architecture?",
       "answer": "CPU architecture describes the structure and behavior of the processor."
     }
-  ],
-  "numContextDocs": 3
+  ]
 }
 ```
 
@@ -633,7 +687,6 @@ Response:
   "question": "Explain instruction pipelining",
   "answer": "...",
   "sources": ["computer Architecture Book.pdf"],
-  "numContextDocs": 3,
   "isGeneral": false,
   "latencyMs": 2410.7,
   "timingsMs": {}
@@ -708,9 +761,16 @@ EduMate-RAG/
   src/                       # Source code (core logic)
      __init__.py
      config.py              # Configuration loader
-     pdf_loader.py          # PDF extraction & chunking
-     vector_store.py        # ChromaDB integration
-     rag_chain.py           # RAG pipeline with memory
+     document_processing/    # PDF, vector store, and caching logic
+         __init__.py
+         embedding_cache.py  # Embedding cache for text chunks
+         file_tracker.py     # File change tracking for incremental indexing
+         pdf_loader.py       # PDF extraction, chunking, and parallel loading
+         vector_store.py     # Qdrant/ChromaDB indexer and search
+     core/                   # Business logic and RAG orchestration
+         __init__.py
+         rag_chain.py        # RAG pipeline with memory
+         retrieval_optimizer.py # Retrieval filtering and reranking
      api/
          __init__.py
          main.py            # FastAPI endpoints
