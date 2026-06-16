@@ -179,8 +179,6 @@ For detailed information about specific topics, refer to our organized documenta
 - **Groq API Key:** Free from [Groq Console](https://console.groq.com) (required)
 - **Course PDFs:** Your academic materials in PDF format
 
-### Optional
-- **Tesseract OCR:** For image-based PDFs ([Installation Guide](https://github.com/UB-Mannheim/tesseract/wiki))
 
 ---
 
