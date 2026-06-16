@@ -1,12 +1,3 @@
----
-title: EduMate RAG
-colorFrom: blue
-colorTo: green
-sdk: docker
-app_port: 8080
-pinned: false
----
-
 #  EduMate RAG System
 
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/downloads/)
