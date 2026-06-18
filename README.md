@@ -107,6 +107,8 @@ EduMate-RAG can also run by itself. In this mode clients use `X-Session-Token` a
 
 In the EduMate app flow, Flutter talks to the .NET backend. The .NET backend owns user and conversation data, then calls EduMate-RAG only when it needs an AI answer. In standalone mode, clients can call EduMate-RAG directly.
 
+![EduMate RAG System Architecture & Query Flow](Gemini_Generated_Image_49p3qw49p3qw49p3.png)
+
 ```
                                       Flutter Mobile App
                                   (Student Interface Layer)
