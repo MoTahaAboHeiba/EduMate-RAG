@@ -73,7 +73,7 @@ EduMate-RAG can also run by itself. In this mode clients use `X-Session-Token` a
 - **PDF-Based Q&A** - Answer questions only from indexed course materials (no external data)
 - **Multi-Turn Conversations** - Remember context across questions for natural dialogue
 - **Semantic Retrieval** - Qdrant Cloud or local ChromaDB retrieves relevant PDF chunks
-- **AI-Powered Generation** - Groq's Llama 3.3 70B for high-quality, contextual answers
+- **AI-Powered Generation** - Groq's openai/gpt-oss-120b for high-quality, contextual answers
 - **Multilingual Support** - Seamlessly handles Arabic and English questions and documents
 - **Source Attribution** - Every answer includes source document references for verification
 - **Security-First** - Secrets stored in `.env`, never committed to Git
@@ -95,7 +95,7 @@ EduMate-RAG can also run by itself. In this mode clients use `X-Session-Token` a
 | **ASGI Server** | Uvicorn | 0.27+ | HTTP server |
 | **LLM Framework** | LangChain | 0.1.20+ | RAG orchestration |
 | **LLM Provider** | Groq | -- | Free cloud LLM API |
-| **LLM Model** | Llama 3.3 70B | Latest | Answer generation |
+| **LLM Model** | openai/gpt-oss-120b | Latest | Answer generation |
 | **Vector DB** | Qdrant Cloud / ChromaDB | qdrant-client 1.9.1 / ChromaDB 0.4.22+ | Semantic search |
 | **PDF Processing** | PyPDF | 4.0.1+ | Text extraction |
 | **Config Management** | python-dotenv | 1.0+ | Environment variables |
@@ -134,7 +134,7 @@ In the EduMate app flow, Flutter talks to the .NET backend. The .NET backend own
                        └──────────────────────┬──────────────────────┘
                                               ▼
                                    Groq API (LLM Inference)
-                                 - llama-3.3-70b-versatile
+                                 - openai/gpt-oss-120b
                                  - Key Rotation (Groq Key 1 & 2)
 ```
 
