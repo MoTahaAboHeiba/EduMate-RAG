@@ -26,7 +26,7 @@ class Config:
     GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
     # Hardcoded safe fallback model (used at runtime when Groq rejects the configured model)
-    GROQ_FALLBACK_MODEL = os.getenv("GROQ_FALLBACK_MODEL", "llama-3.3-70b-versatile")
+    GROQ_FALLBACK_MODEL = os.getenv("GROQ_FALLBACK_MODEL", "openai/gpt-oss-120b")
 
     # Disabled by default because googletrans is an unofficial network dependency
     # and was unstable inside FastAPI during evaluation.
