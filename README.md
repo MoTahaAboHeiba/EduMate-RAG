@@ -1076,28 +1076,6 @@ This project demonstrates:
 -  **PDF Processing** - Text extraction and chunking
 -  **Version Control** - Git workflow
 
----
-
-##  Roadmap
-
-### V2.1 (Next)
-- [x] Backend integration endpoint for EduMate app (`POST /api/integrations/query`)
-- [ ] User authentication & JWT tokens
-- [ ] Rate limiting per user
-- [ ] Query analytics & logging
-- [ ] Answer rating system
-
-### V2.2
-- [ ] Web admin dashboard
-- [ ] Multiple conversation sessions per user
-- [ ] PDF upload via API
-- [ ] Full-text search fallback
-
-### V3.0
-- [ ] End-to-end Flutter + .NET + RAG verification
-- [ ] Multilingual UI support
-- [ ] Advanced analytics
-- [ ] Cloud deployment templates
 
 ---
 
