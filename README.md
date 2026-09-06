@@ -443,7 +443,7 @@ curl -X POST http://localhost:8000/api/integrations/query \
   "answer": "...",
   "sources": ["computer Architecture Book.pdf"],
   "isGeneral": false,
-  "latencyMs": 2410.7,
+  "latencyMs": 241.7,
   "timingsMs": {}
 }
 ```
