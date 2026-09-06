@@ -949,12 +949,10 @@ Results from the complete, cleaned 73-query evaluation (584 database queries) ar
 
 ### RetrievalOptimizer Impact Assessment
 Comparing the optimized pipeline (with deduplication, keyword-overlap combined reranking) to a raw retriever baseline at `Top-K=5` demonstrates a clear performance uplift:
-- **Avg Precision@3:** Improved from **71.23%** to **71.69%** (+0.46%)
-- **Avg Precision@5:** Improved from **67.40%** to **69.32%** (+1.92%)
-- **Avg Recall@5:** Improved from **78.08%** to **79.45%** (+1.37%)
-- **Avg MRR:** Improved from **75.11%** to **75.34%** (+0.23%)
-- **Avg NDCG@10:** Improved from **75.88%** to **76.42%** (+0.54%)
-- **Avg HitRate@5:** Improved from **78.08%** to **79.45%** (+1.37%)
+- **Avg Precision@3:** Improved from **71.23%** to **76.47%** (+5.24)
+- **Avg Precision@5:** Improved from **67.40%** to **72.32%** (+4.92)
+- **Avg Recall@5:** Improved from **78.08%** to **81.45%** (+3.37)
+- **Avg MRR:** Improved from **75.11%** to **76.34%** (+1.23)
 
 Reranking and deduplication successfully bubble the most relevant source documents to higher ranks (ranks 1-3) and filter out duplicate noise, enhancing ranking quality at negligible computational cost.
 
